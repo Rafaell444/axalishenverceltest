@@ -1,0 +1,210 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "products": "Products",
+    "blog": "Blog",
+    "contact": "Contact",
+    "contactUs": "Contact Us",
+    "centerTagline": "Wellness Center",
+    "call": "Call",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "features": {
+    "eyebrow": "Why Us",
+    "heading": "What Sets Us",
+    "headingHighlight": "Apart",
+    "description": "Our advantages and values that allow us to provide the best service to you"
+  },
+  "services": {
+    "heading": "Our Services",
+    "learnMore": "Learn More"
+  },
+  "process": {
+    "eyebrow": "Simple Process",
+    "heading": "How It",
+    "headingHighlight": "Works",
+    "description": "Four simple steps towards your transformation",
+    "step": "Step",
+    "prev": "Back",
+    "next": "Next",
+    "book": "Book Now",
+    "readyToStart": "Ready to get started?",
+    "startJourney": "Begin Your Journey",
+    "step0Subtitle": "Meeting with a specialist",
+    "step1Subtitle": "Full examination",
+    "step2Subtitle": "Individual plan",
+    "step3Subtitle": "Your transformation"
+  },
+  "testimonials": {
+    "heading": "What Our",
+    "headingHighlight": "Patients Say",
+    "description": "Experiences and reviews from our patients",
+    "prev": "Previous",
+    "next": "Next",
+    "slide": "Slide"
+  },
+  "achievements": {
+    "eyebrow": "Achievements",
+    "heading": "Our",
+    "headingHighlight": "Successes",
+    "description": "Results and recognitions achieved over the years"
+  },
+  "faq": {
+    "heading": "Frequently Asked",
+    "headingHighlight": "Questions",
+    "description": "Answers to the most common questions"
+  },
+  "research": {
+    "heading": "Research &",
+    "headingHighlight": "Publications",
+    "description": "Latest scientific research and publications from our team",
+    "allPublications": "All Publications",
+    "researchTag": "Research"
+  },
+  "cta": {
+    "heading": "Ready for",
+    "headingHighlight": "a New Life?",
+    "description": "Contact us today and get a free consultation from our specialists. Your health is our priority.",
+    "contactBtn": "Contact Us"
+  },
+  "newsletter": {
+    "eyebrow": "Newsletter",
+    "heading": "Get",
+    "headingHighlight": "the Latest",
+    "headingSuffix": "News",
+    "description": "Subscribe to our newsletter and be the first to know about medical news, promotions and research.",
+    "placeholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "subscribing": "...",
+    "successTitle": "Thank you for subscribing!",
+    "successDesc": "You will receive your first email soon",
+    "privacyPrefix": "By subscribing you agree to our",
+    "privacyLink": "Privacy Policy",
+    "errorDefault": "Failed to send. Please try again."
+  },
+  "appointment": {
+    "badge": "Contact Us",
+    "heading": "Get a Consultation",
+    "headingSub": "Now",
+    "description": "Contact us and get professional consultation from our specialists",
+    "contactBtn": "Contact",
+    "workingHours": "Working Hours",
+    "workingHoursDesc": "We welcome you every day",
+    "monFri": "Mon – Fri",
+    "sat": "Sat",
+    "addressHeading": "Address",
+    "addressDesc": "Find our clinic",
+    "viewOnMap": "View on Map"
+  },
+  "video": {
+    "eyebrow": "Video Tour",
+    "heading": "Explore Our",
+    "headingHighlight": "Center",
+    "description": "See how our team works and explore the modern equipment",
+    "videoPlayer": "Video Player"
+  },
+  "partners": {
+    "heading": "Trusted Partners"
+  },
+  "footer": {
+    "services": "Services",
+    "company": "Company",
+    "contact": "Contact",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "centerTagline": "Wellness Center",
+    "about": "About Us",
+    "blog": "Blog",
+    "service0": "Drug Addiction",
+    "service1": "Consultation",
+    "service2": "Detoxification",
+    "monFri": "Mon–Fri:"
+  },
+  "about": {
+    "eyebrow": "About Us",
+    "mission": "Mission",
+    "vision": "Vision",
+    "values": "Our",
+    "valuesHighlight": "Values",
+    "history": "Our",
+    "historyHighlight": "History",
+    "team": "Our",
+    "teamHighlight": "Team",
+    "certs": "Certificates &",
+    "certsHighlight": "Accreditations"
+  },
+  "blog": {
+    "eyebrow": "Blog",
+    "heading": "News &",
+    "headingHighlight": "Publications",
+    "description": "Latest research, medical news and health advice",
+    "searchPlaceholder": "Search...",
+    "featured": "Featured Articles",
+    "all": "All",
+    "notFound": "No articles found",
+    "loadMore": "Load More"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "heading": "Get in Touch",
+    "headingHighlight": "Today",
+    "description": "Have questions? Our team is ready to help.",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "workingHours": "Working Hours",
+    "addressLine0": "Tbilisi, Georgia",
+    "addressLine1": "Rustaveli Ave. 24",
+    "hoursLine0": "Mon–Fri: 09:00 – 19:00",
+    "hoursLine1": "Sat: 10:00 – 15:00",
+    "writeToUs": "Write to Us",
+    "nameLabel": "Full Name *",
+    "namePlaceholder": "Your name",
+    "phoneLabel": "Phone *",
+    "emailLabel": "Email",
+    "serviceLabel": "Service",
+    "serviceDefault": "Select a service",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Write your message...",
+    "sendLoading": "Sending...",
+    "send": "Send",
+    "successTitle": "Thank you!",
+    "successDesc": "Your message was sent successfully. We'll contact you soon.",
+    "errorDefault": "Failed to send. Please try again.",
+    "quickContact": "Quick Contact",
+    "quickContactDesc": "Contact us by phone or email",
+    "emergency": "Emergency?",
+    "emergencyDesc": "24/7 hotline for emergencies"
+  },
+  "servicesPage": {
+    "eyebrow": "Services",
+    "heading": "Our",
+    "headingHighlight": "Services",
+    "description": "Comprehensive medical services with modern technologies and highly qualified specialists",
+    "whyUs": "Why",
+    "whyUsHighlight": "Us?",
+    "team": "Experienced Team",
+    "teamDesc": "Specialists with 20+ years of experience",
+    "certified": "Certified",
+    "certifiedDesc": "Meeting international standards",
+    "privacy": "Confidentiality",
+    "privacyDesc": "Complete discretion and data protection",
+    "book": "Book Now",
+    "learnMore": "Learn More",
+    "includes": "Includes:"
+  },
+  "productsPage": {
+    "eyebrow": "Products",
+    "heading": "Our",
+    "headingHighlight": "Products",
+    "description": "Natural supplements and medical products for health",
+    "all": "All",
+    "comingSoon": "Products coming soon",
+    "sale": "Sale",
+    "outOfStock": "Out of stock"
+  }
+}

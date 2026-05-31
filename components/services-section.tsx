@@ -1,0 +1,58 @@
+import { ArrowRight, Brain, Stethoscope, Shield, Server, Activity, Microscope, LucideIcon } from "lucide-react"
+import Link from "next/link"
+import { useTranslations } from "next-intl"
+import type { Service } from "@/lib/api"
+
+const ICON_MAP: Record<string, LucideIcon> = {
+  Brain, Stethoscope, Shield, Server, Activity, Microscope,
+}
+
+const DEFAULT_SERVICES: Service[] = [
+  { id: 1, icon: "Brain", title: "ნარკოდამოკიდებულება", slug: "narkodam", short_description: "დამოკიდებულებისგან გამოჯანმრთელება.", price: "", duration: "", is_featured: true, order: 0, image_url: null },
+  { id: 2, icon: "Stethoscope", title: "კონსულტაცია", slug: "konsultacia", short_description: "კონსულტაცია და დიაგნოსტიკა.", price: "", duration: "", is_featured: true, order: 1, image_url: null },
+  { id: 3, icon: "Shield", title: "პარაზიტები", slug: "parazitebi", short_description: "ორგანიზმის გაწმენდა.", price: "", duration: "", is_featured: true, order: 2, image_url: null },
+]
+
+interface Props {
+  services: Service[]
+}
+
+export function ServicesSection({ services }: Props) {
+  const t = useTranslations("services")
+  const items = services.length > 0 ? services : DEFAULT_SERVICES
+
+  return (
+    <section className="border-t border-border/40 bg-background py-16 lg:py-24">
+      <div className="container mx-auto px-4 lg:px-8">
+        <h2 className="mb-8 md:mb-12 text-center text-xl sm:text-2xl font-semibold text-foreground md:text-3xl">
+          {t("heading")}
+        </h2>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((service) => {
+            const IconComponent = ICON_MAP[service.icon] ?? Stethoscope
+            return (
+              <div
+                key={service.id}
+                className="group rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/50 hover:bg-card/80"
+              >
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <IconComponent className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="mb-2 text-lg font-medium text-foreground">{service.title}</h3>
+                <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{service.short_description}</p>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="inline-flex items-center gap-1 text-sm text-primary transition-colors hover:text-primary/80"
+                >
+                  {t("learnMore")}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}

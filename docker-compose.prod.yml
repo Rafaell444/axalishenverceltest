@@ -1,0 +1,46 @@
+# docker-compose.prod.yml — production deployment (AWS EC2 / ECS)
+# Usage:
+#   1. Copy backend/.env → backend/.env.prod and set DEBUG=False, real SECRET_KEY, ALLOWED_HOSTS, etc.
+#   2. Set NEXT_PUBLIC_API_URL to your domain, e.g. https://api.yourdomain.com
+#   3. docker-compose -f docker-compose.prod.yml up -d --build
+
+services:
+  backend:
+    build: ./backend
+    expose:
+      - "8000"
+    env_file:
+      - ./backend/.env.prod
+    volumes:
+      - backend_media:/app/media
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/settings/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+    expose:
+      - "3000"
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.25-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro       # mount your SSL certs here
+    depends_on:
+      - frontend
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend_media:

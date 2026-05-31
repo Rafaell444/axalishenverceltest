@@ -1,0 +1,36 @@
+# v0 sandbox internal files
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+.snowflake/
+.v0-trash/
+.vercel/
+
+# Environment variables — actual values (never commit these)
+.env
+backend/.env
+backend/.env.prod
+
+# Common ignores
+node_modules/
+.next/
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+*.egg
+
+# Django
+*.sqlite3
+backend/media/
+backend/staticfiles/
+backend/static_collected/

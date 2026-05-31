@@ -1,0 +1,210 @@
+{
+  "nav": {
+    "home": "Главная",
+    "about": "О нас",
+    "services": "Услуги",
+    "products": "Продукты",
+    "blog": "Блог",
+    "contact": "Контакт",
+    "contactUs": "Связаться",
+    "centerTagline": "Центр оздоровления",
+    "call": "Позвонить",
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню"
+  },
+  "features": {
+    "eyebrow": "Почему мы",
+    "heading": "Что нас отличает",
+    "headingHighlight": "от других",
+    "description": "Наши преимущества и ценности, которые позволяют нам предоставлять лучший сервис"
+  },
+  "services": {
+    "heading": "Наши услуги",
+    "learnMore": "Узнать больше"
+  },
+  "process": {
+    "eyebrow": "Простой процесс",
+    "heading": "Как это",
+    "headingHighlight": "работает",
+    "description": "Четыре простых шага к вашей трансформации",
+    "step": "Шаг",
+    "prev": "Назад",
+    "next": "Далее",
+    "book": "Записаться",
+    "readyToStart": "Готовы начать?",
+    "startJourney": "Начните своё путешествие",
+    "step0Subtitle": "Встреча со специалистом",
+    "step1Subtitle": "Полное обследование",
+    "step2Subtitle": "Индивидуальный план",
+    "step3Subtitle": "Ваша трансформация"
+  },
+  "testimonials": {
+    "heading": "Что говорят наши",
+    "headingHighlight": "Пациенты",
+    "description": "Опыт и отзывы наших пациентов",
+    "prev": "Назад",
+    "next": "Далее",
+    "slide": "Слайд"
+  },
+  "achievements": {
+    "eyebrow": "Достижения",
+    "heading": "Наши",
+    "headingHighlight": "Успехи",
+    "description": "Результаты и признания, достигнутые за годы работы"
+  },
+  "faq": {
+    "heading": "Часто задаваемые",
+    "headingHighlight": "Вопросы",
+    "description": "Ответы на самые распространённые вопросы"
+  },
+  "research": {
+    "heading": "Исследования и",
+    "headingHighlight": "Публикации",
+    "description": "Последние научные исследования и публикации нашей команды",
+    "allPublications": "Все публикации",
+    "researchTag": "Исследование"
+  },
+  "cta": {
+    "heading": "Готовы к",
+    "headingHighlight": "новой жизни?",
+    "description": "Свяжитесь с нами сегодня и получите бесплатную консультацию наших специалистов. Ваше здоровье — наш приоритет.",
+    "contactBtn": "Связаться"
+  },
+  "newsletter": {
+    "eyebrow": "Рассылка",
+    "heading": "Получайте",
+    "headingHighlight": "последние",
+    "headingSuffix": "новости",
+    "description": "Подпишитесь на нашу рассылку и узнавайте первыми о медицинских новостях, акциях и исследованиях.",
+    "placeholder": "Введите email",
+    "subscribe": "Подписаться",
+    "subscribing": "...",
+    "successTitle": "Спасибо за подписку!",
+    "successDesc": "Вы скоро получите первое письмо",
+    "privacyPrefix": "Подписываясь, вы соглашаетесь с нашей",
+    "privacyLink": "Политикой конфиденциальности",
+    "errorDefault": "Отправка не удалась. Попробуйте снова."
+  },
+  "appointment": {
+    "badge": "Связаться",
+    "heading": "Получите консультацию",
+    "headingSub": "Сейчас",
+    "description": "Свяжитесь с нами и получите профессиональную консультацию наших специалистов",
+    "contactBtn": "Контакт",
+    "workingHours": "Рабочие часы",
+    "workingHoursDesc": "Мы рады вам каждый день",
+    "monFri": "Пн – Пт",
+    "sat": "Сб",
+    "addressHeading": "Адрес",
+    "addressDesc": "Найдите нашу клинику",
+    "viewOnMap": "Показать на карте"
+  },
+  "video": {
+    "eyebrow": "Видео-тур",
+    "heading": "Познакомьтесь с нашим",
+    "headingHighlight": "Центром",
+    "description": "Посмотрите, как работает наша команда, и ознакомьтесь с современным оборудованием",
+    "videoPlayer": "Видеоплеер"
+  },
+  "partners": {
+    "heading": "Надёжные партнёры"
+  },
+  "footer": {
+    "services": "Услуги",
+    "company": "Компания",
+    "contact": "Контакт",
+    "rights": "Все права защищены.",
+    "privacy": "Конфиденциальность",
+    "terms": "Условия",
+    "centerTagline": "Центр оздоровления",
+    "about": "О нас",
+    "blog": "Блог",
+    "service0": "Наркозависимость",
+    "service1": "Консультация",
+    "service2": "Детоксикация",
+    "monFri": "Пн–Пт:"
+  },
+  "about": {
+    "eyebrow": "О нас",
+    "mission": "Миссия",
+    "vision": "Видение",
+    "values": "Наши",
+    "valuesHighlight": "Ценности",
+    "history": "Наша",
+    "historyHighlight": "История",
+    "team": "Наша",
+    "teamHighlight": "Команда",
+    "certs": "Сертификаты и",
+    "certsHighlight": "Аккредитации"
+  },
+  "blog": {
+    "eyebrow": "Блог",
+    "heading": "Новости и",
+    "headingHighlight": "Публикации",
+    "description": "Последние исследования, медицинские новости и советы по здоровью",
+    "searchPlaceholder": "Поиск...",
+    "featured": "Избранные статьи",
+    "all": "Все",
+    "notFound": "Статьи не найдены",
+    "loadMore": "Загрузить ещё"
+  },
+  "contact": {
+    "eyebrow": "Контакт",
+    "heading": "Свяжитесь с нами",
+    "headingHighlight": "Сегодня",
+    "description": "Есть вопросы? Наша команда готова помочь.",
+    "address": "Адрес",
+    "phone": "Телефон",
+    "email": "Email",
+    "workingHours": "Рабочие часы",
+    "addressLine0": "Тбилиси, Грузия",
+    "addressLine1": "пр. Руставели, 24",
+    "hoursLine0": "Пн–Пт: 09:00 – 19:00",
+    "hoursLine1": "Сб: 10:00 – 15:00",
+    "writeToUs": "Напишите нам",
+    "nameLabel": "Имя и фамилия *",
+    "namePlaceholder": "Ваше имя",
+    "phoneLabel": "Телефон *",
+    "emailLabel": "Email",
+    "serviceLabel": "Услуга",
+    "serviceDefault": "Выберите услугу",
+    "messageLabel": "Сообщение",
+    "messagePlaceholder": "Напишите ваше сообщение...",
+    "sendLoading": "Отправляется...",
+    "send": "Отправить",
+    "successTitle": "Спасибо!",
+    "successDesc": "Ваше сообщение успешно отправлено. Мы скоро свяжемся с вами.",
+    "errorDefault": "Отправка не удалась. Попробуйте снова.",
+    "quickContact": "Быстрый контакт",
+    "quickContactDesc": "Свяжитесь с нами по телефону или email",
+    "emergency": "Экстренный случай?",
+    "emergencyDesc": "Горячая линия 24/7 для экстренных случаев"
+  },
+  "servicesPage": {
+    "eyebrow": "Услуги",
+    "heading": "Наши",
+    "headingHighlight": "Услуги",
+    "description": "Комплексное медицинское обслуживание с современными технологиями и высококвалифицированными специалистами",
+    "whyUs": "Почему",
+    "whyUsHighlight": "Мы?",
+    "team": "Опытная команда",
+    "teamDesc": "Специалисты с опытом 20+ лет",
+    "certified": "Сертифицированные",
+    "certifiedDesc": "Соответствие международным стандартам",
+    "privacy": "Конфиденциальность",
+    "privacyDesc": "Полная дискретность и защита данных",
+    "book": "Записаться",
+    "learnMore": "Узнать больше",
+    "includes": "Включает:"
+  },
+  "productsPage": {
+    "eyebrow": "Продукты",
+    "heading": "Наши",
+    "headingHighlight": "Продукты",
+    "description": "Натуральные добавки и медицинские продукты для здоровья",
+    "all": "Все",
+    "comingSoon": "Продукты появятся скоро",
+    "sale": "Скидка",
+    "outOfStock": "Нет в наличии"
+  }
+}
