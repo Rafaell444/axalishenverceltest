@@ -5,13 +5,91 @@ import { Star, ShoppingCart, Heart, Package } from "lucide-react"
 import { fetchSettings, fetchProducts, fetchProductCategories } from "@/lib/api"
 import { getTranslations } from "next-intl/server"
 
+const DEFAULT_CATEGORIES = [
+  { id: 1, name: "ვიტამინები", product_count: 3 },
+  { id: 2, name: "მინერალები", product_count: 2 },
+  { id: 3, name: "ომეგა მჟავები", product_count: 1 },
+]
+
+const DEFAULT_PRODUCTS = [
+  {
+    id: 1,
+    name: "ვიტამინი D3 + K2",
+    image_url: null,
+    category: { id: 1, name: "ვიტამინები" },
+    rating: "4.8",
+    price: "32.00",
+    sale_price: null,
+    effective_price: "32.00",
+    in_stock: true,
+  },
+  {
+    id: 2,
+    name: "ომეგა-3 Fish Oil 1000mg",
+    image_url: null,
+    category: { id: 3, name: "ომეგა მჟავები" },
+    rating: "4.9",
+    price: "45.00",
+    sale_price: "38.00",
+    effective_price: "38.00",
+    in_stock: true,
+  },
+  {
+    id: 3,
+    name: "მულტივიტამინი კომპლექსი",
+    image_url: null,
+    category: { id: 1, name: "ვიტამინები" },
+    rating: "4.7",
+    price: "55.00",
+    sale_price: null,
+    effective_price: "55.00",
+    in_stock: true,
+  },
+  {
+    id: 4,
+    name: "მაგნიუმი B6",
+    image_url: null,
+    category: { id: 2, name: "მინერალები" },
+    rating: "4.6",
+    price: "28.00",
+    sale_price: null,
+    effective_price: "28.00",
+    in_stock: true,
+  },
+  {
+    id: 5,
+    name: "ვიტამინი C 1000mg",
+    image_url: null,
+    category: { id: 1, name: "ვიტამინები" },
+    rating: "4.8",
+    price: "22.00",
+    sale_price: "18.00",
+    effective_price: "18.00",
+    in_stock: true,
+  },
+  {
+    id: 6,
+    name: "თუთია + სელენი",
+    image_url: null,
+    category: { id: 2, name: "მინერალები" },
+    rating: "4.5",
+    price: "25.00",
+    sale_price: null,
+    effective_price: "25.00",
+    in_stock: false,
+  },
+]
+
 export default async function ProductsPage() {
-  const [settings, categories, products, t] = await Promise.all([
+  const [settings, categoriesData, productsData, t] = await Promise.all([
     fetchSettings().catch(() => null),
-    fetchProductCategories().catch(() => []),
-    fetchProducts().catch(() => []),
+    fetchProductCategories().catch(() => null),
+    fetchProducts().catch(() => null),
     getTranslations("productsPage"),
   ])
+
+  const categories = (categoriesData && categoriesData.length > 0) ? categoriesData : DEFAULT_CATEGORIES
+  const products = (productsData && productsData.length > 0) ? productsData : DEFAULT_PRODUCTS
 
   return (
     <main className="min-h-screen bg-background">

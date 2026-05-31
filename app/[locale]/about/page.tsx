@@ -24,8 +24,16 @@ const DEFAULT_ABOUT = {
     { id: 3, year: "2021", title: "ISO სერტიფიცირება", description: "მიღებული იქნა საერთაშორისო ხარისხის მართვის სერტიფიკატი." },
     { id: 4, year: "2024", title: "წამყვანი კლინიკა", description: "1500+ კმაყოფილი პაციენტი და საქართველოს საუკეთესო კლინიკის ჯილდო." },
   ],
-  team: [] as { id: number; name: string; role: string; bio: string; photo_url: string | null }[],
-  certifications: [] as { id: number; title: string; issued_by: string; issued_year: string; image_url: string | null }[],
+  team: [
+    { id: 1, name: "ნინო კვარაცხელია", role: "მთავარი ნევროლოგი", bio: "15 წლიანი გამოცდილება ნეიროლოგიაში. ევროპული სერტიფიკატის მფლობელი სპეციალისტი.", photo_url: null },
+    { id: 2, name: "გიორგი მამულაშვილი", role: "ფსიქოლოგი / ფსიქოთერაპევტი", bio: "კოგნიტური-ბიჰევიორული თერაპიის სერტიფიცირებული სპეციალისტი, 10 წლის პრაქტიკა.", photo_url: null },
+    { id: 3, name: "მარიამ ჯავახიშვილი", role: "ოჯახის ექიმი", bio: "ოჯახის მედიცინის სპეციალისტი. ყოვლისმომცველი პირველადი ჯანდაცვის მომსახურება.", photo_url: null },
+    { id: 4, name: "დავით ბერიძე", role: "ლაბორატორიის ხელმძღვანელი", bio: "კლინიკური ლაბორატორიის სპეციალისტი, ISO 15189 სერტიფიცირებული.", photo_url: null },
+  ] as { id: number; name: string; role: string; bio: string; photo_url: string | null }[],
+  certifications: [
+    { id: 1, title: "ISO 9001:2015", issued_by: "International Organization for Standardization", issued_year: "2021", image_url: null },
+    { id: 2, title: "საქართველოს ჯანმრთელობის სამინისტრო", issued_by: "ჯანმრთელობისა და სოციალური დაცვის სამინისტრო", issued_year: "2020", image_url: null },
+  ] as { id: number; title: string; issued_by: string; issued_year: string; image_url: string | null }[],
 }
 
 export default async function AboutPage() {

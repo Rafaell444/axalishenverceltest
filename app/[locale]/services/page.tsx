@@ -11,12 +11,85 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Brain, Leaf, Bug, Shield, Activity, Microscope, Stethoscope, Users, Award,
 }
 
+const DEFAULT_SERVICES = [
+  {
+    id: 1,
+    slug: "neurology",
+    icon: "Brain",
+    title: "ნეიროლოგია",
+    short_description: "თავის ტვინისა და ნერვული სისტემის სრული დიაგნოსტიკა და მკურნალობა.",
+    full_description: "<p>ჩვენი ნეიროლოგიის განყოფილება გთავაზობთ ყველა ასაკის პაციენტებისთვის სრულ ნევროლოგიურ შეფასებასა და მკურნალობას. ვიყენებთ უახლეს დიაგნოსტიკურ მეთოდებს საუკეთესო შედეგების მისაღებად.</p>",
+    duration: "60 წუთი",
+    features: [
+      { id: 1, text: "EEG დიაგნოსტიკა" },
+      { id: 2, text: "MRI ინტერპრეტაცია" },
+      { id: 3, text: "ეპილეფსიის მართვა" },
+      { id: 4, text: "მიგრენის თერაპია" },
+      { id: 5, text: "ინსულტის რეაბილიტაცია" },
+      { id: 6, text: "ნერვული სისტემის დარღვევები" },
+    ],
+  },
+  {
+    id: 2,
+    slug: "psychology",
+    icon: "Activity",
+    title: "ფსიქოლოგია და ფსიქოთერაპია",
+    short_description: "ფსიქოლოგიური კონსულტაცია, CBT თერაპია და ფსიქიკური ჯანმრთელობის მხარდაჭერა.",
+    full_description: "<p>ჩვენი სერტიფიცირებული ფსიქოლოგები გთავაზობენ ინდივიდუალურ და ჯგუფურ თერაპიას. ვიყენებთ მტკიცებულებებზე დაფუძნებულ მეთოდებს, მათ შორის კოგნიტური-ბიჰევიორულ თერაპიას.</p>",
+    duration: "50 წუთი",
+    features: [
+      { id: 1, text: "ინდივიდუალური კონსულტაცია" },
+      { id: 2, text: "კოგნიტური-ბიჰევიორული თერაპია" },
+      { id: 3, text: "შფოთვის მართვა" },
+      { id: 4, text: "დეპრესიის მკურნალობა" },
+      { id: 5, text: "ოჯახური კონსულტაცია" },
+      { id: 6, text: "ბავშვთა ფსიქოლოგია" },
+    ],
+  },
+  {
+    id: 3,
+    slug: "family-medicine",
+    icon: "Stethoscope",
+    title: "ოჯახის მედიცინა",
+    short_description: "ყოვლისმომცველი პირველადი ჯანდაცვა მთელი ოჯახისთვის, ყველა ასაკის პაციენტებისთვის.",
+    full_description: "<p>ჩვენი ოჯახის ექიმები უზრუნველყოფენ სრულ პირველად სამედიცინო მომსახურებას. პრევენციული მედიცინიდან ქრონიკულ დაავადებათა მართვამდე — ჩვენ ზრუნავთ თქვენს ჯანმრთელობაზე.</p>",
+    duration: "30 წუთი",
+    features: [
+      { id: 1, text: "ყოვლისმომცველი გამოკვლევა" },
+      { id: 2, text: "პრევენციული სკრინინგი" },
+      { id: 3, text: "ქრონიკული დაავადებების მართვა" },
+      { id: 4, text: "ვაქცინაცია" },
+      { id: 5, text: "ბავშვთა სამედიცინო მომსახურება" },
+      { id: 6, text: "ჯანმრთელობის მონიტორინგი" },
+    ],
+  },
+  {
+    id: 4,
+    slug: "laboratory",
+    icon: "Microscope",
+    title: "ლაბორატორიული სერვისები",
+    short_description: "ISO სერტიფიცირებული ლაბორატორია — 200+ ტიპის ანალიზი სწრაფი შედეგებით.",
+    full_description: "<p>ჩვენი ISO 15189 სერტიფიცირებული ლაბორატორია გთავაზობთ 200-ზე მეტ ტიპის ლაბორატორიულ გამოკვლევას. შედეგები ხელმისაწვდომია 24 საათში, ონლაინ პლატფორმის მეშვეობით.</p>",
+    duration: "15 წუთი",
+    features: [
+      { id: 1, text: "სისხლის სრული ანალიზი" },
+      { id: 2, text: "ჰორმონალური პანელი" },
+      { id: 3, text: "ვიტამინების პანელი" },
+      { id: 4, text: "მეტაბოლური პანელი" },
+      { id: 5, text: "ონლაინ შედეგები" },
+      { id: 6, text: "24-საათიანი მუშაობა" },
+    ],
+  },
+]
+
 export default async function ServicesPage() {
-  const [settings, services, t] = await Promise.all([
+  const [settings, servicesData, t] = await Promise.all([
     fetchSettings().catch(() => null),
-    fetchServices().catch(() => []),
+    fetchServices().catch(() => null),
     getTranslations("servicesPage"),
   ])
+
+  const services = (servicesData && servicesData.length > 0) ? servicesData : DEFAULT_SERVICES
 
   return (
     <main className="min-h-screen bg-background">
