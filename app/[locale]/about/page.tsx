@@ -7,12 +7,35 @@ import { getTranslations } from "next-intl/server"
 
 const ICON_MAP: Record<string, LucideIcon> = { Heart, Shield, GraduationCap, Users, Award, Star }
 
+const DEFAULT_ABOUT = {
+  hero_title: "ახალი შენ",
+  hero_subtitle: "შესახებ",
+  mission: "ჩვენი მისიაა გავხადოთ ჯანმრთელობის მომსახურება ხელმისაწვდომი, ეფექტური და ინდივიდუალური. ჩვენ ვცდილობთ თითოეულ პაციენტს მივუდგეთ განსაკუთრებული სიფრთხილით.",
+  vision: "გვსურს გახდეთ კავკასიის რეგიონის წამყვანი ჯანმრთელობის ცენტრი, სადაც ყველა პაციენტი მიიღებს მსოფლიო დონის სამედიცინო მომსახურებას.",
+  values: [
+    { id: 1, icon: "Heart", title: "თანაგრძნობა", description: "ჩვენ ვზრუნავთ თითოეულ პაციენტზე, როგორც ოჯახის წევრზე." },
+    { id: 2, icon: "Shield", title: "უსაფრთხოება", description: "ISO სერტიფიცირებული პროტოკოლები და უმაღლესი სტანდარტები." },
+    { id: 3, icon: "Star", title: "სიუცხოვე", description: "მხოლოდ მტკიცებულებებზე დაფუძნებული, თანამედროვე მეთოდები." },
+    { id: 4, icon: "GraduationCap", title: "განათლება", description: "მუდმივი განვითარება და კვალიფიციური სპეციალისტების გუნდი." },
+  ],
+  timeline: [
+    { id: 1, year: "2015", title: "დაარსება", description: "ახალი შენ კლინიკა დაარსდა თბილისში, მხოლოდ 5 სპეციალისტით." },
+    { id: 2, year: "2018", title: "გაფართოება", description: "კლინიკა გაფართოვდა და გახდა 20+ სპეციალისტის სახლი." },
+    { id: 3, year: "2021", title: "ISO სერტიფიცირება", description: "მიღებული იქნა საერთაშორისო ხარისხის მართვის სერტიფიკატი." },
+    { id: 4, year: "2024", title: "წამყვანი კლინიკა", description: "1500+ კმაყოფილი პაციენტი და საქართველოს საუკეთესო კლინიკის ჯილდო." },
+  ],
+  team: [] as { id: number; name: string; role: string; bio: string; photo_url: string | null }[],
+  certifications: [] as { id: number; title: string; issued_by: string; issued_year: string; image_url: string | null }[],
+}
+
 export default async function AboutPage() {
-  const [settings, about, t] = await Promise.all([
+  const [settings, aboutData, t] = await Promise.all([
     fetchSettings().catch(() => null),
     fetchAbout().catch(() => null),
     getTranslations("about"),
   ])
+
+  const about = aboutData ?? DEFAULT_ABOUT
 
   return (
     <main className="min-h-screen bg-background">
