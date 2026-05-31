@@ -4,7 +4,8 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  // "standalone" is only needed for Docker/self-hosted (AWS). Vercel handles its own output.
+  ...(process.env.DOCKER_BUILD === "true" ? { output: "standalone" } : {}),
   typescript: {
     ignoreBuildErrors: true,
   },
