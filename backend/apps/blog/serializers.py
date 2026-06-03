@@ -2,12 +2,27 @@ from rest_framework import serializers
 from .models import BlogCategory, BlogPost
 
 
+def t(obj, field, lang):
+    if lang and lang != "ka":
+        val = getattr(obj, f"{field}_{lang}", None)
+        if val:
+            return val
+    return getattr(obj, field, "") or ""
+
+
 class BlogCategorySerializer(serializers.ModelSerializer):
     post_count = serializers.SerializerMethodField()
+    name = serializers.SerializerMethodField()
 
     class Meta:
         model = BlogCategory
         fields = ["id", "name", "slug", "post_count"]
+
+    def _lang(self):
+        request = self.context.get("request")
+        return request.query_params.get("lang", "ka") if request else "ka"
+
+    def get_name(self, obj): return t(obj, "name", self._lang())
 
     def get_post_count(self, obj):
         return obj.posts.filter(is_published=True).count()
@@ -17,6 +32,8 @@ class BlogPostListSerializer(serializers.ModelSerializer):
     category = BlogCategorySerializer(read_only=True)
     author_name = serializers.SerializerMethodField()
     featured_image_url = serializers.SerializerMethodField()
+    title = serializers.SerializerMethodField()
+    excerpt = serializers.SerializerMethodField()
 
     class Meta:
         model = BlogPost
@@ -24,6 +41,13 @@ class BlogPostListSerializer(serializers.ModelSerializer):
             "id", "title", "slug", "excerpt", "featured_image_url",
             "category", "author_name", "is_featured", "published_at",
         ]
+
+    def _lang(self):
+        request = self.context.get("request")
+        return request.query_params.get("lang", "ka") if request else "ka"
+
+    def get_title(self, obj): return t(obj, "title", self._lang())
+    def get_excerpt(self, obj): return t(obj, "excerpt", self._lang())
 
     def get_author_name(self, obj):
         if obj.author:
@@ -38,5 +62,9 @@ class BlogPostListSerializer(serializers.ModelSerializer):
 
 
 class BlogPostDetailSerializer(BlogPostListSerializer):
+    body = serializers.SerializerMethodField()
+
     class Meta(BlogPostListSerializer.Meta):
         fields = BlogPostListSerializer.Meta.fields + ["body", "created_at", "updated_at"]
+
+    def get_body(self, obj): return t(obj, "body", self._lang())

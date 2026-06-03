@@ -3,7 +3,9 @@ from django.utils.text import slugify
 
 
 class ProductCategory(models.Model):
-    name = models.CharField("სახელი", max_length=100)
+    name = models.CharField("სახელი (ქა)", max_length=100)
+    name_en = models.CharField("სახელი (EN)", max_length=100, blank=True)
+    name_ru = models.CharField("სახელი (RU)", max_length=100, blank=True)
     slug = models.SlugField("Slug", max_length=100, unique=True)
     icon = models.CharField("ხატულა", max_length=50, blank=True)
 
@@ -17,9 +19,13 @@ class ProductCategory(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField("სახელი", max_length=300)
+    name = models.CharField("სახელი (ქა)", max_length=300)
+    name_en = models.CharField("სახელი (EN)", max_length=300, blank=True)
+    name_ru = models.CharField("სახელი (RU)", max_length=300, blank=True)
     slug = models.SlugField("Slug", max_length=300, unique=True, blank=True)
-    description = models.TextField("აღწერა", blank=True)
+    description = models.TextField("აღწერა (ქა)", blank=True)
+    description_en = models.TextField("აღწერა (EN)", blank=True)
+    description_ru = models.TextField("აღწერა (RU)", blank=True)
     price = models.DecimalField("ფასი", max_digits=10, decimal_places=2)
     sale_price = models.DecimalField("სარეალიზაციო ფასი", max_digits=10, decimal_places=2, blank=True, null=True)
     category = models.ForeignKey(

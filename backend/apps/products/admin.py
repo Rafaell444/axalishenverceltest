@@ -8,6 +8,11 @@ class ProductCategoryAdmin(ModelAdmin):
     list_display = ["name", "slug", "icon"]
     prepopulated_fields = {"slug": ("name",)}
     search_fields = ["name"]
+    fieldsets = (
+        ("ქართული", {"fields": ("name", "slug", "icon")}),
+        ("English", {"fields": ("name_en",), "classes": ("collapse",)}),
+        ("Русский", {"fields": ("name_ru",), "classes": ("collapse",)}),
+    )
 
 
 @admin.register(Product)
@@ -19,6 +24,14 @@ class ProductAdmin(ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
     fieldsets = (
         ("ძირითადი", {"fields": ("name", "slug", "category", "image", "is_active", "is_featured")}),
-        ("შინაარსი", {"fields": ("description",)}),
+        ("შინაარსი — ქართული", {"fields": ("description",)}),
+        ("შინაარსი — English", {
+            "fields": ("name_en", "description_en"),
+            "classes": ("collapse",),
+        }),
+        ("შინაარსი — Русский", {
+            "fields": ("name_ru", "description_ru"),
+            "classes": ("collapse",),
+        }),
         ("ფასი და მარაგი", {"fields": ("price", "sale_price", "stock_count", "rating")}),
     )

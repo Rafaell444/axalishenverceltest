@@ -1,9 +1,21 @@
 from rest_framework import serializers
-from .models import HeroSection, Feature, Stat, ProcessStep, Testimonial, Achievement, Publication, FAQ, Partner
+from .models import HeroSection, Feature, Stat, Testimonial, FAQ, Partner
+
+
+def t(obj, field, lang):
+    """Return translated field value, falling back to Georgian."""
+    if lang and lang != "ka":
+        val = getattr(obj, f"{field}_{lang}", None)
+        if val:
+            return val
+    return getattr(obj, field, "") or ""
 
 
 class HeroSectionSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
+    title = serializers.SerializerMethodField()
+    title_highlight = serializers.SerializerMethodField()
+    description = serializers.SerializerMethodField()
 
     class Meta:
         model = HeroSection
@@ -14,6 +26,14 @@ class HeroSectionSerializer(serializers.ModelSerializer):
             "image_url",
         ]
 
+    def _lang(self):
+        request = self.context.get("request")
+        return request.query_params.get("lang", "ka") if request else "ka"
+
+    def get_title(self, obj): return t(obj, "title", self._lang())
+    def get_title_highlight(self, obj): return t(obj, "title_highlight", self._lang())
+    def get_description(self, obj): return t(obj, "description", self._lang())
+
     def get_image_url(self, obj):
         if obj.image:
             request = self.context.get("request")
@@ -22,29 +42,50 @@ class HeroSectionSerializer(serializers.ModelSerializer):
 
 
 class FeatureSerializer(serializers.ModelSerializer):
+    title = serializers.SerializerMethodField()
+    description = serializers.SerializerMethodField()
+
     class Meta:
         model = Feature
         fields = ["id", "icon", "color", "title", "description", "order"]
 
+    def _lang(self):
+        request = self.context.get("request")
+        return request.query_params.get("lang", "ka") if request else "ka"
+
+    def get_title(self, obj): return t(obj, "title", self._lang())
+    def get_description(self, obj): return t(obj, "description", self._lang())
+
 
 class StatSerializer(serializers.ModelSerializer):
+    label = serializers.SerializerMethodField()
+
     class Meta:
         model = Stat
         fields = ["id", "value", "label", "order"]
 
+    def _lang(self):
+        request = self.context.get("request")
+        return request.query_params.get("lang", "ka") if request else "ka"
 
-class ProcessStepSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ProcessStep
-        fields = ["id", "step_number", "title", "description", "order"]
+    def get_label(self, obj): return t(obj, "label", self._lang())
 
 
 class TestimonialSerializer(serializers.ModelSerializer):
     avatar_url = serializers.SerializerMethodField()
+    role = serializers.SerializerMethodField()
+    content = serializers.SerializerMethodField()
 
     class Meta:
         model = Testimonial
         fields = ["id", "name", "role", "content", "avatar_url", "rating", "order"]
+
+    def _lang(self):
+        request = self.context.get("request")
+        return request.query_params.get("lang", "ka") if request else "ka"
+
+    def get_role(self, obj): return t(obj, "role", self._lang())
+    def get_content(self, obj): return t(obj, "content", self._lang())
 
     def get_avatar_url(self, obj):
         if obj.avatar:
@@ -53,22 +94,20 @@ class TestimonialSerializer(serializers.ModelSerializer):
         return None
 
 
-class AchievementSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Achievement
-        fields = ["id", "year", "title", "description", "order"]
-
-
-class PublicationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Publication
-        fields = ["id", "title", "journal", "date", "url", "description", "order"]
-
-
 class FAQSerializer(serializers.ModelSerializer):
+    question = serializers.SerializerMethodField()
+    answer = serializers.SerializerMethodField()
+
     class Meta:
         model = FAQ
         fields = ["id", "question", "answer", "order"]
+
+    def _lang(self):
+        request = self.context.get("request")
+        return request.query_params.get("lang", "ka") if request else "ka"
+
+    def get_question(self, obj): return t(obj, "question", self._lang())
+    def get_answer(self, obj): return t(obj, "answer", self._lang())
 
 
 class PartnerSerializer(serializers.ModelSerializer):

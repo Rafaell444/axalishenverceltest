@@ -1,11 +1,10 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics
-from .models import HeroSection, Feature, Stat, ProcessStep, Testimonial, Achievement, Publication, FAQ, Partner
+from .models import HeroSection, Feature, Stat, Testimonial, FAQ, Partner
 from .serializers import (
     HeroSectionSerializer, FeatureSerializer, StatSerializer,
-    ProcessStepSerializer, TestimonialSerializer, AchievementSerializer,
-    PublicationSerializer, FAQSerializer, PartnerSerializer,
+    TestimonialSerializer, FAQSerializer, PartnerSerializer,
 )
 
 
@@ -27,10 +26,8 @@ class StatListView(generics.ListAPIView):
     queryset = Stat.objects.all()
     serializer_class = StatSerializer
 
-
-class ProcessStepListView(generics.ListAPIView):
-    queryset = ProcessStep.objects.all()
-    serializer_class = ProcessStepSerializer
+    def get_serializer_context(self):
+        return {"request": self.request}
 
 
 class TestimonialListView(generics.ListAPIView):
@@ -41,19 +38,12 @@ class TestimonialListView(generics.ListAPIView):
         return {"request": self.request}
 
 
-class AchievementListView(generics.ListAPIView):
-    queryset = Achievement.objects.all()
-    serializer_class = AchievementSerializer
-
-
-class PublicationListView(generics.ListAPIView):
-    queryset = Publication.objects.all()
-    serializer_class = PublicationSerializer
-
-
 class FAQListView(generics.ListAPIView):
     queryset = FAQ.objects.filter(is_active=True)
     serializer_class = FAQSerializer
+
+    def get_serializer_context(self):
+        return {"request": self.request}
 
 
 class PartnerListView(generics.ListAPIView):

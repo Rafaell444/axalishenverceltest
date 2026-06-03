@@ -7,7 +7,9 @@ User = get_user_model()
 
 
 class BlogCategory(models.Model):
-    name = models.CharField("სახელი", max_length=100)
+    name = models.CharField("სახელი (ქა)", max_length=100)
+    name_en = models.CharField("სახელი (EN)", max_length=100, blank=True)
+    name_ru = models.CharField("სახელი (RU)", max_length=100, blank=True)
     slug = models.SlugField("Slug", max_length=100, unique=True)
 
     class Meta:
@@ -20,10 +22,16 @@ class BlogCategory(models.Model):
 
 
 class BlogPost(models.Model):
-    title = models.CharField("სათაური", max_length=300)
+    title = models.CharField("სათაური (ქა)", max_length=300)
+    title_en = models.CharField("სათაური (EN)", max_length=300, blank=True)
+    title_ru = models.CharField("სათაური (RU)", max_length=300, blank=True)
     slug = models.SlugField("Slug", max_length=300, unique=True)
-    excerpt = models.TextField("მოკლე შინაარსი", max_length=500)
-    body = RichTextUploadingField("სტატიის ტექსტი")
+    excerpt = models.TextField("მოკლე შინაარსი (ქა)", max_length=500)
+    excerpt_en = models.TextField("მოკლე შინაარსი (EN)", max_length=500, blank=True)
+    excerpt_ru = models.TextField("მოკლე შინაარსი (RU)", max_length=500, blank=True)
+    body = RichTextUploadingField("სტატიის ტექსტი (ქა)")
+    body_en = RichTextUploadingField("სტატიის ტექსტი (EN)", blank=True)
+    body_ru = RichTextUploadingField("სტატიის ტექსტი (RU)", blank=True)
     featured_image = models.ImageField("მთავარი სურათი", upload_to="blog/", blank=True, null=True)
     category = models.ForeignKey(
         BlogCategory, on_delete=models.SET_NULL, null=True, blank=True,
