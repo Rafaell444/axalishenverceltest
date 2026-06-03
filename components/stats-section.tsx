@@ -3,18 +3,26 @@ import type { Stat } from "@/lib/api"
 
 const STAT_ICONS: LucideIcon[] = [Users, CheckCircle, Award, Heart, TrendingUp, Star]
 
-const DEFAULT_STATS: Stat[] = [
-  { id: 1, value: "1500+", label: "კმაყოფილი პაციენტი", order: 0 },
-  { id: 2, value: "10+", label: "წლის გამოცდილება", order: 1 },
-  { id: 3, value: "20+", label: "სპეციალისტი", order: 2 },
-  { id: 4, value: "98%", label: "წარმატების მაჩვენებელი", order: 3 },
-]
+interface Translations {
+  default0: string
+  default1: string
+  default2: string
+  default3: string
+}
 
 interface Props {
   stats: Stat[]
+  translations: Translations
 }
 
-export function StatsSection({ stats }: Props) {
+export function StatsSection({ stats, translations: tr }: Props) {
+  const DEFAULT_STATS: Stat[] = [
+    { id: 1, value: "1500+", label: tr.default0, order: 0 },
+    { id: 2, value: "10+",   label: tr.default1, order: 1 },
+    { id: 3, value: "20+",   label: tr.default2, order: 2 },
+    { id: 4, value: "98%",   label: tr.default3, order: 3 },
+  ]
+
   const items = stats.length > 0 ? stats : DEFAULT_STATS
 
   return (

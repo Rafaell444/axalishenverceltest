@@ -13,7 +13,8 @@
     "centerTagline": "Bio Wellness",
     "call": "Call",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "language": "Language"
   },
   "features": {
     "eyebrow": "Learn More",
@@ -113,6 +114,14 @@
   "partners": {
     "heading": "Trusted Partners"
   },
+  "hero": {
+    "title": "Akhali Shen –",
+    "titleHighlight": "Natural Wellness",
+    "description": "We are a functional mushroom and natural wellness products company dedicated to helping you improve your everyday wellbeing through the power of nature.",
+    "ctaPrimary": "Contact Us",
+    "ctaSecondary": "Learn More",
+    "imageAlt": "Symbol of transformation through functional mushrooms"
+  },
   "newsWall": {
     "eyebrow": "News",
     "heading": "News",
@@ -123,7 +132,11 @@
   "stats": {
     "eyebrow": "By the Numbers",
     "heading": "Our",
-    "headingHighlight": "Results"
+    "headingHighlight": "Results",
+    "default0": "Satisfied Customers",
+    "default1": "Years of Experience",
+    "default2": "Specialists",
+    "default3": "Success Rate"
   },
   "blogFaq": {
     "blogTitle": "Blog",
@@ -144,7 +157,8 @@
     "service0": "Functional Mushrooms",
     "service1": "Bio Supplements",
     "service2": "Wellness Consultation",
-    "monFri": "Mon–Fri:"
+    "monFri": "Mon–Fri:",
+    "tagline": "The power of natural mushrooms — for your everyday wellbeing."
   },
   "about": {
     "eyebrow": "About Us",
@@ -169,7 +183,24 @@
     "heading": "Certification",
     "headingHighlight": "",
     "subtitle": "Safety and quality are at the core of everything we do.",
-    "p1": "On this page you can explore laboratory analyses, quality control reports, and certifications related to our products. Each document reflects our commitment to safety, purity, and consistently high standards."
+    "p1": "On this page you can explore laboratory analyses, quality control reports, and certifications related to our products. Each document reflects our commitment to safety, purity, and consistently high standards.",
+    "whyTitle": "Why are",
+    "whyTitleHighlight": "Certifications Important?",
+    "whyDesc": "Certificates are not just paper — they are evidence of our commitment to your health and safety.",
+    "card1Title": "Transparency",
+    "card1Desc": "All certificates are available for inspection.",
+    "card2Title": "Independent Validation",
+    "card2Desc": "Verification is carried out by third-party organizations.",
+    "card3Title": "Regular Renewal",
+    "card3Desc": "Annual audits and recertification.",
+    "c1desc": "The international standard for quality management systems. Confirms the high quality of our products and services.",
+    "c2desc": "Good Manufacturing Practice standard ensuring products are manufactured under appropriate conditions.",
+    "c3desc": "International food safety management system. Guarantees that products are completely safe.",
+    "c4title": "National Agency License",
+    "c4issuer": "National Food Agency of Georgia",
+    "c4desc": "Full compliance with Georgian legislation. All products are registered and licensed.",
+    "c5desc": "European Union organic product standard. Means raw materials are grown without chemical treatment.",
+    "c6desc": "Validation by the world's leading testing and certification company. Confirms product purity."
   },
   "productionPage": {
     "eyebrow": "Production",
@@ -178,12 +209,42 @@
     "subtitle": "For us, production begins with observation.",
     "p1": "As mycology enthusiasts, we spend countless hours studying mushrooms in their natural habitats, learning from ecosystems that have perfected their own balance over millions of years. Some of the mushrooms used in our work are responsibly collected by our team, while others come from carefully selected cultivators who share our standards for quality and sustainability.",
     "p2": "Back in our laboratory, every ingredient is examined, documented, and prepared with attention to detail. We approach this process with both scientific discipline and genuine respect for the organisms we work with. Each formulation is the result of research, testing, and a continuous desire to better understand the remarkable properties of functional fungi.",
-    "p3": "From forest to laboratory, every step reflects our belief that quality begins with knowledge, patience, and respect for nature."
+    "p3": "From forest to laboratory, every step reflects our belief that quality begins with knowledge, patience, and respect for nature.",
+    "step1title": "Observation & Collection",
+    "step1desc": "We spend much time in nature studying mushrooms. Some are responsibly collected by our team, others sourced from selected farms.",
+    "step2title": "Raw Material Assessment",
+    "step2desc": "Every incoming sample is carefully checked — species identification, harvest stage, and collection conditions are documented.",
+    "step3title": "Laboratory Analysis",
+    "step3desc": "Each sample undergoes lab testing — purity, active compound concentration, microbiological examination.",
+    "step4title": "Formulation",
+    "step4desc": "Based on research, experience, and continuous development, we create balanced formulas for modern lifestyles.",
+    "step5title": "Packaging",
+    "step5desc": "UV-protected, BPA-free packaging to preserve stability. Labels include full ingredient, expiry, and batch information.",
+    "step6title": "Delivery",
+    "step6desc": "Temperature-controlled storage and delivery. Free delivery in Tbilisi within 24 hours.",
+    "sustTitle": "Sustainable",
+    "sustTitleHighlight": "Production",
+    "sustDesc": "We care not only about your wellbeing but also about the health of our planet.",
+    "sust1Label": "Renewable Energy",
+    "sust2Label": "Zero Waste Policy",
+    "sust3Label": "Biodegradable Packaging"
   },
   "safetyPage": {
     "eyebrow": "Safety",
     "heading": "Safety",
     "headingHighlight": "Comes First",
+    "pillar1title": "Laboratory Testing",
+    "pillar1desc": "Every batch undergoes laboratory testing procedures in accordance with ISO 17025 standards.",
+    "pillar1b1": "Heavy metal analysis", "pillar1b2": "Microbiological purity", "pillar1b3": "Active compound concentration", "pillar1b4": "Disinfectant residues",
+    "pillar2title": "Raw Material Control",
+    "pillar2desc": "Raw materials come only from certified sources — ecologically clean natural environments or selected farms.",
+    "pillar2b1": "Species identification", "pillar2b2": "Origin documentation", "pillar2b3": "Pesticide-free", "pillar2b4": "GMO-free ingredients",
+    "pillar3title": "Purity Standards",
+    "pillar3desc": "Purity verified by an independent laboratory. Exceeding any standard means batch rejection.",
+    "pillar3b1": "99%+ purity guarantee", "pillar3b2": "Independent verification", "pillar3b3": "COA for every batch", "pillar3b4": "Pharmacopoeial standards",
+    "pillar4title": "Storage & Delivery",
+    "pillar4desc": "Temperature-controlled storage. UV-protected, BPA-free packaging for stability preservation.",
+    "pillar4b1": "Temperature monitoring", "pillar4b2": "Light protection", "pillar4b3": "Humidity control", "pillar4b4": "Expiry tracking",
     "p1": "Product quality and customer safety are our highest priorities. Every mushroom is collected, processed, and tested according to strict quality standards. However, natural origin does not guarantee suitability for every individual.",
     "fungiHeading": "Functional Mushrooms",
     "fungiList": "Lion's Mane, Cordyceps, Turkey Tail, Reishi, Shiitake, Maitake, and Chaga have a long history of traditional use and continue to be studied by modern science.",
@@ -231,6 +292,12 @@
     "emailLabel": "Email",
     "serviceLabel": "Service",
     "serviceDefault": "Select a service",
+    "svcOpt1": "Functional Mushrooms",
+    "svcOpt2": "Bio Supplements",
+    "svcOpt3": "Wellness Consultation",
+    "svcOpt4": "Product Order",
+    "svcOpt5": "Partnership",
+    "svcOpt6": "Other",
     "messageLabel": "Message",
     "messagePlaceholder": "Write your message...",
     "sendLoading": "Sending...",

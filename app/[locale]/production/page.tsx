@@ -5,50 +5,20 @@ import { Leaf, FlaskConical, Package, Truck, Recycle, Search } from "lucide-reac
 import { fetchSettings } from "@/lib/api"
 import { getTranslations } from "next-intl/server"
 
-const STEPS = [
-  {
-    num: "01",
-    icon: Search,
-    title: "დაკვირვება და შეგროვება",
-    description: "ბუნებაში დიდ დროს ვატარებთ სოკოების შესწავლაში. ნაწილი პასუხისმგებლიანად შეგროვებულია ჩვენი გუნდის მიერ, ნაწილი — შერჩეული მეურნეობებიდან.",
-  },
-  {
-    num: "02",
-    icon: Leaf,
-    title: "ნედლეულის შეფასება",
-    description: "შემოსული ყოველი ნიმუში ყურადღებით მოწმდება, იდენტიფიცირდება სახეობა, ეტაპი და შეგროვების პირობები.",
-  },
-  {
-    num: "03",
-    icon: FlaskConical,
-    title: "ლაბორატორიული ანალიზი",
-    description: "თითოეული ნიმუში გადის ლაბორატორიულ ტესტირებას — სისუფთავე, ეფექტური ნაერთების კონცენტრაცია, მიკრობიოლოგიური შემოწმება.",
-  },
-  {
-    num: "04",
-    icon: Package,
-    title: "ფორმულაციის შექმნა",
-    description: "კვლევის, გამოცდილებისა და მუდმივი განვითარების საფუძველზე ვქმნით ბალანსირებულ ფორმულებს თანამედროვე ცხოვრების მოთხოვნებისთვის.",
-  },
-  {
-    num: "05",
-    icon: Package,
-    title: "შეფუთვა",
-    description: "UV-protected, BPA-free შეფუთვა სტაბილურობის შენარჩუნებისთვის. ეტიკეტზე — სრული ინფორმაცია ინგრედიენტების, ვადისა და პარტიის შესახებ.",
-  },
-  {
-    num: "06",
-    icon: Truck,
-    title: "მიწოდება",
-    description: "ტემპერატურის კონტროლირებადი პირობებით შენახვა და მიწოდება. თბილისში უფასო მიტანა 24 საათში.",
-  },
-]
-
 export default async function ProductionPage() {
   const [settings, t] = await Promise.all([
     fetchSettings().catch(() => null),
     getTranslations("productionPage"),
   ])
+
+  const STEPS = [
+    { num: "01", icon: Search,       title: t("step1title"), description: t("step1desc") },
+    { num: "02", icon: Leaf,         title: t("step2title"), description: t("step2desc") },
+    { num: "03", icon: FlaskConical, title: t("step3title"), description: t("step3desc") },
+    { num: "04", icon: Package,      title: t("step4title"), description: t("step4desc") },
+    { num: "05", icon: Package,      title: t("step5title"), description: t("step5desc") },
+    { num: "06", icon: Truck,        title: t("step6title"), description: t("step6desc") },
+  ]
 
   return (
     <main className="min-h-screen bg-background">
@@ -105,16 +75,16 @@ export default async function ProductionPage() {
         <div className="max-w-4xl mx-auto text-center">
           <Recycle className="w-12 h-12 text-primary mx-auto mb-6" />
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-            მდგრადი <span className="text-primary">წარმოება</span>
+            {t("sustTitle")} <span className="text-primary">{t("sustTitleHighlight")}</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
-            ჩვენ ვზრუნავთ არა მხოლოდ თქვენს კეთილდღეობაზე, არამედ გარემოს ჯანმრთელობაზეც.
+            {t("sustDesc")}
           </p>
           <div className="grid sm:grid-cols-3 gap-6">
             {[
-              { value: "100%", label: "განახლებადი ენერგია" },
-              { value: "Zero", label: "ნარჩენების პოლიტიკა" },
-              { value: "Eco", label: "ბიოდეგრადირებადი შეფუთვა" },
+              { value: "100%", label: t("sust1Label") },
+              { value: "Zero", label: t("sust2Label") },
+              { value: "Eco",  label: t("sust3Label") },
             ].map((item) => (
               <div key={item.label} className="bg-card border border-border rounded-xl p-5">
                 <div className="text-2xl font-black text-primary mb-1">{item.value}</div>

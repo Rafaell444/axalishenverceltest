@@ -3,24 +3,29 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import type { HeroData } from "@/lib/api"
 
+interface Translations {
+  title: string
+  titleHighlight: string
+  description: string
+  ctaPrimary: string
+  ctaSecondary: string
+  imageAlt: string
+}
+
 interface Props {
   data: HeroData | null
+  translations: Translations
 }
 
-const DEFAULT: HeroData = {
-  title: "ახალი შენ –",
-  title_highlight: "ახალი ცხოვრება",
-  description:
-    "ჩვენი მიზანია დაგეხმაროთ კანინეთობის აღდგენაში და ცხოვრების ხარისხის გაუმჯობესებაში თანამედროვე, უსაფრთხო და ინდივიდუალური მიდგომით.",
-  cta_primary_text: "დაგვიკავშირდით",
-  cta_primary_link: "/contact",
-  cta_secondary_text: "გაიგე მეტი",
-  cta_secondary_link: "/about",
-  image_url: null,
-}
-
-export function HeroSection({ data }: Props) {
-  const d = data ?? DEFAULT
+export function HeroSection({ data, translations: tr }: Props) {
+  const title = data?.title || tr.title
+  const titleHighlight = data?.title_highlight || tr.titleHighlight
+  const description = data?.description || tr.description
+  const ctaPrimaryText = data?.cta_primary_text || tr.ctaPrimary
+  const ctaPrimaryLink = data?.cta_primary_link || "/contact"
+  const ctaSecondaryText = data?.cta_secondary_text || tr.ctaSecondary
+  const ctaSecondaryLink = data?.cta_secondary_link || "/about"
+  const imageUrl = data?.image_url || "/images/hero-woman.jpg"
 
   return (
     <section className="relative overflow-hidden">
@@ -32,15 +37,15 @@ export function HeroSection({ data }: Props) {
           {/* Text */}
           <div className="max-w-xl text-center lg:text-left mx-auto lg:mx-0">
             <h1 className="text-balance text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
-              {d.title}{" "}
-              <span className="text-primary">{d.title_highlight}</span>
+              {title}{" "}
+              <span className="text-primary">{titleHighlight}</span>
             </h1>
             <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-              {d.description}
+              {description}
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
               <Button size="lg" className="bg-primary hover:bg-primary/90 w-full sm:w-auto" asChild>
-                <Link href={d.cta_primary_link}>{d.cta_primary_text}</Link>
+                <Link href={ctaPrimaryLink}>{ctaPrimaryText}</Link>
               </Button>
               <Button
                 size="lg"
@@ -48,7 +53,7 @@ export function HeroSection({ data }: Props) {
                 className="border-border text-foreground hover:bg-secondary w-full sm:w-auto"
                 asChild
               >
-                <Link href={d.cta_secondary_link}>{d.cta_secondary_text}</Link>
+                <Link href={ctaSecondaryLink}>{ctaSecondaryText}</Link>
               </Button>
             </div>
           </div>
@@ -58,8 +63,8 @@ export function HeroSection({ data }: Props) {
             <div className="relative w-full max-w-[300px] sm:max-w-[360px] md:max-w-[420px] aspect-[3/4] overflow-hidden rounded-2xl mx-auto">
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
               <Image
-                src={d.image_url || "/images/hero-woman.jpg"}
-                alt="Woman silhouette representing transformation"
+                src={imageUrl}
+                alt={tr.imageAlt}
                 fill
                 className="object-cover object-top"
                 priority

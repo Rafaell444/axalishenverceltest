@@ -129,7 +129,7 @@ export default function ContactPage() {
                       className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary transition-colors"
                     >
                       <option value="">{t("serviceDefault")}</option>
-                      {["ნარკოდამოკიდებულება", "კონსულტაცია", "პარაზიტები", "იმუნური სისტემა", "ფსიქიკური კანინეთობა", "დეტოქსიკაცია", "სხვა"].map((s) => (
+                      {[t("svcOpt1"), t("svcOpt2"), t("svcOpt3"), t("svcOpt4"), t("svcOpt5"), t("svcOpt6")].map((s) => (
                         <option key={s} value={s}>{s}</option>
                       ))}
                     </select>

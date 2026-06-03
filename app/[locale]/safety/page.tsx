@@ -5,38 +5,38 @@ import { AlertTriangle, XCircle, MessageCircle, FlaskConical, Leaf, Microscope, 
 import { fetchSettings } from "@/lib/api"
 import { getTranslations } from "next-intl/server"
 
-const PILLARS = [
-  {
-    icon: FlaskConical,
-    title: "ლაბორატორიული ტესტირება",
-    description: "თითოეული პარტია გადის ლაბორატორიული ტესტირების პროცედურას ISO 17025 სტანდარტების მიხედვით.",
-    points: ["მძიმე მეტალების ანალიზი", "მიკრობიოლოგიური სიწმინდე", "ეფექტური ნივთიერებების კონცენტრაცია", "სადეზინფექციო ნარჩენები"],
-  },
-  {
-    icon: Leaf,
-    title: "ნედლეულის კონტროლი",
-    description: "ნედლეული მოდის მხოლოდ სერტიფიცირებული წყაროებიდან — ეკოლოგიურად სუფთა ბუნებრივი გარემოდან ან შერჩეული მეურნეობებიდან.",
-    points: ["სახეობის იდენტიფიკაცია", "წარმოშობის დოკუმენტაცია", "პესტიციდების არარსებობა", "GMO-free ნედლეული"],
-  },
-  {
-    icon: Microscope,
-    title: "სიწმინდის სტანდარტები",
-    description: "დამოუკიდებელი ლაბორატორიის მიერ გადამოწმებული სისუფთავე. ნებისმიერი სტანდარტის გადამეტება ნიშნავს პარტიის უარყოფას.",
-    points: ["99%+ სისუფთავის გარანტია", "დამოუკიდებელი გადამოწმება", "ყოველი პარტიის COA", "Pharmacopoeial სტანდარტები"],
-  },
-  {
-    icon: Shield,
-    title: "შენახვა და მიწოდება",
-    description: "ტემპერატურის კონტროლირებადი პირობებით შენახვა. UV-protected, BPA-free შეფუთვა სტაბილურობის შენარჩუნებისთვის.",
-    points: ["ტემპერატურის მონიტორინგი", "სინათლისგან დაცვა", "ტენიანობის კონტროლი", "ვადის თვალყურის დევნება"],
-  },
-]
-
 export default async function SafetyPage() {
   const [settings, t] = await Promise.all([
     fetchSettings().catch(() => null),
     getTranslations("safetyPage"),
   ])
+
+  const PILLARS = [
+    {
+      icon: FlaskConical,
+      title: t("pillar1title"),
+      description: t("pillar1desc"),
+      points: [t("pillar1b1"), t("pillar1b2"), t("pillar1b3"), t("pillar1b4")],
+    },
+    {
+      icon: Leaf,
+      title: t("pillar2title"),
+      description: t("pillar2desc"),
+      points: [t("pillar2b1"), t("pillar2b2"), t("pillar2b3"), t("pillar2b4")],
+    },
+    {
+      icon: Microscope,
+      title: t("pillar3title"),
+      description: t("pillar3desc"),
+      points: [t("pillar3b1"), t("pillar3b2"), t("pillar3b3"), t("pillar3b4")],
+    },
+    {
+      icon: Shield,
+      title: t("pillar4title"),
+      description: t("pillar4desc"),
+      points: [t("pillar4b1"), t("pillar4b2"), t("pillar4b3"), t("pillar4b4")],
+    },
+  ]
 
   const bullets = [t("b1"), t("b2"), t("b3"), t("b4"), t("b5")]
 

@@ -51,7 +51,7 @@ export function Footer({ settings, services = [] }: Props) {
               </div>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              {settings?.tagline || "ჩვენი მიზანია დაგეხმაროთ კანინეთობის აღდგენაში თანამედროვე მიდგომით."}
+              {settings?.tagline || t("tagline")}
             </p>
             <div className="mt-4 flex gap-3">
               {settings?.facebook_url && (

@@ -175,7 +175,7 @@ export function Header({ settings }: Props) {
               <div className="flex items-center justify-between py-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Globe className="h-4 w-4" />
-                  <span>Language</span>
+                  <span>{t("language")}</span>
                 </div>
                 <LanguageSwitcher />
               </div>

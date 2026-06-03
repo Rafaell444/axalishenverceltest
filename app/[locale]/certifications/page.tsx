@@ -5,74 +5,74 @@ import { Award, CheckCircle, Shield, Star, FileCheck } from "lucide-react"
 import { fetchSettings } from "@/lib/api"
 import { getTranslations } from "next-intl/server"
 
-const CERTS = [
-  {
-    id: 1,
-    icon: Award,
-    title: "ISO 9001:2015",
-    issuer: "International Organization for Standardization",
-    year: "2021",
-    description: "ხარისხის მართვის სისტემის საერთაშორისო სტანდარტი. ადასტურებს ჩვენი პროდუქციისა და სერვისების მაღალ ხარისხს.",
-    color: "from-amber-500/20 to-amber-500/5",
-    badge: "text-amber-400",
-  },
-  {
-    id: 2,
-    icon: Shield,
-    title: "GMP სერტიფიკატი",
-    issuer: "Good Manufacturing Practice",
-    year: "2022",
-    description: "კარგი წარმოების პრაქტიკის სტანდარტი, რომელიც უზრუნველყოფს პროდუქციის სათანადო პირობებში წარმოებას.",
-    color: "from-blue-500/20 to-blue-500/5",
-    badge: "text-blue-400",
-  },
-  {
-    id: 3,
-    icon: FileCheck,
-    title: "HACCP სერტიფიკატი",
-    issuer: "Hazard Analysis Critical Control Points",
-    year: "2022",
-    description: "საკვები უსაფრთხოების მართვის საერთაშორისო სისტემა. გარანტია, რომ პროდუქცია სრულიად უვნებელია.",
-    color: "from-green-500/20 to-green-500/5",
-    badge: "text-green-400",
-  },
-  {
-    id: 4,
-    icon: Star,
-    title: "ეროვნული სააგენტოს ლიცენზია",
-    issuer: "საქართველოს ეროვნული სასურსათო სააგენტო",
-    year: "2020",
-    description: "საქართველოს კანონმდებლობის სრული დაცვა. ყველა პროდუქტი რეგისტრირებულია და ლიცენზირებულია.",
-    color: "from-purple-500/20 to-purple-500/5",
-    badge: "text-purple-400",
-  },
-  {
-    id: 5,
-    icon: CheckCircle,
-    title: "EU Organic Certification",
-    issuer: "European Union Organic Standards",
-    year: "2023",
-    description: "ევროკავშირის ორგანული პროდუქციის სტანდარტი. ნიშნავს, რომ ნედლეული მოყვანილია ქიმიური დამუშავების გარეშე.",
-    color: "from-emerald-500/20 to-emerald-500/5",
-    badge: "text-emerald-400",
-  },
-  {
-    id: 6,
-    icon: Shield,
-    title: "SGS სერტიფიკატი",
-    issuer: "SGS — Société Générale de Surveillance",
-    year: "2023",
-    description: "მსოფლიოს წამყვანი ტესტირებისა და სერტიფიცირების კომპანიის ვალიდაცია. ადასტურებს პროდუქციის სიწმინდეს.",
-    color: "from-rose-500/20 to-rose-500/5",
-    badge: "text-rose-400",
-  },
-]
-
 export default async function CertificationsPage() {
   const [settings, t] = await Promise.all([
     fetchSettings().catch(() => null),
     getTranslations("certPage"),
   ])
+
+  const CERTS = [
+    {
+      id: 1,
+      icon: Award,
+      title: "ISO 9001:2015",
+      issuer: "International Organization for Standardization",
+      year: "2021",
+      description: t("c1desc"),
+      color: "from-amber-500/20 to-amber-500/5",
+      badge: "text-amber-400",
+    },
+    {
+      id: 2,
+      icon: Shield,
+      title: "GMP Certificate",
+      issuer: "Good Manufacturing Practice",
+      year: "2022",
+      description: t("c2desc"),
+      color: "from-blue-500/20 to-blue-500/5",
+      badge: "text-blue-400",
+    },
+    {
+      id: 3,
+      icon: FileCheck,
+      title: "HACCP Certificate",
+      issuer: "Hazard Analysis Critical Control Points",
+      year: "2022",
+      description: t("c3desc"),
+      color: "from-green-500/20 to-green-500/5",
+      badge: "text-green-400",
+    },
+    {
+      id: 4,
+      icon: Star,
+      title: t("c4title"),
+      issuer: t("c4issuer"),
+      year: "2020",
+      description: t("c4desc"),
+      color: "from-purple-500/20 to-purple-500/5",
+      badge: "text-purple-400",
+    },
+    {
+      id: 5,
+      icon: CheckCircle,
+      title: "EU Organic Certification",
+      issuer: "European Union Organic Standards",
+      year: "2023",
+      description: t("c5desc"),
+      color: "from-emerald-500/20 to-emerald-500/5",
+      badge: "text-emerald-400",
+    },
+    {
+      id: 6,
+      icon: Shield,
+      title: "SGS Certificate",
+      issuer: "SGS — Société Générale de Surveillance",
+      year: "2023",
+      description: t("c6desc"),
+      color: "from-rose-500/20 to-rose-500/5",
+      badge: "text-rose-400",
+    },
+  ]
 
   return (
     <main className="min-h-screen bg-background">
@@ -129,16 +129,16 @@ export default async function CertificationsPage() {
       <section className="py-12 md:py-16 px-4 bg-card/50 border-t border-border/40">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-            რატომ მნიშვნელოვანია <span className="text-primary">სერთიფიკატები?</span>
+            {t("whyTitle")} <span className="text-primary">{t("whyTitleHighlight")}</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-10">
-            სერთიფიკატები არ არის უბრალო ქაღალდი — ეს არის ჩვენი ვალდებულების მტკიცებულება თქვენი ჯანმრთელობისა და უსაფრთხოების მიმართ.
+            {t("whyDesc")}
           </p>
           <div className="grid sm:grid-cols-3 gap-6">
             {[
-              { title: "გამჭვირვალობა", desc: "ყველა სერთიფიკატი ხელმისაწვდომია შემოწმებისთვის." },
-              { title: "დამოუკიდებელი ვალიდაცია", desc: "გადამოწმება ხდება მესამე მხარის ორგანიზაციების მიერ." },
-              { title: "რეგულარული განახლება", desc: "ყოველწლიური აუდიტი და რეზერტიფიცირება." },
+              { title: t("card1Title"), desc: t("card1Desc") },
+              { title: t("card2Title"), desc: t("card2Desc") },
+              { title: t("card3Title"), desc: t("card3Desc") },
             ].map((item) => (
               <div key={item.title} className="bg-card border border-border rounded-xl p-5">
                 <CheckCircle className="w-8 h-8 text-primary mb-3 mx-auto" />
