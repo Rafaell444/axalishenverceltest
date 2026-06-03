@@ -150,7 +150,9 @@
     "featured": "Избранные статьи",
     "all": "Все",
     "notFound": "Статьи не найдены",
-    "loadMore": "Загрузить ещё"
+    "loadMore": "Загрузить ещё",
+    "backToBlog": "Вернуться в блог",
+    "related": "Похожие статьи"
   },
   "contact": {
     "eyebrow": "Контакт",
@@ -199,7 +201,9 @@
     "privacyDesc": "Полная дискретность и защита данных",
     "book": "Записаться",
     "learnMore": "Узнать больше",
-    "includes": "Включает:"
+    "includes": "Включает:",
+    "backToServices": "Вернуться к услугам",
+    "otherServices": "Другие услуги"
   },
   "productsPage": {
     "eyebrow": "Продукты",

@@ -150,7 +150,9 @@
     "featured": "Featured Articles",
     "all": "All",
     "notFound": "No articles found",
-    "loadMore": "Load More"
+    "loadMore": "Load More",
+    "backToBlog": "Back to Blog",
+    "related": "Related Articles"
   },
   "contact": {
     "eyebrow": "Contact",
@@ -199,7 +201,9 @@
     "privacyDesc": "Complete discretion and data protection",
     "book": "Book Now",
     "learnMore": "Learn More",
-    "includes": "Includes:"
+    "includes": "Includes:",
+    "backToServices": "Back to Services",
+    "otherServices": "Other Services"
   },
   "productsPage": {
     "eyebrow": "Products",

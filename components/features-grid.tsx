@@ -40,15 +40,15 @@ export function FeaturesGrid({ features }: Props) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="flex flex-wrap justify-center gap-4 md:gap-6">
           {items.map((feature) => {
             const IconComponent = ICON_MAP[feature.icon] ?? Shield
             return (
-              <div key={feature.id} className="group relative">
+              <div key={feature.id} className="group relative w-full sm:w-[calc(50%-0.75rem)] md:w-[calc(25%-1.125rem)] min-w-[200px]">
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${feature.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl`}
                 />
-                <div className="relative bg-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-colors duration-300 h-full">
+                <div className="relative bg-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-colors duration-300 h-full flex flex-col items-center text-center">
                   <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4`}>
                     <IconComponent className="w-6 h-6 text-primary" />
                   </div>
