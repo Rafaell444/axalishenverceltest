@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts')
 const nextConfig = {
   // "standalone" is only needed for Docker/self-hosted (AWS). Vercel handles its own output.
   ...(process.env.DOCKER_BUILD === "true" ? { output: "standalone" } : {}),
+  allowedDevOrigins: ["127.0.0.1", "localhost"],
   typescript: {
     ignoreBuildErrors: true,
   },
