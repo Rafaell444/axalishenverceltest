@@ -49,45 +49,20 @@ export default async function AboutPage() {
     <main className="min-h-screen bg-background">
       <Header settings={settings} />
 
-      {/* Hero */}
-      <section className="pt-24 md:pt-32 pb-12 md:pb-16 px-4">
-        <div className="max-w-6xl mx-auto text-center">
+      {/* Hero & Company Description */}
+      <section className="pt-24 md:pt-32 pb-16 md:pb-24 px-4">
+        <div className="max-w-3xl mx-auto text-center">
           <span className="text-primary font-medium mb-4 block">{t("eyebrow")}</span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6">
-            {about?.hero_title || t("eyebrow")}{" "}
-            <span className="text-primary">{about?.hero_subtitle || ""}</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-10">
+            {t("heading")} <span className="text-primary">{t("headingHighlight")}</span>
           </h1>
-          {about?.mission && (
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{about.mission}</p>
-          )}
+        </div>
+        <div className="max-w-3xl mx-auto space-y-6 text-muted-foreground text-lg leading-relaxed">
+          <p>{t("p1")}</p>
+          <p>{t("p2")}</p>
+          <p>{t("p3")}</p>
         </div>
       </section>
-
-      {/* Mission & Vision */}
-      {about && (about.mission || about.vision) && (
-        <section className="pb-12 md:pb-16 px-4">
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 md:gap-8">
-            {about.mission && (
-              <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <Award className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">{t("mission")}</h3>
-                <p className="text-muted-foreground leading-relaxed">{about.mission}</p>
-              </div>
-            )}
-            {about.vision && (
-              <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <Star className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">{t("vision")}</h3>
-                <p className="text-muted-foreground leading-relaxed">{about.vision}</p>
-              </div>
-            )}
-          </div>
-        </section>
-      )}
 
       {/* Values */}
       {about?.values && about.values.length > 0 && (
