@@ -10,16 +10,16 @@
     "faq": "FAQ",
     "contact": "კონტაქტი",
     "contactUs": "დაგვიკავშირდით",
-    "centerTagline": "კანინეთობის ცენტრი",
+    "centerTagline": "ბიო ველნეს",
     "call": "დარეკვა",
     "openMenu": "მენიუ გახსნა",
     "closeMenu": "მენიუ დახურვა"
   },
   "features": {
-    "eyebrow": "",
+    "eyebrow": "გაიგე მეტი",
     "heading": "რა არის",
     "headingHighlight": "სოკო",
-    "description": ""
+    "description": "ფუნქციური სოკოები — ბუნების ერთ-ერთი ყველაზე ძლიერი რესურსი ადამიანის ჯანმრთელობისთვის"
   },
   "services": {
     "heading": "ჩვენი სერვისები",
@@ -43,8 +43,8 @@
   },
   "testimonials": {
     "heading": "რას ამბობენ ჩვენი",
-    "headingHighlight": "პაციენტები",
-    "description": "ჩვენი პაციენტების გამოცდილება და შეფასებები",
+    "headingHighlight": "მომხმარებლები",
+    "description": "ჩვენი მომხმარებლების გამოცდილება და შეფასებები",
     "prev": "წინა",
     "next": "შემდეგი",
     "slide": "სლაიდი"
@@ -113,6 +113,24 @@
   "partners": {
     "heading": "სანდო პარტნიორები"
   },
+  "newsWall": {
+    "eyebrow": "სიახლეები",
+    "heading": "სიახლეების",
+    "headingHighlight": "კედელი",
+    "readMore": "სრულად წაკითხვა",
+    "viewAll": "ყველა სიახლე"
+  },
+  "stats": {
+    "eyebrow": "ციფრებში",
+    "heading": "ჩვენი",
+    "headingHighlight": "შედეგები"
+  },
+  "blogFaq": {
+    "blogTitle": "ბლოგი",
+    "blogDesc": "სიახლეები, კვლევები და სტატიები სოკოების სამყაროზე",
+    "faqTitle": "FAQ",
+    "faqDesc": "ხშირად დასმული კითხვები და პასუხები"
+  },
   "footer": {
     "services": "სერვისები",
     "company": "კომპანია",
@@ -120,12 +138,12 @@
     "rights": "ყველა უფლება დაცულია.",
     "privacy": "კონფიდენციალურობა",
     "terms": "პირობები",
-    "centerTagline": "კანინეთობის ცენტრი",
+    "centerTagline": "ბიო ველნეს",
     "about": "ჩვენ შესახებ",
     "blog": "ბლოგი",
-    "service0": "ნარკოდამოკიდებულება",
-    "service1": "კონსულტაცია",
-    "service2": "დეტოქსიკაცია",
+    "service0": "ფუნქციური სოკოები",
+    "service1": "ბიო დანამატები",
+    "service2": "ველნეს კონსულტაცია",
     "monFri": "ორშ-პარ:"
   },
   "about": {

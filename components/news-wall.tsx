@@ -51,7 +51,7 @@ interface Props {
 }
 
 export async function NewsWall({ posts }: Props) {
-  const t = await getTranslations("nav")
+  const t = await getTranslations("newsWall")
   const newsPosts = posts.filter(isNewsPost)
   const items = newsPosts.length > 0 ? newsPosts.slice(0, 3) : DEFAULT_NEWS
 
@@ -65,7 +65,7 @@ export async function NewsWall({ posts }: Props) {
             </div>
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                სიახლეების <span className="text-primary">კედელი</span>
+                {t("heading")} <span className="text-primary">{t("headingHighlight")}</span>
               </h2>
             </div>
           </div>
@@ -73,7 +73,7 @@ export async function NewsWall({ posts }: Props) {
             href="/blog"
             className="hidden sm:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
           >
-            ყველა სიახლე
+            {t("viewAll")}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -96,14 +96,14 @@ export async function NewsWall({ posts }: Props) {
                   )}
                   <div className="absolute top-3 left-3">
                     <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-primary text-primary-foreground">
-                      სიახლე
+                      {t("eyebrow")}
                     </span>
                   </div>
                 </div>
                 <div className="p-5">
                   <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-3">
                     <Calendar className="w-3 h-3" />
-                    {new Date(post.published_at).toLocaleDateString("ka-GE", {
+                    {new Date(post.published_at).toLocaleDateString(undefined, {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
@@ -124,7 +124,7 @@ export async function NewsWall({ posts }: Props) {
             href="/blog"
             className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:underline"
           >
-            ყველა სიახლე <ArrowRight className="w-4 h-4" />
+            {t("viewAll")} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

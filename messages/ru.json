@@ -10,16 +10,16 @@
     "faq": "FAQ",
     "contact": "Контакт",
     "contactUs": "Связаться",
-    "centerTagline": "Центр оздоровления",
+    "centerTagline": "Био Велнес",
     "call": "Позвонить",
     "openMenu": "Открыть меню",
     "closeMenu": "Закрыть меню"
   },
   "features": {
-    "eyebrow": "Почему мы",
-    "heading": "Что нас отличает",
-    "headingHighlight": "от других",
-    "description": "Наши преимущества и ценности, которые позволяют нам предоставлять лучший сервис"
+    "eyebrow": "Узнать больше",
+    "heading": "Что такое",
+    "headingHighlight": "Грибы",
+    "description": "Функциональные грибы — один из самых мощных природных ресурсов для здоровья человека"
   },
   "services": {
     "heading": "Наши услуги",
@@ -43,8 +43,8 @@
   },
   "testimonials": {
     "heading": "Что говорят наши",
-    "headingHighlight": "Пациенты",
-    "description": "Опыт и отзывы наших пациентов",
+    "headingHighlight": "Клиенты",
+    "description": "Опыт и отзывы наших клиентов",
     "prev": "Назад",
     "next": "Далее",
     "slide": "Слайд"
@@ -113,6 +113,24 @@
   "partners": {
     "heading": "Надёжные партнёры"
   },
+  "newsWall": {
+    "eyebrow": "Новости",
+    "heading": "Стена",
+    "headingHighlight": "Новостей",
+    "readMore": "Читать далее",
+    "viewAll": "Все новости"
+  },
+  "stats": {
+    "eyebrow": "В цифрах",
+    "heading": "Наши",
+    "headingHighlight": "Результаты"
+  },
+  "blogFaq": {
+    "blogTitle": "Блог",
+    "blogDesc": "Новости, исследования и статьи о мире грибов",
+    "faqTitle": "FAQ",
+    "faqDesc": "Часто задаваемые вопросы и ответы"
+  },
   "footer": {
     "services": "Услуги",
     "company": "Компания",
@@ -120,12 +138,12 @@
     "rights": "Все права защищены.",
     "privacy": "Конфиденциальность",
     "terms": "Условия",
-    "centerTagline": "Центр оздоровления",
+    "centerTagline": "Био Велнес",
     "about": "О нас",
     "blog": "Блог",
-    "service0": "Наркозависимость",
-    "service1": "Консультация",
-    "service2": "Детоксикация",
+    "service0": "Функциональные грибы",
+    "service1": "Био добавки",
+    "service2": "Велнес консультация",
     "monFri": "Пн–Пт:"
   },
   "about": {

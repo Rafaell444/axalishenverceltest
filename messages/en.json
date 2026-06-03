@@ -10,16 +10,16 @@
     "faq": "FAQ",
     "contact": "Contact",
     "contactUs": "Contact Us",
-    "centerTagline": "Wellness Center",
+    "centerTagline": "Bio Wellness",
     "call": "Call",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
   "features": {
-    "eyebrow": "Why Us",
-    "heading": "What Sets Us",
-    "headingHighlight": "Apart",
-    "description": "Our advantages and values that allow us to provide the best service to you"
+    "eyebrow": "Learn More",
+    "heading": "What Is",
+    "headingHighlight": "Mushroom",
+    "description": "Functional mushrooms — one of nature's most powerful resources for human health and wellbeing"
   },
   "services": {
     "heading": "Our Services",
@@ -43,8 +43,8 @@
   },
   "testimonials": {
     "heading": "What Our",
-    "headingHighlight": "Patients Say",
-    "description": "Experiences and reviews from our patients",
+    "headingHighlight": "Customers Say",
+    "description": "Experiences and reviews from our customers",
     "prev": "Previous",
     "next": "Next",
     "slide": "Slide"
@@ -113,6 +113,24 @@
   "partners": {
     "heading": "Trusted Partners"
   },
+  "newsWall": {
+    "eyebrow": "News",
+    "heading": "News",
+    "headingHighlight": "Wall",
+    "readMore": "Read More",
+    "viewAll": "All News"
+  },
+  "stats": {
+    "eyebrow": "By the Numbers",
+    "heading": "Our",
+    "headingHighlight": "Results"
+  },
+  "blogFaq": {
+    "blogTitle": "Blog",
+    "blogDesc": "News, research and articles about the world of mushrooms",
+    "faqTitle": "FAQ",
+    "faqDesc": "Frequently asked questions and answers"
+  },
   "footer": {
     "services": "Services",
     "company": "Company",
@@ -120,12 +138,12 @@
     "rights": "All rights reserved.",
     "privacy": "Privacy",
     "terms": "Terms",
-    "centerTagline": "Wellness Center",
+    "centerTagline": "Bio Wellness",
     "about": "About Us",
     "blog": "Blog",
-    "service0": "Drug Addiction",
-    "service1": "Consultation",
-    "service2": "Detoxification",
+    "service0": "Functional Mushrooms",
+    "service1": "Bio Supplements",
+    "service2": "Wellness Consultation",
     "monFri": "Mon–Fri:"
   },
   "about": {
