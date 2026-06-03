@@ -4,12 +4,20 @@ from solo.models import SingletonModel
 
 class SiteSettings(SingletonModel):
     site_name = models.CharField("საიტის სახელი", max_length=100, default="ახალი შენ")
-    tagline = models.CharField("სლოგანი", max_length=200, default="ახალი შენ – ახალი ცხოვრება")
+    tagline = models.CharField("სლოგანი (KA)", max_length=200, default="ახალი შენ – ახალი ცხოვრება")
+    tagline_en = models.CharField("სლოგანი (EN)", max_length=200, blank=True)
+    tagline_ru = models.CharField("სლოგანი (RU)", max_length=200, blank=True)
     logo = models.ImageField("ლოგო", upload_to="site/", blank=True, null=True)
     favicon = models.ImageField("Favicon", upload_to="site/", blank=True, null=True)
     announcement_text = models.CharField(
-        "განცხადება (header banner)", max_length=300, blank=True,
+        "განცხადება (KA) (header banner)", max_length=300, blank=True,
         help_text="ცარიელი = banner არ გამოჩნდება",
+    )
+    announcement_text_en = models.CharField(
+        "განცხადება (EN)", max_length=300, blank=True,
+    )
+    announcement_text_ru = models.CharField(
+        "განცხადება (RU)", max_length=300, blank=True,
     )
 
     primary_phone = models.CharField("მთავარი ტელეფონი", max_length=30, default="+995 555 123 456")

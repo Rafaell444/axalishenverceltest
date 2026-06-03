@@ -16,6 +16,8 @@ class HeroSectionSerializer(serializers.ModelSerializer):
     title = serializers.SerializerMethodField()
     title_highlight = serializers.SerializerMethodField()
     description = serializers.SerializerMethodField()
+    cta_primary_text = serializers.SerializerMethodField()
+    cta_secondary_text = serializers.SerializerMethodField()
 
     class Meta:
         model = HeroSection
@@ -33,6 +35,8 @@ class HeroSectionSerializer(serializers.ModelSerializer):
     def get_title(self, obj): return t(obj, "title", self._lang())
     def get_title_highlight(self, obj): return t(obj, "title_highlight", self._lang())
     def get_description(self, obj): return t(obj, "description", self._lang())
+    def get_cta_primary_text(self, obj): return t(obj, "cta_primary_text", self._lang())
+    def get_cta_secondary_text(self, obj): return t(obj, "cta_secondary_text", self._lang())
 
     def get_image_url(self, obj):
         if obj.image:

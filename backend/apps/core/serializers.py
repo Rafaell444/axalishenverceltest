@@ -2,9 +2,20 @@ from rest_framework import serializers
 from .models import SiteSettings
 
 
+def t(obj, field, lang):
+    """Return translated field value, falling back to Georgian."""
+    if lang and lang != "ka":
+        val = getattr(obj, f"{field}_{lang}", None)
+        if val:
+            return val
+    return getattr(obj, field, "") or ""
+
+
 class SiteSettingsSerializer(serializers.ModelSerializer):
     logo_url = serializers.SerializerMethodField()
     favicon_url = serializers.SerializerMethodField()
+    tagline = serializers.SerializerMethodField()
+    announcement_text = serializers.SerializerMethodField()
 
     class Meta:
         model = SiteSettings
@@ -16,6 +27,13 @@ class SiteSettingsSerializer(serializers.ModelSerializer):
             "working_hours_weekdays", "working_hours_saturday", "working_hours_sunday",
             "facebook_url", "instagram_url", "youtube_url",
         ]
+
+    def _lang(self):
+        request = self.context.get("request")
+        return request.query_params.get("lang", "ka") if request else "ka"
+
+    def get_tagline(self, obj): return t(obj, "tagline", self._lang())
+    def get_announcement_text(self, obj): return t(obj, "announcement_text", self._lang())
 
     def get_logo_url(self, obj):
         if obj.logo:

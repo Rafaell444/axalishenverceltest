@@ -18,8 +18,16 @@ class HeroSectionAdmin(SingletonModelAdmin, ModelAdmin):
             "fields": ("title_ru", "title_highlight_ru", "description_ru"),
             "classes": ("collapse",),
         }),
-        ("ღილაკები", {
+        ("ღილაკები (KA)", {
             "fields": ("cta_primary_text", "cta_primary_link", "cta_secondary_text", "cta_secondary_link"),
+        }),
+        ("ღილაკები (EN)", {
+            "fields": ("cta_primary_text_en", "cta_secondary_text_en"),
+            "classes": ("collapse",),
+        }),
+        ("ღილაკები (RU)", {
+            "fields": ("cta_primary_text_ru", "cta_secondary_text_ru"),
+            "classes": ("collapse",),
         }),
         ("მედია", {"fields": ("image",)}),
     )
