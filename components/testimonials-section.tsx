@@ -14,12 +14,6 @@ const TS_CSS = Array.from({ length: MAX }, (_, i) => `
   .ts-arrow { display: none !important; align-items: center; justify-content: center; }
 `
 
-const DEFAULT_TESTIMONIALS: Testimonial[] = [
-  { id: 1, name: "ნინო გელაშვილი", role: "პაციენტი", content: "პროფესიონალური მიდგომა და ინდივიდუალური მკურნალობის გეგმა. ძალიან კმაყოფილი ვარ მიღებული შედეგებით.", avatar_url: null, rating: 5, order: 0 },
-  { id: 2, name: "გიორგი ბერიძე", role: "პაციენტი", content: "თანამედროვე აპარატურა და მაღალკვალიფიციური პერსონალი. კურსის შემდეგ ჩემი ცხოვრება სრულიად შეიცვალა.", avatar_url: null, rating: 5, order: 1 },
-  { id: 3, name: "მარიამ ქობულაძე", role: "პაციენტი", content: "ძალიან მულტიფასიანი კლინიკა. სამუშაო პირობები, სპეციალისტების კომპეტენტურობა — ყველაფერი მაღალ დონეზე.", avatar_url: null, rating: 5, order: 2 },
-]
-
 interface Props {
   testimonials: Testimonial[]
 }
@@ -36,6 +30,11 @@ function Stars({ rating }: { rating: number }) {
 
 export function TestimonialsSection({ testimonials }: Props) {
   const t = useTranslations("testimonials")
+  const DEFAULT_TESTIMONIALS: Testimonial[] = [
+    { id: 1, name: t("d1name"), role: t("role"), content: t("d1content"), avatar_url: null, rating: 5, order: 0 },
+    { id: 2, name: t("d2name"), role: t("role"), content: t("d2content"), avatar_url: null, rating: 5, order: 1 },
+    { id: 3, name: t("d3name"), role: t("role"), content: t("d3content"), avatar_url: null, rating: 5, order: 2 },
+  ]
   const items = (testimonials.length > 0 ? testimonials : DEFAULT_TESTIMONIALS).slice(0, MAX)
   const n = items.length
 

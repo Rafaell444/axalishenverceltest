@@ -16,15 +16,26 @@
     "closeMenu": "Close menu",
     "language": "Language"
   },
+  "meta": {
+    "title": "Akhali Shen — Natural Wellness",
+    "description": "Functional mushrooms and natural wellness products for everyday wellbeing"
+  },
   "features": {
     "eyebrow": "Learn More",
     "heading": "What Is",
     "headingHighlight": "Mushroom",
-    "description": "Functional mushrooms — one of nature's most powerful resources for human health and wellbeing"
+    "description": "Functional mushrooms — one of nature's most powerful resources for human health and wellbeing",
+    "d1title": "Safety", "d1desc": "ISO-certified standards",
+    "d2title": "24/7 Support", "d2desc": "Round-the-clock consultation",
+    "d3title": "Expert Team", "d3desc": "Qualified specialists",
+    "d4title": "Certification", "d4desc": "International accreditation"
   },
   "services": {
     "heading": "Our Services",
-    "learnMore": "Learn More"
+    "learnMore": "Learn More",
+    "ds1title": "Functional Mushrooms", "ds1desc": "Lion's Mane, Reishi, Chaga and more — capsules, extracts, powders.",
+    "ds2title": "Bio Supplements", "ds2desc": "Natural wellness supplements for everyday health.",
+    "ds3title": "Wellness Consultation", "ds3desc": "Personalised wellness plan tailored to your needs."
   },
   "process": {
     "eyebrow": "Simple Process",
@@ -48,7 +59,11 @@
     "description": "Experiences and reviews from our customers",
     "prev": "Previous",
     "next": "Next",
-    "slide": "Slide"
+    "slide": "Slide",
+    "role": "Customer",
+    "d1name": "Nino G.", "d1content": "Professional approach and personalised service. I am very pleased with the results.",
+    "d2name": "Giorgi B.", "d2content": "Modern approach and a highly qualified team. My life has changed.",
+    "d3name": "Mariam Q.", "d3content": "Multidisciplinary team and high standards — everything at a top level."
   },
   "achievements": {
     "eyebrow": "Achievements",
@@ -60,7 +75,12 @@
     "eyebrow": "Help",
     "heading": "Frequently Asked",
     "headingHighlight": "Questions",
-    "description": "Answers to the most common questions"
+    "description": "Answers to the most common questions",
+    "dq1": "How can I get a consultation?", "da1": "Contact us by phone or email. Our team is available during working hours.",
+    "dq2": "How much does a consultation cost?", "da2": "The price depends on the service type. Please contact us for details.",
+    "dq3": "Do you work with insurance?", "da3": "Yes, we work with insurance companies. Please send your policy details.",
+    "dq4": "What are your working hours?", "da4": "Mon–Fri: 09:00–19:00, Sat: 10:00–15:00.",
+    "dq5": "How long does a course last?", "da5": "Duration is individual — on average 4–12 weeks."
   },
   "research": {
     "heading": "Research &",
@@ -127,7 +147,17 @@
     "heading": "News",
     "headingHighlight": "Wall",
     "readMore": "Read More",
-    "viewAll": "All News"
+    "viewAll": "All News",
+    "newsCat": "News",
+    "dn1title": "New Product Launch — Lion's Mane Ultra",
+    "dn1excerpt": "Introducing our new Lion's Mane formula — 40% polysaccharides, dual-extraction process.",
+    "dn2title": "ISO 9001:2015 Certification Renewed",
+    "dn2excerpt": "In spring 2026 our facility successfully completed the ISO 9001:2015 renewal audit with zero non-conformances.",
+    "dn3title": "Partnership with European Distribution Network",
+    "dn3excerpt": "We signed an agreement with EvroDistrib — our products will reach 12 countries from Q4 2026.",
+    "dn1body": "<p>Today we introduce our new Lion's Mane Ultra formula — dual-extraction process, 40% polysaccharide concentration, 500mg capsules.</p><h2>What makes it special?</h2><p>Dual extraction (hot water + alcohol) ensures the full spectrum of both beta-glucans and hericenones. Every batch is tested in an ISO 17025 laboratory.</p>",
+    "dn2body": "<p>In spring 2026 our facility successfully completed the ISO 9001:2015 renewal external audit with zero non-conformances.</p><h2>Audit Results</h2><p>SGS senior auditors reviewed 14 quality management system processes over 3 days. All parameters meet or exceed the standard requirements.</p>",
+    "dn3body": "<p>On 28 April 2026 a strategic partnership agreement was signed with EvroDistrib GmbH.</p><h2>Partnership Terms</h2><p>Exclusive distribution rights in Germany, Austria, Switzerland and 9 other EU countries. First shipment planned for Q4 2026.</p>"
   },
   "stats": {
     "eyebrow": "By the Numbers",
@@ -158,7 +188,8 @@
     "service1": "Bio Supplements",
     "service2": "Wellness Consultation",
     "monFri": "Mon–Fri:",
-    "tagline": "The power of natural mushrooms — for your everyday wellbeing."
+    "tagline": "The power of natural mushrooms — for your everyday wellbeing.",
+    "address": "Tbilisi, Georgia"
   },
   "about": {
     "eyebrow": "About Us",
@@ -176,7 +207,23 @@
     "team": "Our",
     "teamHighlight": "Team",
     "certs": "Certificates &",
-    "certsHighlight": "Accreditations"
+    "certsHighlight": "Accreditations",
+    "dHeroTitle": "Akhali Shen",
+    "dHeroSubtitle": "About Us",
+    "dMission": "Our mission is to support everyday wellbeing through natural, effective, and personalised solutions.",
+    "dVision": "We aim to become the leading provider of functional mushrooms and natural wellness products in the Caucasus.",
+    "dV1title": "Natural", "dV1desc": "Only natural, verified raw materials.",
+    "dV2title": "Safety", "dV2desc": "ISO-certified standards.",
+    "dV3title": "Innovation", "dV3desc": "Science-based formulas.",
+    "dV4title": "Transparency", "dV4desc": "COA for every batch, publicly available.",
+    "dT1year": "2020", "dT1title": "Founded", "dT1desc": "Akhali Shen was founded out of a passion for functional mycology.",
+    "dT2year": "2022", "dT2title": "First Product", "dT2desc": "Launch of Lion's Mane extract — 1000+ customers.",
+    "dT3year": "2023", "dT3title": "ISO Certificate", "dT3desc": "ISO 9001:2015 — international quality recognition.",
+    "dT4year": "2024", "dT4title": "European Market", "dT4desc": "Partnership with EvroDistrib — export begins.",
+    "dM1name": "Nino K.", "dM1role": "Mycologist-Researcher",
+    "dM2name": "Giorgi M.", "dM2role": "Biochemist",
+    "dM3name": "Mariam J.", "dM3role": "Wellness Consultant",
+    "dM4name": "David B.", "dM4role": "Laboratory Head"
   },
   "certPage": {
     "eyebrow": "Certification",
@@ -263,14 +310,34 @@
     "eyebrow": "Blog",
     "heading": "News &",
     "headingHighlight": "Publications",
-    "description": "Latest research, medical news and health advice",
+    "description": "Latest research, news and wellness tips",
     "searchPlaceholder": "Search...",
     "featured": "Featured Articles",
     "all": "All",
     "notFound": "No articles found",
     "loadMore": "Load More",
     "backToBlog": "Back to Blog",
-    "related": "Related Articles"
+    "related": "Related Articles",
+    "dc1name": "News", "dc2name": "Wellness", "dc3name": "Research",
+    "dp1title": "Lion's Mane — Brain Function and Neurogenesis",
+    "dp1excerpt": "Lion's Mane (Hericium erinaceus) contains hericenones that stimulate synthesis of Nerve Growth Factor (NGF).",
+    "dp2title": "Reishi — Stress Relief and Adaptogenic Properties",
+    "dp2excerpt": "Reishi's (Ganoderma lucidum) adaptogenic properties for cortisol balance and improved sleep quality.",
+    "dp3title": "Chaga — Antioxidant Richness",
+    "dp3excerpt": "Chaga (Inonotus obliquus) is one of nature's richest sources of antioxidants.",
+    "dp4title": "Cordyceps — Energy and Athletic Performance",
+    "dp4excerpt": "Cordyceps sinensis in athletes for improved ATP synthesis and endurance.",
+    "dp5title": "Turkey Tail — Immune System Support",
+    "dp5excerpt": "Turkey Tail (Trametes versicolor) PSK and PSP polysaccharides — the most studied fungal immunomodulators.",
+    "dp6title": "Shiitake — Cardiovascular Health",
+    "dp6excerpt": "Shiitake (Lentinus edodes) lentinan with cholesterol-lowering properties. Clinical research review.",
+    "dAuthor": "Akhali Shen",
+    "dp1body": "<p>Lion's Mane (Hericium erinaceus) is one of the most studied mushrooms for brain health. It contains hericenones that stimulate synthesis of Nerve Growth Factor (NGF).</p><h2>NGF and Neurogenesis</h2><p>NGF is critical for neuron growth and survival. Regular Lion's Mane use is associated in research with improved cognitive function, particularly attention and memory.</p><h2>Dosage</h2><p>Effective dose: 500–1000mg extract per day (30%+ beta-glucan). Course: minimum 8 weeks.</p>",
+    "dp2body": "<p>Reishi (Ganoderma lucidum) is an adaptogen used for millennia to support stress management, sleep quality, and immune function.</p><h2>Adaptogenic Action</h2><p>Reishi modulates the HPA axis, reduces cortisol peaks and helps the body adapt to stress.</p><h2>Sleep Quality</h2><p>Research confirms improved deep (NREM) sleep. Effects are noticeable after 2–4 weeks of use.</p>",
+    "dp3body": "<p>Chaga (Inonotus obliquus) is an unmatched source of betulin, melanin and polysaccharides. Its antioxidant ORAC index is 25× higher than blueberries.</p><h2>Anti-inflammatory</h2><p>Chaga beta-glucans suppress inflammatory cytokines. Studies show modulation of the NF-κB pathway.</p><h2>Usage</h2><p>Tea or extract — 1–2g per day. Better absorbed with a fatty meal.</p>",
+    "dp4body": "<p>Cordyceps sinensis is a traditional Tibetan mushroom — the most studied energetic adaptogen in modern sports research.</p><h2>ATP Synthesis</h2><p>Studies show Cordyceps increases mitochondrial efficiency and ATP production. VO2max improvement of 7–11% after a 6-week course.</p><h2>Sports Use</h2><p>500–1000mg taken 30–45 minutes before exercise for optimal effect.</p>",
+    "dp5body": "<p>Turkey Tail (Trametes versicolor) is the most clinically studied mushroom. PSK (Krestin) is an official adjunct cancer therapy in Japan.</p><h2>PSK and PSP</h2><p>These polysaccharides activate T-lymphocytes, NK cells and dendritic cells. 100+ clinical studies confirm effectiveness.</p><h2>Prebiotic Effect</h2><p>Turkey Tail prebiotic fibres increase beneficial bacteria (Bifidobacterium, Lactobacillus).</p>",
+    "dp6body": "<p>Shiitake (Lentinus edodes) is the world's most consumed medicinal mushroom. Lentinan — a 1-3, 1-6 beta-glucan — has cardioprotective properties.</p><h2>Cholesterol</h2><p>The eritadenine compound reduces LDL cholesterol. 3.4g/day Shiitake powder yields ~10% LDL reduction in studies.</p><h2>Antiviral</h2><p>Lentinan shows in vitro activity against HIV and HSV. Also supports protection from influenza.</p>"
   },
   "contact": {
     "eyebrow": "Contact",
@@ -327,16 +394,29 @@
     "learnMore": "Learn More",
     "includes": "Includes:",
     "backToServices": "Back to Services",
-    "otherServices": "Other Services"
+    "otherServices": "Other Services",
+    "ds1title": "Lion's Mane Extract", "ds1short": "Cognitive function support mushroom.", "ds1full": "<p>Lion's Mane (Hericium erinaceus) — the most studied mushroom for brain health. Contains hericenones that stimulate NGF synthesis.</p>", "ds1dur": "1-month course",
+    "ds1f1": "Focus & concentration", "ds1f2": "Memory", "ds1f3": "Neurogenesis", "ds1f4": "Brain fog",
+    "ds2title": "Reishi Extract", "ds2short": "Stress-relieving adaptogen.", "ds2full": "<p>Reishi (Ganoderma lucidum) — an adaptogen that helps balance cortisol and improve sleep quality.</p>", "ds2dur": "1-month course",
+    "ds2f1": "Stress relief", "ds2f2": "Sleep quality", "ds2f3": "Immune system", "ds2f4": "Anti-inflammatory",
+    "ds3title": "Cordyceps Extract", "ds3short": "Energy and athletic endurance.", "ds3full": "<p>Cordyceps sinensis — improved ATP synthesis, oxygen uptake and athletic performance.</p>", "ds3dur": "1-month course",
+    "ds3f1": "Energy", "ds3f2": "Endurance", "ds3f3": "Oxygen uptake", "ds3f4": "Fast recovery"
   },
   "productsPage": {
     "eyebrow": "Products",
     "heading": "Our",
     "headingHighlight": "Products",
-    "description": "Natural supplements and medical products for health",
+    "description": "Natural functional mushroom products for everyday wellbeing",
     "all": "All",
     "comingSoon": "Products coming soon",
     "sale": "Sale",
-    "outOfStock": "Out of stock"
+    "outOfStock": "Out of stock",
+    "dcat1": "Mushroom Extracts", "dcat2": "Capsules", "dcat3": "Powders",
+    "dp1name": "Lion's Mane 500mg", "dp1desc": "Cognitive function support. 30% beta-glucan.",
+    "dp2name": "Reishi Extract 400mg", "dp2desc": "Stress-relieving adaptogen. Sleep quality.",
+    "dp3name": "Cordyceps 600mg", "dp3desc": "Energy and endurance. Athletic performance.",
+    "dp4name": "Chaga 500mg", "dp4desc": "Antioxidant protection. Immune system.",
+    "dp5name": "Turkey Tail 400mg", "dp5desc": "Immune support. PSK/PSP complex.",
+    "dp6name": "5-Mushroom Blend", "dp6desc": "Synergistic blend of 5 functional mushrooms."
   }
 }

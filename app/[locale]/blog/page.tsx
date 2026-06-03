@@ -7,75 +7,6 @@ import Link from "next/link"
 import { fetchSettings, fetchBlogPosts, fetchBlogCategories } from "@/lib/api"
 import { getTranslations } from "next-intl/server"
 
-const DEFAULT_CATEGORIES = [
-  { id: 1, name: "ჯანმრთელობა", post_count: 2 },
-  { id: 2, name: "ფსიქოლოგია", post_count: 2 },
-  { id: 3, name: "კვება", post_count: 1 },
-]
-
-const DEFAULT_POSTS = [
-  {
-    id: 1,
-    slug: "stress-management",
-    title: "სტრესის ეფექტური მართვა — 7 მეცნიერულად დადასტურებული მეთოდი",
-    excerpt: "თანამედროვე ცხოვრების ტემპი ხშირად გვაიძულებს გამუდმებით მაღალი სტრესის ქვეშ ვიმყოფებოდეთ. ამ სტატიაში განვიხილავთ 7 მტკიცებულებებზე დაფუძნებულ მეთოდს სტრესის შესამცირებლად.",
-    featured_image_url: null,
-    is_featured: true,
-    published_at: "2026-05-01T10:00:00Z",
-    category: { id: 2, name: "ფსიქოლოგია" },
-  },
-  {
-    id: 2,
-    slug: "healthy-nutrition",
-    title: "ჯანსაღი კვება ტვინის ჯანმრთელობისთვის",
-    excerpt: "კვლევები ადასტურებს, რომ ჩვენი კვება პირდაპირ გავლენას ახდენს ტვინის ფუნქციონირებაზე, განწყობასა და კოგნიტიურ შესაძლებლობებზე.",
-    featured_image_url: null,
-    is_featured: true,
-    published_at: "2026-04-20T09:00:00Z",
-    category: { id: 3, name: "კვება" },
-  },
-  {
-    id: 3,
-    slug: "exercise-mental-health",
-    title: "ვარჯიში და ფსიქიკური ჯანმრთელობა — განუყოფელი კავშირი",
-    excerpt: "რეგულარული ფიზიკური აქტივობა ერთ-ერთი ყველაზე ეფექტური ბუნებრივი ანტიდეპრესანტია. შეიტყვეთ, რატომ.",
-    featured_image_url: null,
-    is_featured: false,
-    published_at: "2026-04-10T08:00:00Z",
-    category: { id: 2, name: "ფსიქოლოგია" },
-  },
-  {
-    id: 4,
-    slug: "sleep-health",
-    title: "ძილის ხარისხი და ჯანმრთელობა — ყველაფერი რაც უნდა იცოდეთ",
-    excerpt: "ძილი ჩვენი ჯანმრთელობის ერთ-ერთი ყველაზე მნიშვნელოვანი კომპონენტია. გაიგეთ, როგორ გააუმჯობესოთ ძილის ხარისხი.",
-    featured_image_url: null,
-    is_featured: false,
-    published_at: "2026-03-28T11:00:00Z",
-    category: { id: 1, name: "ჯანმრთელობა" },
-  },
-  {
-    id: 5,
-    slug: "vitamin-d-deficiency",
-    title: "ვიტამინი D-ს დეფიციტი — გავრცელებული სიმპტომები და გადაწყვეტა",
-    excerpt: "საქართველოში მოსახლეობის 70%-ზე მეტს აქვს ვიტამინი D-ს დეფიციტი. შეიტყვეთ, როგორ ამოიცნოთ და გამოასწოროთ.",
-    featured_image_url: null,
-    is_featured: false,
-    published_at: "2026-03-15T09:30:00Z",
-    category: { id: 1, name: "ჯანმრთელობა" },
-  },
-  {
-    id: 6,
-    slug: "anxiety-tips",
-    title: "შფოთვასთან გამკლავება — პრაქტიკული სახელმძღვანელო",
-    excerpt: "შფოთვა ერთ-ერთი ყველაზე გავრცელებული ფსიქოლოგიური პრობლემაა. ამ სახელმძღვანელოში ნახავთ კონკრეტულ ტექნიკებს.",
-    featured_image_url: null,
-    is_featured: false,
-    published_at: "2026-03-05T14:00:00Z",
-    category: { id: 2, name: "ფსიქოლოგია" },
-  },
-]
-
 export default async function BlogPage() {
   const [settings, categoriesData, postsData, t] = await Promise.all([
     fetchSettings().catch(() => null),
@@ -83,6 +14,20 @@ export default async function BlogPage() {
     fetchBlogPosts().catch(() => null),
     getTranslations("blog"),
   ])
+
+  const DEFAULT_CATEGORIES = [
+    { id: 1, name: t("dc1name"), post_count: 2 },
+    { id: 2, name: t("dc2name"), post_count: 2 },
+    { id: 3, name: t("dc3name"), post_count: 2 },
+  ]
+  const DEFAULT_POSTS = [
+    { id: 1, slug: "lions-mane-brain", title: t("dp1title"), excerpt: t("dp1excerpt"), featured_image_url: null, is_featured: true, published_at: "2026-05-20T10:00:00Z", category: { id: 3, name: t("dc3name") } },
+    { id: 2, slug: "reishi-stress", title: t("dp2title"), excerpt: t("dp2excerpt"), featured_image_url: null, is_featured: true, published_at: "2026-05-10T09:00:00Z", category: { id: 3, name: t("dc3name") } },
+    { id: 3, slug: "chaga-antioxidants", title: t("dp3title"), excerpt: t("dp3excerpt"), featured_image_url: null, is_featured: false, published_at: "2026-04-28T08:00:00Z", category: { id: 3, name: t("dc3name") } },
+    { id: 4, slug: "cordyceps-energy", title: t("dp4title"), excerpt: t("dp4excerpt"), featured_image_url: null, is_featured: false, published_at: "2026-04-15T11:00:00Z", category: { id: 2, name: t("dc2name") } },
+    { id: 5, slug: "turkey-tail-immune", title: t("dp5title"), excerpt: t("dp5excerpt"), featured_image_url: null, is_featured: false, published_at: "2026-04-01T09:30:00Z", category: { id: 2, name: t("dc2name") } },
+    { id: 6, slug: "shiitake-cardiovascular", title: t("dp6title"), excerpt: t("dp6excerpt"), featured_image_url: null, is_featured: false, published_at: "2026-03-20T14:00:00Z", category: { id: 3, name: t("dc3name") } },
+  ]
 
   const categories = (categoriesData && categoriesData.length > 0) ? categoriesData : DEFAULT_CATEGORIES
   const posts = (postsData && postsData.length > 0) ? postsData : DEFAULT_POSTS

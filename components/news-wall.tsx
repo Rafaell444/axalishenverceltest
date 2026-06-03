@@ -3,42 +3,6 @@ import { Calendar, ArrowRight, Newspaper } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 import type { BlogPost } from "@/lib/api"
 
-const DEFAULT_NEWS: BlogPost[] = [
-  {
-    id: 101,
-    slug: "new-product-launch-2026",
-    title: "ახალი პროდუქტის პრეზენტაცია — ომეგა-3 Ultra Pure",
-    excerpt: "ჩვენ წარვადგენთ ჩვენს ყველაზე სუფთა ომეგა-3 ფორმულას — 99.2% სისუფთავით, ისლანდიური ცივი ზღვის თევზიდან.",
-    featured_image_url: null,
-    category: { id: 10, name: "სიახლეები", slug: "news", post_count: 3 },
-    author_name: "ახალი შენ",
-    is_featured: false,
-    published_at: "2026-05-20T10:00:00Z",
-  },
-  {
-    id: 102,
-    slug: "iso-certification-renewal",
-    title: "ISO 9001:2015 სერთიფიკატის განახლება წარმატებით დასრულდა",
-    excerpt: "2026 წლის მაისში ჩვენმა საწარმომ წარმატებით გაიარა ISO 9001:2015 სერტიფიკაციის განახლების აუდიტი ნულოვანი შენიშვნებით.",
-    featured_image_url: null,
-    category: { id: 10, name: "სიახლეები", slug: "news", post_count: 3 },
-    author_name: "ახალი შენ",
-    is_featured: false,
-    published_at: "2026-05-10T09:00:00Z",
-  },
-  {
-    id: 103,
-    slug: "partnership-announcement",
-    title: "ახალი პარტნიორობა ევროპულ განაწილების ქსელთან",
-    excerpt: "ხელი მოეწერა ხელშეკრულებას EvroDistrib-თან, რაც საშუალებას მოგვცემს 2026 წლის IV კვარტლიდან გავაფართოვოთ ექსპორტი 12 ქვეყანაში.",
-    featured_image_url: null,
-    category: { id: 10, name: "სიახლეები", slug: "news", post_count: 3 },
-    author_name: "ახალი შენ",
-    is_featured: false,
-    published_at: "2026-04-28T14:00:00Z",
-  },
-]
-
 function isNewsPost(post: BlogPost) {
   if (!post.category) return false
   const slug = post.category.slug?.toLowerCase() ?? ""
@@ -52,6 +16,12 @@ interface Props {
 
 export async function NewsWall({ posts }: Props) {
   const t = await getTranslations("newsWall")
+  const newsCat = { id: 10, name: t("newsCat"), slug: "news", post_count: 3 }
+  const DEFAULT_NEWS: BlogPost[] = [
+    { id: 101, slug: "new-product-launch-2026", title: t("dn1title"), excerpt: t("dn1excerpt"), featured_image_url: null, category: newsCat, author_name: "Akhali Shen", is_featured: false, published_at: "2026-05-20T10:00:00Z" },
+    { id: 102, slug: "iso-certification-renewal", title: t("dn2title"), excerpt: t("dn2excerpt"), featured_image_url: null, category: newsCat, author_name: "Akhali Shen", is_featured: false, published_at: "2026-05-10T09:00:00Z" },
+    { id: 103, slug: "partnership-announcement", title: t("dn3title"), excerpt: t("dn3excerpt"), featured_image_url: null, category: newsCat, author_name: "Akhali Shen", is_featured: false, published_at: "2026-04-28T14:00:00Z" },
+  ]
   const newsPosts = posts.filter(isNewsPost)
   const items = newsPosts.length > 0 ? newsPosts.slice(0, 3) : DEFAULT_NEWS
 

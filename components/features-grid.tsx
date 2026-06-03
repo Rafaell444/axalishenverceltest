@@ -12,19 +12,18 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Sparkles, Globe, Lock, Smile,
 }
 
-const DEFAULT_FEATURES: Feature[] = [
-  { id: 1, icon: "Shield", color: "from-violet-500/20 to-purple-500/20", title: "უსაფრთხოება", description: "ISO სერტიფიცირებული სტანდარტები", order: 0 },
-  { id: 2, icon: "Clock", color: "from-blue-500/20 to-cyan-500/20", title: "24/7 მხარდაჭერა", description: "მრგვალსაათიანი კონსულტაცია", order: 1 },
-  { id: 3, icon: "Users", color: "from-emerald-500/20 to-green-500/20", title: "ექსპერტთა გუნდი", description: "50+ კვალიფიციური სპეციალისტი", order: 2 },
-  { id: 4, icon: "Award", color: "from-amber-500/20 to-orange-500/20", title: "სერტიფიკაცია", description: "საერთაშორისო აკრედიტაცია", order: 3 },
-]
-
 interface Props {
   features: Feature[]
 }
 
 export function FeaturesGrid({ features }: Props) {
   const t = useTranslations("features")
+  const DEFAULT_FEATURES: Feature[] = [
+    { id: 1, icon: "Shield", color: "from-violet-500/20 to-purple-500/20", title: t("d1title"), description: t("d1desc"), order: 0 },
+    { id: 2, icon: "Clock", color: "from-blue-500/20 to-cyan-500/20", title: t("d2title"), description: t("d2desc"), order: 1 },
+    { id: 3, icon: "Users", color: "from-emerald-500/20 to-green-500/20", title: t("d3title"), description: t("d3desc"), order: 2 },
+    { id: 4, icon: "Award", color: "from-amber-500/20 to-orange-500/20", title: t("d4title"), description: t("d4desc"), order: 3 },
+  ]
   const items = features.length > 0 ? features : DEFAULT_FEATURES
 
   return (

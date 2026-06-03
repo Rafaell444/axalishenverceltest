@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Noto_Sans_Georgian, Geist_Mono } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { Analytics } from '@vercel/analytics/next'
 import { routing } from '@/i18n/routing'
@@ -13,17 +13,25 @@ const notoSansGeorgian = Noto_Sans_Georgian({
 })
 const _geistMono = Geist_Mono({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: 'ახალი შენ - კანინეთობის ცენტრი',
-  description: 'Healthcare services center - Your trusted partner in wellness and health research',
-  icons: {
-    icon: [
-      { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
-      { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
-    ],
-    apple: '/apple-icon.png',
-  },
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return {
+    title: t('title'),
+    description: t('description'),
+    icons: {
+      icon: [
+        { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
+        { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' },
+        { url: '/icon.svg', type: 'image/svg+xml' },
+      ],
+      apple: '/apple-icon.png',
+    },
+  }
 }
 
 export function generateStaticParams() {

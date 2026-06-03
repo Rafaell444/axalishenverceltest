@@ -7,41 +7,41 @@ import { getTranslations } from "next-intl/server"
 
 const ICON_MAP: Record<string, LucideIcon> = { Heart, Shield, GraduationCap, Users, Award, Star }
 
-const DEFAULT_ABOUT = {
-  hero_title: "ახალი შენ",
-  hero_subtitle: "შესახებ",
-  mission: "ჩვენი მისიაა გავხადოთ ჯანმრთელობის მომსახურება ხელმისაწვდომი, ეფექტური და ინდივიდუალური. ჩვენ ვცდილობთ თითოეულ პაციენტს მივუდგეთ განსაკუთრებული სიფრთხილით.",
-  vision: "გვსურს გახდეთ კავკასიის რეგიონის წამყვანი ჯანმრთელობის ცენტრი, სადაც ყველა პაციენტი მიიღებს მსოფლიო დონის სამედიცინო მომსახურებას.",
-  values: [
-    { id: 1, icon: "Heart", title: "თანაგრძნობა", description: "ჩვენ ვზრუნავთ თითოეულ პაციენტზე, როგორც ოჯახის წევრზე." },
-    { id: 2, icon: "Shield", title: "უსაფრთხოება", description: "ISO სერტიფიცირებული პროტოკოლები და უმაღლესი სტანდარტები." },
-    { id: 3, icon: "Star", title: "სიუცხოვე", description: "მხოლოდ მტკიცებულებებზე დაფუძნებული, თანამედროვე მეთოდები." },
-    { id: 4, icon: "GraduationCap", title: "განათლება", description: "მუდმივი განვითარება და კვალიფიციური სპეციალისტების გუნდი." },
-  ],
-  timeline: [
-    { id: 1, year: "2015", title: "დაარსება", description: "ახალი შენ კლინიკა დაარსდა თბილისში, მხოლოდ 5 სპეციალისტით." },
-    { id: 2, year: "2018", title: "გაფართოება", description: "კლინიკა გაფართოვდა და გახდა 20+ სპეციალისტის სახლი." },
-    { id: 3, year: "2021", title: "ISO სერტიფიცირება", description: "მიღებული იქნა საერთაშორისო ხარისხის მართვის სერტიფიკატი." },
-    { id: 4, year: "2024", title: "წამყვანი კლინიკა", description: "1500+ კმაყოფილი პაციენტი და საქართველოს საუკეთესო კლინიკის ჯილდო." },
-  ],
-  team: [
-    { id: 1, name: "ნინო კვარაცხელია", role: "მთავარი ნევროლოგი", bio: "15 წლიანი გამოცდილება ნეიროლოგიაში. ევროპული სერტიფიკატის მფლობელი სპეციალისტი.", photo_url: null },
-    { id: 2, name: "გიორგი მამულაშვილი", role: "ფსიქოლოგი / ფსიქოთერაპევტი", bio: "კოგნიტური-ბიჰევიორული თერაპიის სერტიფიცირებული სპეციალისტი, 10 წლის პრაქტიკა.", photo_url: null },
-    { id: 3, name: "მარიამ ჯავახიშვილი", role: "ოჯახის ექიმი", bio: "ოჯახის მედიცინის სპეციალისტი. ყოვლისმომცველი პირველადი ჯანდაცვის მომსახურება.", photo_url: null },
-    { id: 4, name: "დავით ბერიძე", role: "ლაბორატორიის ხელმძღვანელი", bio: "კლინიკური ლაბორატორიის სპეციალისტი, ISO 15189 სერტიფიცირებული.", photo_url: null },
-  ] as { id: number; name: string; role: string; bio: string; photo_url: string | null }[],
-  certifications: [
-    { id: 1, title: "ISO 9001:2015", issued_by: "International Organization for Standardization", issued_year: "2021", image_url: null },
-    { id: 2, title: "საქართველოს ჯანმრთელობის სამინისტრო", issued_by: "ჯანმრთელობისა და სოციალური დაცვის სამინისტრო", issued_year: "2020", image_url: null },
-  ] as { id: number; title: string; issued_by: string; issued_year: string; image_url: string | null }[],
-}
-
 export default async function AboutPage() {
   const [settings, aboutData, t] = await Promise.all([
     fetchSettings().catch(() => null),
     fetchAbout().catch(() => null),
     getTranslations("about"),
   ])
+
+  const DEFAULT_ABOUT = {
+    hero_title: t("dHeroTitle"),
+    hero_subtitle: t("dHeroSubtitle"),
+    mission: t("dMission"),
+    vision: t("dVision"),
+    values: [
+      { id: 1, icon: "Heart", title: t("dV1title"), description: t("dV1desc") },
+      { id: 2, icon: "Shield", title: t("dV2title"), description: t("dV2desc") },
+      { id: 3, icon: "Star", title: t("dV3title"), description: t("dV3desc") },
+      { id: 4, icon: "GraduationCap", title: t("dV4title"), description: t("dV4desc") },
+    ],
+    timeline: [
+      { id: 1, year: t("dT1year"), title: t("dT1title"), description: t("dT1desc") },
+      { id: 2, year: t("dT2year"), title: t("dT2title"), description: t("dT2desc") },
+      { id: 3, year: t("dT3year"), title: t("dT3title"), description: t("dT3desc") },
+      { id: 4, year: t("dT4year"), title: t("dT4title"), description: t("dT4desc") },
+    ],
+    team: [
+      { id: 1, name: t("dM1name"), role: t("dM1role"), bio: "", photo_url: null },
+      { id: 2, name: t("dM2name"), role: t("dM2role"), bio: "", photo_url: null },
+      { id: 3, name: t("dM3name"), role: t("dM3role"), bio: "", photo_url: null },
+      { id: 4, name: t("dM4name"), role: t("dM4role"), bio: "", photo_url: null },
+    ] as { id: number; name: string; role: string; bio: string; photo_url: string | null }[],
+    certifications: [
+      { id: 1, title: "ISO 9001:2015", issued_by: "International Organization for Standardization", issued_year: "2023", image_url: null },
+      { id: 2, title: "GMP", issued_by: "Good Manufacturing Practice", issued_year: "2023", image_url: null },
+    ] as { id: number; title: string; issued_by: string; issued_year: string; image_url: string | null }[],
+  }
 
   const about = aboutData ?? DEFAULT_ABOUT
 

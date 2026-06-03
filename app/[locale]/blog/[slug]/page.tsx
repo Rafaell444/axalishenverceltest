@@ -7,98 +7,36 @@ import { fetchSettings, fetchBlogPost, fetchBlogPosts } from "@/lib/api"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-const DEFAULT_POSTS_MAP: Record<string, {
-  title: string; excerpt: string; body: string; published_at: string;
-  author_name: string | null; category: { id: number; name: string; slug: string; post_count: number } | null
-}> = {
-  "stress-management": {
-    title: "სტრესის ეფექტური მართვა — 7 მეცნიერულად დადასტურებული მეთოდი",
-    excerpt: "თანამედროვე ცხოვრების ტემპი ხშირად გვაიძულებს გამუდმებით მაღალი სტრესის ქვეშ ვიმყოფებოდეთ.",
-    body: `<p>სტრესი ჩვენი ყოველდღიური ცხოვრების განუყოფელი ნაწილია, მაგრამ მისი გამუდმებული ზემოქმედება ჯანმრთელობისთვის საზიანოა. კვლევები გვიჩვენებს, რომ ქრონიკული სტრესი ზრდის გულ-სისხლძარღვთა დაავადებების, დეპრესიის და იმუნური სისტემის დასუსტების რისკს.</p>
-<h2>1. დიაფრაგმული სუნთქვა</h2>
-<p>ღრმა, ნელი სუნთქვა ააქტიურებს პარასიმპათიკურ ნერვულ სისტემას — "დასვენება და მოფიქრება" პასუხს. 4-7-8 ტექნიკა: ჩაისუნთქეთ 4 წამი, შეიკავეთ 7 წამი, ამოისუნთქეთ 8 წამი.</p>
-<h2>2. ფიზიკური აქტივობა</h2>
-<p>30 წუთის ზომიერი ვარჯიში ამცირებს კორტიზოლის დონეს და ზრდის ენდორფინების გამოყოფას. კვირაში 5 დღე ვარჯიში 50%-ით ამცირებს შფოთვის სიმპტომებს.</p>
-<h2>3. მაინდფულნეს მედიტაცია</h2>
-<p>MBSR (Mindfulness-Based Stress Reduction) პროგრამა კლინიკურად დამტკიცებულია. 8-კვირიანი კურსი მნიშვნელოვნად ამცირებს სტრეს-ჰორმონების დონეს.</p>
-<h2>4. ძილის ჰიგიენა</h2>
-<p>ძილი სტრესის ყველაზე ეფექტური "ანტიდოტია". ყოველდღე ერთ და იმავე დროს ძილი და გაღვიძება სტაბილიზებს ციკადიან რიტმს.</p>
-<h2>5. სოციალური კავშირი</h2>
-<p>მეგობრებთან და ოჯახთან ურთიერთობა ოქსიტოცინს გამოყოფს — ბუნებრივ სტრეს-შემამცირებელ ჰორმონს.</p>
-<h2>6. ბუნებაში ყოფნა</h2>
-<p>ტყეში 20-წუთიანი გასეირნება ამცირებს კორტიზოლს 12.5%-ით. "ტყის აბაზანა" (shinrin-yoku) იაპონიაში ოფიციალური სამკურნალო მეთოდია.</p>
-<h2>7. პროფესიული დახმარება</h2>
-<p>როცა სტრესი გახდება ქრონიკული — ფსიქოლოგთან კონსულტაცია არ არის სისუსტე, ეს არის ყველაზე ჭკვიანი გადაწყვეტა.</p>`,
-    published_at: "2026-05-01T10:00:00Z",
-    author_name: "ნინო კვარაცხელია",
-    category: { id: 2, name: "ფსიქოლოგია", slug: "psychology", post_count: 3 },
-  },
-  "healthy-nutrition": {
-    title: "ჯანსაღი კვება ტვინის ჯანმრთელობისთვის",
-    excerpt: "კვლევები ადასტურებს, რომ ჩვენი კვება პირდაპირ გავლენას ახდენს ტვინის ფუნქციონირებაზე.",
-    body: `<p>ტვინი სხეულის წონის მხოლოდ 2%-ს შეადგენს, მაგრამ ენერგიის 20%-ს მოიხმარს. სწორი კვება კრიტიკულია ოპტიმალური კოგნიტიური ფუნქციისთვის.</p>
-<h2>ომეგა-3 ცხიმოვანი მჟავები</h2>
-<p>DHA ომეგა-3 ტვინის 60%-ს შეადგენს. ცხიმოვანი თევზი (ორაგული, სარდინი), თხილეული და სელის თესლი მდიდარია ომეგა-3-ით. კვლევებმა აჩვენა მათი კავშირი დეპრესიის შემცირებასთან.</p>
-<h2>ანტიოქსიდანტები</h2>
-<p>მოცვი, ბროკოლი, ისპანახი — ეს პროდუქტები ანელებენ ოქსიდაციურ სტრესსა და ტვინის "დაბერებას".</p>
-<h2>B ვიტამინები</h2>
-<p>B12 და ფოლიუმის მჟავა აუცილებელია ნეიროტრანსმიტერების სინთეზისთვის. მათი დეფიციტი პირდაპირ კავშირშია დეპრესიასთან.</p>
-<h2>მაგნიუმი</h2>
-<p>სტრესი ამცირებს მაგნიუმის დონეს, ხოლო მაგნიუმის დეფიციტი ზრდის სტრეს-პასუხს. ბოსტნეული, თხილეული, შოკოლადი — საუკეთესო წყაროები.</p>`,
-    published_at: "2026-04-20T09:00:00Z",
-    author_name: "მარიამ ჯავახიშვილი",
-    category: { id: 3, name: "კვება", slug: "nutrition", post_count: 1 },
-  },
-  "new-product-launch-2026": {
-    title: "ახალი პროდუქტის პრეზენტაცია — ომეგა-3 Ultra Pure",
-    excerpt: "ჩვენ წარვადგენთ ჩვენს ყველაზე სუფთა ომეგა-3 ფორმულას.",
-    body: `<p>დღეს ჩვენ სიამაყით წარვადგენთ ჩვენს ახალ ფლაგმანურ პროდუქტს — <strong>Omega-3 Ultra Pure 1200mg</strong>. ეს პროდუქტი სამი წლის R&D კვლევის შედეგია.</p>
-<h2>რა ხდის მას განსაკუთრებულს?</h2>
-<p>99.2% სისუფთავე — ბაზარზე ყველაზე მაღალი. ნედლეული მოდის ისლანდიური ცივი ზღვის სარდინებიდან, სადაც დაბინძურება მინიმალურია. ყოველი კაფსულა შეიცავს 800mg EPA + 400mg DHA ოპტიმალური თანაფარდობით.</p>
-<h2>წარმოება</h2>
-<p>სამ დამოუკიდებელ ლაბორატორიაში ტესტირება. IFOS 5-ვარსკვლავიანი სერტიფიკაცია. Mercury, Lead, PCBs — ყველა 5-ჯერ ქვემოთ WHO ლიმიტებზე.</p>
-<h2>ხელმისაწვდომობა</h2>
-<p>პროდუქტი ხელმისაწვდომია 30 და 90 კაფსულის შეფუთვებში. შეუკვეთეთ ახლავე ჩვენს ვებსაიტზე ან ფარმაცევტულ ქსელში.</p>`,
-    published_at: "2026-05-20T10:00:00Z",
-    author_name: "ახალი შენ",
-    category: { id: 10, name: "სიახლეები", slug: "news", post_count: 3 },
-  },
-  "iso-certification-renewal": {
-    title: "ISO 9001:2015 სერთიფიკატის განახლება წარმატებით დასრულდა",
-    excerpt: "2026 წლის მაისში ჩვენმა საწარმომ წარმატებით გაიარა ISO 9001:2015 სერტიფიკაციის განახლების აუდიტი.",
-    body: `<p>2026 წლის 5-8 მაისს ჩვენს საწარმოში ჩატარდა ISO 9001:2015 სერტიფიკაციის განახლების გარე აუდიტი. სიამოვნებით გვაცნობება, რომ აუდიტი დასრულდა <strong>ნულოვანი შეუსაბამობით</strong>.</p>
-<h2>აუდიტის შედეგები</h2>
-<p>SGS-ის ორი სტარშ-აუდიტორი 3 დღის განმავლობაში შეამოწმა ჩვენი ხარისხის მართვის სისტემის 14 პროცესი. ყველა მაჩვენებელი შეესაბამება ან აჭარბებს სტანდარტის მოთხოვნებს.</p>
-<h2>გამოყოფილი ძლიერი მხარეები</h2>
-<p>აუდიტორებმა განსაკუთრებულად შეაფასეს: ლაბორატორიული ტესტირების სისტემა, სახელმძღვანელო დოკუმენტაცია, პერსონალის ტრეინინგ პროგრამა და მომხმარებელთა კმაყოფილების მდევნება.</p>`,
-    published_at: "2026-05-10T09:00:00Z",
-    author_name: "ახალი შენ",
-    category: { id: 10, name: "სიახლეები", slug: "news", post_count: 3 },
-  },
-  "partnership-announcement": {
-    title: "ახალი პარტნიორობა ევროპულ განაწილების ქსელთან",
-    excerpt: "ხელი მოეწერა ხელშეკრულებას EvroDistrib-თან.",
-    body: `<p>2026 წლის 28 აპრილს ხელი მოეწერა სტრატეგიული პარტნიორობის შეთანხმებას EvroDistrib GmbH-თან — ევროპის ერთ-ერთ წამყვან ჯანმრთელობის პროდუქტების განაწილების კომპანიასთან.</p>
-<h2>პარტნიორობის პირობები</h2>
-<p>ექსკლუზიური განაწილების უფლება საქართველოს ბრენდებისთვის გერმანიაში, ავსტრიაში, შვეიცარიაში და კიდევ 9 EU ქვეყანაში. პირველი მიწოდება დაგეგმილია 2026 წლის IV კვარტლისთვის.</p>
-<h2>მოსალოდნელი გავლენა</h2>
-<p>ეს პარტნიორობა საშუალებას მოგვცემს 3-ჯერ გავზარდოთ ჩვენი ექსპორტი 2027 წლამდე. ევროპული ბაზარი მნიშვნელოვანი ნაბიჯია ჩვენი საერთაშორისო ზრდის სტრატეგიაში.</p>`,
-    published_at: "2026-04-28T14:00:00Z",
-    author_name: "ახალი შენ",
-    category: { id: 10, name: "სიახლეები", slug: "news", post_count: 3 },
-  },
-}
-
 export default async function BlogPostPage({
   params,
 }: {
   params: Promise<{ slug: string; locale: string }>
 }) {
   const { slug } = await params
-  const [settings, t] = await Promise.all([
+  const [settings, t, tn] = await Promise.all([
     fetchSettings().catch(() => null),
     getTranslations("blog"),
+    getTranslations("newsWall"),
   ])
+
+  const newsCat = { id: 10, name: tn("newsCat"), slug: "news", post_count: 3 }
+  const researchCat = { id: 3, name: t("dc3name"), slug: "research", post_count: 3 }
+  const wellnessCat = { id: 2, name: t("dc2name"), slug: "wellness", post_count: 2 }
+
+  const DEFAULT_POSTS_MAP: Record<string, {
+    title: string; excerpt: string; body: string; published_at: string;
+    author_name: string | null; category: { id: number; name: string; slug: string; post_count: number } | null
+  }> = {
+    "lions-mane-brain":       { title: t("dp1title"), excerpt: t("dp1excerpt"), body: t("dp1body"), published_at: "2026-05-01T10:00:00Z", author_name: t("dAuthor"), category: researchCat },
+    "reishi-stress":          { title: t("dp2title"), excerpt: t("dp2excerpt"), body: t("dp2body"), published_at: "2026-04-20T09:00:00Z", author_name: t("dAuthor"), category: researchCat },
+    "chaga-antioxidants":     { title: t("dp3title"), excerpt: t("dp3excerpt"), body: t("dp3body"), published_at: "2026-04-28T08:00:00Z", author_name: t("dAuthor"), category: researchCat },
+    "cordyceps-energy":       { title: t("dp4title"), excerpt: t("dp4excerpt"), body: t("dp4body"), published_at: "2026-04-15T11:00:00Z", author_name: t("dAuthor"), category: wellnessCat },
+    "turkey-tail-immune":     { title: t("dp5title"), excerpt: t("dp5excerpt"), body: t("dp5body"), published_at: "2026-04-01T09:30:00Z", author_name: t("dAuthor"), category: researchCat },
+    "shiitake-cardiovascular":{ title: t("dp6title"), excerpt: t("dp6excerpt"), body: t("dp6body"), published_at: "2026-03-20T14:00:00Z", author_name: t("dAuthor"), category: wellnessCat },
+    "new-product-launch-2026":{ title: tn("dn1title"), excerpt: tn("dn1excerpt"), body: tn("dn1body"), published_at: "2026-05-20T10:00:00Z", author_name: t("dAuthor"), category: newsCat },
+    "iso-certification-renewal":{ title: tn("dn2title"), excerpt: tn("dn2excerpt"), body: tn("dn2body"), published_at: "2026-05-10T09:00:00Z", author_name: t("dAuthor"), category: newsCat },
+    "partnership-announcement": { title: tn("dn3title"), excerpt: tn("dn3excerpt"), body: tn("dn3body"), published_at: "2026-04-28T14:00:00Z", author_name: t("dAuthor"), category: newsCat },
+  }
 
   const post = await fetchBlogPost(slug).catch(() => null)
   const defaultPost = DEFAULT_POSTS_MAP[slug]

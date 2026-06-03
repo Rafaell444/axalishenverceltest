@@ -7,18 +7,17 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Brain, Stethoscope, Shield, Server, Activity, Microscope,
 }
 
-const DEFAULT_SERVICES: Service[] = [
-  { id: 1, icon: "Brain", title: "ნარკოდამოკიდებულება", slug: "narkodam", short_description: "დამოკიდებულებისგან გამოჯანმრთელება.", price: "", duration: "", is_featured: true, order: 0, image_url: null },
-  { id: 2, icon: "Stethoscope", title: "კონსულტაცია", slug: "konsultacia", short_description: "კონსულტაცია და დიაგნოსტიკა.", price: "", duration: "", is_featured: true, order: 1, image_url: null },
-  { id: 3, icon: "Shield", title: "პარაზიტები", slug: "parazitebi", short_description: "ორგანიზმის გაწმენდა.", price: "", duration: "", is_featured: true, order: 2, image_url: null },
-]
-
 interface Props {
   services: Service[]
 }
 
 export function ServicesSection({ services }: Props) {
   const t = useTranslations("services")
+  const DEFAULT_SERVICES: Service[] = [
+    { id: 1, icon: "Brain", title: t("ds1title"), slug: "functional-mushrooms", short_description: t("ds1desc"), price: "", duration: "", is_featured: true, order: 0, image_url: null },
+    { id: 2, icon: "Stethoscope", title: t("ds2title"), slug: "bio-supplements", short_description: t("ds2desc"), price: "", duration: "", is_featured: true, order: 1, image_url: null },
+    { id: 3, icon: "Shield", title: t("ds3title"), slug: "wellness-consultation", short_description: t("ds3desc"), price: "", duration: "", is_featured: true, order: 2, image_url: null },
+  ]
   const items = services.length > 0 ? services : DEFAULT_SERVICES
 
   return (

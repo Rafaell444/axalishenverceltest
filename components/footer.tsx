@@ -12,7 +12,7 @@ export function Footer({ settings, services = [] }: Props) {
   const t = useTranslations("footer")
   const phone = settings?.primary_phone || "+995 555 123 456"
   const email = settings?.email || "info@akhalishen.ge"
-  const address = settings?.address_line2 || "თბილისი, საქართველო"
+  const address = settings?.address_line2 || t("address")
   const hours = `${t("monFri")} ${settings?.working_hours_weekdays || "09:00 - 19:00"}`
   const siteName = settings?.site_name || "ახალი შენ"
 
