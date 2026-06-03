@@ -4,11 +4,12 @@ import { ServicesSection } from "@/components/services-section"
 import { FeaturesGrid } from "@/components/features-grid"
 import { VideoSection } from "@/components/video-section"
 import { StatsSection } from "@/components/stats-section"
+import { BlogFaqLinks } from "@/components/blog-faq-links"
 import { TestimonialsSection } from "@/components/testimonials-section"
-import { AppointmentCTA } from "@/components/appointment-cta"
 import { NewsletterSection } from "@/components/newsletter-section"
 import { CTASection } from "@/components/cta-section"
 import { PartnersSection } from "@/components/partners-section"
+import { NewsWall } from "@/components/news-wall"
 import { Footer } from "@/components/footer"
 import {
   fetchSettings,
@@ -18,10 +19,11 @@ import {
   fetchTestimonials,
   fetchPartners,
   fetchServices,
+  fetchBlogPosts,
 } from "@/lib/api"
 
 export default async function Home() {
-  const [settings, hero, features, stats, testimonials, partners, services] =
+  const [settings, hero, features, stats, testimonials, partners, services, posts] =
     await Promise.all([
       fetchSettings().catch(() => null),
       fetchHero().catch(() => null),
@@ -30,6 +32,7 @@ export default async function Home() {
       fetchTestimonials().catch(() => []),
       fetchPartners().catch(() => []),
       fetchServices().catch(() => []),
+      fetchBlogPosts().catch(() => []),
     ])
 
   return (
@@ -40,9 +43,10 @@ export default async function Home() {
       <ServicesSection services={services} />
       <VideoSection />
       <StatsSection stats={stats} />
+      <BlogFaqLinks />
       <TestimonialsSection testimonials={testimonials} />
-      <AppointmentCTA settings={settings} />
       <PartnersSection partners={partners} />
+      <NewsWall posts={posts} />
       <CTASection />
       <NewsletterSection />
       <Footer settings={settings} services={services} />

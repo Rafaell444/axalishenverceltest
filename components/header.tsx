@@ -55,13 +55,11 @@ export function Header({ settings }: Props) {
   const siteName = settings?.site_name || "ახალი შენ"
 
   const navItems = [
-    { href: "/" as const, label: t("home") },
     { href: "/about" as const, label: t("about") },
-    { href: "/services" as const, label: t("services") },
+    { href: "/certifications" as const, label: t("certifications") },
+    { href: "/safety" as const, label: t("safety") },
+    { href: "/production" as const, label: t("production") },
     { href: "/products" as const, label: t("products") },
-    { href: "/blog" as const, label: t("blog") },
-    { href: "/faq" as const, label: t("faq") },
-    { href: "/contact" as const, label: t("contact") },
   ]
 
   return (

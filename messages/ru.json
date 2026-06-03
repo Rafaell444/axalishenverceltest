@@ -2,8 +2,10 @@
   "nav": {
     "home": "Главная",
     "about": "О нас",
-    "services": "Услуги",
-    "products": "Продукты",
+    "certifications": "Сертификаты",
+    "safety": "Безопасность",
+    "production": "Производство",
+    "products": "Продукция",
     "blog": "Блог",
     "faq": "FAQ",
     "contact": "Контакт",

@@ -1,9 +1,11 @@
 {
   "nav": {
     "home": "მთავარი",
-    "about": "ჩვენ შესახებ",
-    "services": "სერვისები",
-    "products": "პროდუქტები",
+    "about": "ჩვენს შესახებ",
+    "certifications": "სერთიფიკატები",
+    "safety": "უსაფრთხოება",
+    "production": "წარმოება",
+    "products": "პროდუქცია",
     "blog": "ბლოგი",
     "faq": "FAQ",
     "contact": "კონტაქტი",

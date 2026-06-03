@@ -2,7 +2,9 @@
   "nav": {
     "home": "Home",
     "about": "About Us",
-    "services": "Services",
+    "certifications": "Certifications",
+    "safety": "Safety",
+    "production": "Production",
     "products": "Products",
     "blog": "Blog",
     "faq": "FAQ",
