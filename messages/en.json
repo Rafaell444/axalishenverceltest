@@ -146,6 +146,40 @@
     "certs": "Certificates &",
     "certsHighlight": "Accreditations"
   },
+  "certPage": {
+    "eyebrow": "Certification",
+    "heading": "Certification",
+    "headingHighlight": "",
+    "subtitle": "Safety and quality are at the core of everything we do.",
+    "p1": "On this page you can explore laboratory analyses, quality control reports, and certifications related to our products. Each document reflects our commitment to safety, purity, and consistently high standards."
+  },
+  "productionPage": {
+    "eyebrow": "Production",
+    "heading": "Production",
+    "headingHighlight": "",
+    "subtitle": "For us, production begins with observation.",
+    "p1": "As mycology enthusiasts, we spend countless hours studying mushrooms in their natural habitats, learning from ecosystems that have perfected their own balance over millions of years. Some of the mushrooms used in our work are responsibly collected by our team, while others come from carefully selected cultivators who share our standards for quality and sustainability.",
+    "p2": "Back in our laboratory, every ingredient is examined, documented, and prepared with attention to detail. We approach this process with both scientific discipline and genuine respect for the organisms we work with. Each formulation is the result of research, testing, and a continuous desire to better understand the remarkable properties of functional fungi.",
+    "p3": "From forest to laboratory, every step reflects our belief that quality begins with knowledge, patience, and respect for nature."
+  },
+  "safetyPage": {
+    "eyebrow": "Safety",
+    "heading": "Safety",
+    "headingHighlight": "Comes First",
+    "p1": "Product quality and customer safety are our highest priorities. Every mushroom is collected, processed, and tested according to strict quality standards. However, natural origin does not guarantee suitability for every individual.",
+    "fungiHeading": "Functional Mushrooms",
+    "fungiList": "Lion's Mane, Cordyceps, Turkey Tail, Reishi, Shiitake, Maitake, and Chaga have a long history of traditional use and continue to be studied by modern science.",
+    "considerHeading": "Before use, please consider:",
+    "b1": "Individual sensitivities and allergies may occur",
+    "b2": "Mild digestive discomfort is possible",
+    "b3": "Certain mushrooms may interact with medications",
+    "b4": "Individuals with autoimmune conditions should seek professional advice",
+    "b5": "Consultation with a healthcare professional is recommended during pregnancy or breastfeeding",
+    "disclaimer": "Our products are not intended to diagnose, treat, cure, or prevent any disease.",
+    "warning1": "Discontinue use immediately if adverse effects occur",
+    "warning2": "Consult before use",
+    "footer": "Responsible and informed use is essential for minimizing risk."
+  },
   "blog": {
     "eyebrow": "Blog",
     "heading": "News &",
