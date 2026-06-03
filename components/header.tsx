@@ -60,6 +60,7 @@ export function Header({ settings }: Props) {
     { href: "/services" as const, label: t("services") },
     { href: "/products" as const, label: t("products") },
     { href: "/blog" as const, label: t("blog") },
+    { href: "/faq" as const, label: t("faq") },
     { href: "/contact" as const, label: t("contact") },
   ]
 

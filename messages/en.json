@@ -5,6 +5,7 @@
     "services": "Services",
     "products": "Products",
     "blog": "Blog",
+    "faq": "FAQ",
     "contact": "Contact",
     "contactUs": "Contact Us",
     "centerTagline": "Wellness Center",
@@ -53,6 +54,7 @@
     "description": "Results and recognitions achieved over the years"
   },
   "faq": {
+    "eyebrow": "Help",
     "heading": "Frequently Asked",
     "headingHighlight": "Questions",
     "description": "Answers to the most common questions"
