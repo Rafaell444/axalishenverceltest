@@ -239,24 +239,9 @@ UNFOLD = {
                         "link": reverse_lazy("admin:content_stat_changelist"),
                     },
                     {
-                        "title": "პროცესის ნაბიჯები",
-                        "icon": "linear_scale",
-                        "link": reverse_lazy("admin:content_processstep_changelist"),
-                    },
-                    {
                         "title": "მიმოხილვები",
                         "icon": "rate_review",
                         "link": reverse_lazy("admin:content_testimonial_changelist"),
-                    },
-                    {
-                        "title": "მიღწევები",
-                        "icon": "emoji_events",
-                        "link": reverse_lazy("admin:content_achievement_changelist"),
-                    },
-                    {
-                        "title": "პუბლიკაციები",
-                        "icon": "article",
-                        "link": reverse_lazy("admin:content_publication_changelist"),
                     },
                     {
                         "title": "FAQ",
@@ -352,11 +337,6 @@ UNFOLD = {
                         "title": "შეტყობინებები",
                         "icon": "mail",
                         "link": reverse_lazy("admin:contact_contactmessage_changelist"),
-                    },
-                    {
-                        "title": "კონსულტაციები",
-                        "icon": "calendar_month",
-                        "link": reverse_lazy("admin:contact_consultation_changelist"),
                     },
                     {
                         "title": "Newsletter",
