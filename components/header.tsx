@@ -63,21 +63,22 @@ export function Header({ settings }: Props) {
   ]
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <>
+    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       {settings?.announcement_text && (
         <div className="bg-primary/10 border-b border-primary/20 px-4 py-2 text-center text-xs sm:text-sm text-primary leading-snug">
           {settings.announcement_text}
         </div>
       )}
 
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 lg:px-8">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0 min-w-0">
           {settings?.logo_url ? (
-            <img src={settings.logo_url} alt={siteName} className="h-9 w-auto" />
+            <img src={settings.logo_url} alt={siteName} className="h-[60px] w-auto" />
           ) : (
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-primary/50">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4 text-primary">
+            <div className="flex h-[60px] w-[60px] shrink-0 items-center justify-center rounded-full border border-primary/50">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-6 w-6 text-primary">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
                 <path d="M12 6v6l4 2" />
                 <circle cx="12" cy="12" r="2" />
@@ -86,7 +87,7 @@ export function Header({ settings }: Props) {
           )}
           <div className="flex flex-col min-w-0">
             <span className="text-sm font-semibold text-foreground truncate">{siteName}</span>
-            <span className="text-xs text-muted-foreground hidden sm:block">{t("centerTagline")}</span>
+            <span className="text-xs text-muted-foreground hidden sm:block">Wellness</span>
           </div>
         </Link>
 
@@ -184,5 +185,7 @@ export function Header({ settings }: Props) {
         </div>
       )}
     </header>
+    <div className="h-20" />
+    </>
   )
 }
