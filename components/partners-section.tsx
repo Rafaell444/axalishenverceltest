@@ -18,9 +18,18 @@ export function PartnersSection({ partners }: Props) {
   const items = partners.length > 0 ? partners : DEFAULT_PARTNERS
 
   return (
-    <section className="border-t border-[rgba(201,166,100,.18)] py-12 lg:py-16 px-6">
-      <div className="max-w-7xl mx-auto">
-        <h3 className="mb-8 text-center text-lg font-medium text-[#7A7A7A]">{t("heading")}</h3>
+    <section className="py-6 px-4">
+      <div
+        className="mx-auto rounded-2xl px-6 py-5 md:px-10 md:py-6"
+        style={{
+          maxWidth: '1160px',
+          background: 'rgba(8,18,15,0.45)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          border: '1px solid rgba(201,166,100,0.12)',
+        }}
+      >
+        <h3 className="mb-5 text-center text-sm font-medium text-[#7A7A7A] uppercase tracking-widest">{t("heading")}</h3>
         <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-8 md:gap-12 lg:gap-16">
           {items.map((partner) =>
             partner.logo_url ? (
@@ -36,7 +45,7 @@ export function PartnersSection({ partners }: Props) {
             ) : (
               <div
                 key={partner.id}
-                className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-[#7A7A7A]/60 transition-colors hover:text-[#B8B8B8] text-center"
+                className="text-sm sm:text-base font-semibold tracking-tight text-[#B8B8B8]/50 transition-colors hover:text-[#B8B8B8] text-center"
               >
                 {partner.name}
               </div>
