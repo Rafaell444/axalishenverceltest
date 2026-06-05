@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Noto_Sans_Georgian, Geist_Mono } from 'next/font/google'
+import { Noto_Sans_Georgian, Playfair_Display, Inter } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
@@ -9,9 +9,19 @@ import '../globals.css'
 
 const notoSansGeorgian = Noto_Sans_Georgian({
   subsets: ['georgian', 'latin'],
-  variable: '--font-sans',
+  variable: '--font-georgian',
 })
-const _geistMono = Geist_Mono({ subsets: ['latin'] })
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-heading',
+  weight: ['500', '600', '700'],
+})
+
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  variable: '--font-body',
+})
 
 export async function generateMetadata({
   params,
@@ -54,8 +64,8 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html lang={locale} className={`bg-background ${notoSansGeorgian.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang={locale} className={`${notoSansGeorgian.variable} ${playfairDisplay.variable} ${inter.variable}`}>
+      <body className="font-body antialiased">
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

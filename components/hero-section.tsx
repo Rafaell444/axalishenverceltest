@@ -43,13 +43,13 @@ export function HeroSection({ data, translations: tr }: Props) {
               {description}
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
-              <Button size="lg" className="bg-gold hover:bg-gold/90 text-[#08120F] font-semibold w-full sm:w-auto" asChild>
+              <Button size="lg" className="w-full sm:w-auto" asChild>
                 <Link href={ctaPrimaryLink}>{ctaPrimaryText}</Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-gold/30 text-gold hover:bg-gold/10 w-full sm:w-auto"
+                className="w-full sm:w-auto"
                 asChild
               >
                 <Link href={ctaSecondaryLink}>{ctaSecondaryText}</Link>

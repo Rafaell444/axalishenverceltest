@@ -99,7 +99,9 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
+  --font-heading: var(--font-heading), 'Playfair Display', serif;
+  --font-body: var(--font-body), 'Inter', var(--font-georgian), 'Noto Sans Georgian', sans-serif;
+  --font-sans: var(--font-body);
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -179,6 +181,35 @@
   }
   input, textarea, select {
     font-size: 16px;
+  }
+
+  /* Heading typography: Playfair Display */
+  h1 {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--text-primary);
+  }
+  h2 {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+  }
+  h3 {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--text-primary);
+  }
+
+  /* Body typography: Inter */
+  p, li, span, a, label {
+    font-size: 18px;
+    line-height: 1.8;
   }
 }
 

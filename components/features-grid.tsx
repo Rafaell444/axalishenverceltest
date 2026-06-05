@@ -27,10 +27,10 @@ export function FeaturesGrid({ features }: Props) {
   const items = features.length > 0 ? features : DEFAULT_FEATURES
 
   const THEME_COLORS: Record<string, { bg: string; icon: string; border: string; glow: string }> = {
-    success: { bg: "bg-[#C9A664]/15", icon: "text-[#C9A664]", border: "border-[#C9A664]/30 hover:border-[#C9A664]/60", glow: "bg-[#C9A664]/10" },
-    peace:   { bg: "bg-[#D9C7A3]/15", icon: "text-[#D9C7A3]", border: "border-[#A6B58D]/30 hover:border-[#A6B58D]/60", glow: "bg-[#A6B58D]/10" },
-    wellness:{ bg: "bg-[#6E4A7E]/20", icon: "text-[#7FA6A1]", border: "border-[#6E4A7E]/30 hover:border-[#6E4A7E]/60", glow: "bg-[#6E4A7E]/10" },
-    healing: { bg: "bg-[#2D5D66]/20", icon: "text-[#7FA6A1]", border: "border-[#2D5D66]/30 hover:border-[#2D5D66]/60", glow: "bg-[#2D5D66]/10" },
+    success: { bg: "bg-[#475A3F]/30", icon: "text-[#C9A664]", border: "border-[#C9A664]/25 hover:border-[#C9A664]/50", glow: "bg-[#C9A664]/10" },
+    peace:   { bg: "bg-[#A6B58D]/15", icon: "text-[#D9C7A3]", border: "border-[#D9C7A3]/25 hover:border-[#D9C7A3]/50", glow: "bg-[#A6B58D]/10" },
+    wellness:{ bg: "bg-[#6E4A7E]/25", icon: "text-[#7FA6A1]", border: "border-[#6E4A7E]/25 hover:border-[#6E4A7E]/50", glow: "bg-[#6E4A7E]/10" },
+    healing: { bg: "bg-[#2D5D66]/25", icon: "text-[#A6B58D]", border: "border-[#2D5D66]/25 hover:border-[#2D5D66]/50", glow: "bg-[#2D5D66]/10" },
   }
 
   const fallbackTheme = { bg: "bg-gold/15", icon: "text-gold", border: "border-gold/30 hover:border-gold/60", glow: "bg-gold/10" }
