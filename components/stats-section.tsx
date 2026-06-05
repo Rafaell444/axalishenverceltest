@@ -1,5 +1,7 @@
-import { Users, Clock, Award, TrendingUp } from "lucide-react"
+import { Users, CheckCircle, Award, Heart, TrendingUp, Star, LucideIcon } from "lucide-react"
 import type { Stat } from "@/lib/api"
+
+const STAT_ICONS: LucideIcon[] = [Users, CheckCircle, Award, Heart, TrendingUp, Star]
 
 interface Translations {
   default0: string
@@ -13,13 +15,6 @@ interface Props {
   translations: Translations
 }
 
-const STAT_CONFIG = [
-  { icon: Users, color: "#C9A664" },
-  { icon: Clock, color: "#A6B58D" },
-  { icon: Award, color: "#6E4A7E" },
-  { icon: TrendingUp, color: "#7FA6A1" },
-]
-
 export function StatsSection({ stats, translations: tr }: Props) {
   const DEFAULT_STATS: Stat[] = [
     { id: 1, value: "1500+", label: tr.default0, order: 0 },
@@ -31,31 +26,19 @@ export function StatsSection({ stats, translations: tr }: Props) {
   const items = stats.length > 0 ? stats : DEFAULT_STATS
 
   return (
-    <section className="py-10 md:py-14 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="glass-bar py-8 md:py-0 md:h-[140px] grid grid-cols-2 md:grid-cols-4">
-          {items.map((stat, i) => {
-            const cfg = STAT_CONFIG[i % STAT_CONFIG.length]
-            const Icon = cfg.icon
-            const isNotLast = i < items.length - 1
+    <section className="border-t border-gold/10 py-12 lg:py-16" style={{ background: 'rgba(8,18,15,0.35)', backdropFilter: 'blur(8px)' }}>
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-8">
+          {items.map((stat, index) => {
+            const IconComponent = STAT_ICONS[index % STAT_ICONS.length]
             return (
-              <div
-                key={stat.id}
-                className={`flex items-center justify-center gap-4 px-4 py-4 md:py-0 ${
-                  isNotLast ? "md:border-r md:border-white/10" : ""
-                }`}
-              >
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-                  style={{ backgroundColor: `${cfg.color}15` }}
-                >
-                  <Icon className="w-5 h-5" style={{ color: cfg.color }} />
+              <div key={stat.id} className="flex items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 md:h-12 md:w-12">
+                  <IconComponent className="h-5 w-5 text-primary md:h-6 md:w-6" />
                 </div>
-                <div>
-                  <div className="text-2xl md:text-3xl font-bold text-[#F4EFE4] leading-none" style={{ fontFamily: 'var(--font-heading)' }}>
-                    {stat.value}
-                  </div>
-                  <div className="text-[13px] text-[#7A7A7A] mt-1 leading-tight">{stat.label}</div>
+                <div className="min-w-0">
+                  <div className="text-xl font-bold text-primary md:text-2xl lg:text-3xl">{stat.value}</div>
+                  <div className="text-xs text-muted-foreground leading-tight">{stat.label}</div>
                 </div>
               </div>
             )
