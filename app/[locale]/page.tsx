@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server"
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
+import { AdvantagesSection } from "@/components/advantages-section"
 import { ServicesSection } from "@/components/services-section"
 import { VideoSection } from "@/components/video-section"
 import { BlogFaqLinks } from "@/components/blog-faq-links"
@@ -44,6 +45,7 @@ export default async function Home() {
     <main className="min-h-screen">
       <Header settings={settings} />
       <HeroSection data={hero} translations={heroTranslations} />
+      <AdvantagesSection />
       <ServicesSection services={services} />
       <VideoSection />
       <BlogFaqLinks />
