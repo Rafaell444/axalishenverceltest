@@ -26,7 +26,7 @@ export function StatsSection({ stats, translations: tr }: Props) {
   const items = stats.length > 0 ? stats : DEFAULT_STATS
 
   return (
-    <section className="border-t border-border/40 bg-card/50 py-12 lg:py-16">
+    <section className="border-t border-gold/10 glass py-12 lg:py-16">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-8">
           {items.map((stat, index) => {

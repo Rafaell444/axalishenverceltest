@@ -21,7 +21,7 @@ export function ServicesSection({ services }: Props) {
   const items = services.length > 0 ? services : DEFAULT_SERVICES
 
   return (
-    <section className="border-t border-border/40 bg-background py-16 lg:py-24">
+    <section className="border-t border-gold/10 py-16 lg:py-24">
       <div className="container mx-auto px-4 lg:px-8">
         <h2 className="mb-8 md:mb-12 text-center text-xl sm:text-2xl font-semibold text-foreground md:text-3xl">
           {t("heading")}
@@ -33,10 +33,10 @@ export function ServicesSection({ services }: Props) {
             return (
               <div
                 key={service.id}
-                className="group rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/50 hover:bg-card/80"
+                className="group glass-card p-6 transition-all hover:border-gold/30"
               >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                  <IconComponent className="h-6 w-6 text-primary" />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gold/10">
+                  <IconComponent className="h-6 w-6 text-gold" />
                 </div>
                 <h3 className="mb-2 text-lg font-medium text-foreground">{service.title}</h3>
                 <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{service.short_description}</p>

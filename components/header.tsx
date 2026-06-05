@@ -64,7 +64,7 @@ export function Header({ settings }: Props) {
 
   return (
     <>
-    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="glass-header fixed top-0 left-0 right-0 z-50 w-full">
       {settings?.announcement_text && (
         <div className="bg-primary/10 border-b border-primary/20 px-4 py-2 text-center text-xs sm:text-sm text-primary leading-snug">
           {settings.announcement_text}
@@ -143,7 +143,7 @@ export function Header({ settings }: Props) {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="border-t border-border bg-background lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="border-t border-gold/10 bg-[#08120F]/95 backdrop-blur-xl lg:hidden max-h-[calc(100vh-5rem)] overflow-y-auto">
           <nav className="container mx-auto flex flex-col px-4 py-4">
             {navItems.map((item) => (
               <Link

@@ -9,9 +9,9 @@ export function CTASection() {
   return (
     <section className="py-16 md:py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/20 via-card to-primary/10 border border-primary/30 p-6 sm:p-8 md:p-16">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-2xl" />
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gold/15 via-[#132a25] to-teal/10 border border-gold/20 p-6 sm:p-8 md:p-16">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal/5 rounded-full blur-2xl" />
 
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="text-center lg:text-left max-w-xl">

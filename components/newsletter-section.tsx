@@ -34,11 +34,11 @@ export function NewsletterSection() {
   }
 
   return (
-    <section className="py-14 md:py-18 px-4 bg-card/40 border-y border-border">
+    <section className="py-14 md:py-18 px-4 glass border-y border-gold/10">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
 
         <div className="flex-1 flex gap-5 items-start">
-          <div className="w-1 self-stretch rounded-full bg-gradient-to-b from-primary to-accent shrink-0 hidden sm:block" />
+          <div className="w-1 self-stretch rounded-full bg-gradient-to-b from-gold to-teal shrink-0 hidden sm:block" />
           <div>
             <div className="flex items-center gap-2 mb-3">
               <Mail className="w-4 h-4 text-primary" />

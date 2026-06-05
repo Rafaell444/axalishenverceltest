@@ -18,7 +18,7 @@ export function PartnersSection({ partners }: Props) {
   const items = partners.length > 0 ? partners : DEFAULT_PARTNERS
 
   return (
-    <section className="border-t border-border/40 bg-background py-12 lg:py-16">
+    <section className="border-t border-gold/10 py-12 lg:py-16">
       <div className="container mx-auto px-4 lg:px-8">
         <h3 className="mb-8 text-center text-lg font-medium text-muted-foreground">{t("heading")}</h3>
         <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-8 md:gap-12 lg:gap-16">

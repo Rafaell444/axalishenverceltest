@@ -8,7 +8,7 @@ const MAX = 8
 const TS_CSS = Array.from({ length: MAX }, (_, i) => `
   .ts:has(#ts${i}:checked) .ts-p${i}.ts-card  { display: block !important; }
   .ts:has(#ts${i}:checked) .ts-p${i}.ts-arrow { display: flex  !important; }
-  .ts:has(#ts${i}:checked) label[for="ts${i}"].ts-dot { background: oklch(0.65 0.18 280) !important; width: 1.5rem !important; }
+  .ts:has(#ts${i}:checked) label[for="ts${i}"].ts-dot { background: #C9A664 !important; width: 1.5rem !important; }
 `).join("") + `
   .ts-card  { display: none !important; }
   .ts-arrow { display: none !important; align-items: center; justify-content: center; }
@@ -58,16 +58,16 @@ export function TestimonialsSection({ testimonials }: Props) {
 
           {items.map((item, i) => (
             <div key={item.id} className={`ts-card ts-p${i}`}>
-              <div className="bg-card border border-border rounded-2xl p-7 md:p-12 relative overflow-hidden">
-                <Quote className="absolute top-5 left-5 md:top-7 md:left-7 w-9 h-9 md:w-14 md:h-14 text-primary/15" />
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="glass-card p-7 md:p-12 relative overflow-hidden">
+                <Quote className="absolute top-5 left-5 md:top-7 md:left-7 w-9 h-9 md:w-14 md:h-14 text-gold/15" />
+                <div className="absolute bottom-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
                 <div className="relative z-10 text-center">
                   <Stars rating={item.rating ?? 5} />
                   <p className="text-base md:text-xl text-foreground/90 mb-8 leading-relaxed max-w-2xl mx-auto">
                     &ldquo;{item.content}&rdquo;
                   </p>
                   <div className="flex items-center justify-center gap-4">
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-lg border-2 border-primary">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-gold to-teal flex items-center justify-center text-[#08120F] font-bold text-lg border-2 border-gold/40">
                       {item.name.charAt(0)}
                     </div>
                     <div className="text-left">

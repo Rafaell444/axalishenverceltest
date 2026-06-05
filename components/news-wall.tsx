@@ -26,7 +26,7 @@ export async function NewsWall({ posts }: Props) {
   const items = newsPosts.length > 0 ? newsPosts.slice(0, 3) : DEFAULT_NEWS
 
   return (
-    <section className="py-14 md:py-20 px-4 border-t border-border/40">
+    <section className="py-14 md:py-20 px-4 border-t border-gold/10">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-8 md:mb-10">
           <div className="flex items-center gap-3">
@@ -51,8 +51,8 @@ export async function NewsWall({ posts }: Props) {
         <div className="grid md:grid-cols-3 gap-5">
           {items.map((post) => (
             <Link key={post.id} href={`/blog/${post.slug}` as "/blog"}>
-              <article className="group h-full bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/40 transition-all hover:shadow-md hover:shadow-primary/5">
-                <div className="aspect-[16/9] bg-primary/5 overflow-hidden relative">
+              <article className="group h-full glass-card overflow-hidden hover:border-gold/30 transition-all hover:shadow-md hover:shadow-gold/5">
+                <div className="aspect-[16/9] bg-forest/50 overflow-hidden relative">
                   {post.featured_image_url ? (
                     <img
                       src={post.featured_image_url}

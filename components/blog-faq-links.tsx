@@ -10,44 +10,44 @@ export function BlogFaqLinks() {
   return (
     <section className="py-10 px-4">
       <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-4 md:gap-6">
-        {/* Blog */}
+        {/* Blog — gold/forest tones */}
         <Link
           href="/blog"
-          className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 via-primary/10 to-background border border-primary/20 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10 p-7 flex flex-col"
+          className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#1B3B34]/80 via-[#1B3B34]/40 to-transparent border border-gold/20 hover:border-gold/50 transition-all hover:shadow-lg hover:shadow-gold/10 p-7 flex flex-col glass-card"
         >
           <div className="flex items-start justify-between mb-6">
-            <div className="w-14 h-14 rounded-2xl bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
-              <BookOpen className="w-7 h-7 text-primary" />
+            <div className="w-14 h-14 rounded-2xl bg-gold/15 flex items-center justify-center group-hover:bg-gold/25 transition-colors">
+              <BookOpen className="w-7 h-7 text-gold" />
             </div>
-            <ArrowRight className="w-5 h-5 text-primary/50 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-5 h-5 text-gold/50 group-hover:text-gold group-hover:translate-x-1 transition-all" />
           </div>
           <div className="mt-auto">
-            <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+            <h3 className="text-2xl font-bold text-offwhite mb-2 group-hover:text-gold transition-colors">
               {t("blogTitle")}
             </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">{t("blogDesc")}</p>
+            <p className="text-sage text-sm leading-relaxed">{t("blogDesc")}</p>
           </div>
-          <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full bg-primary/5 group-hover:bg-primary/10 transition-colors" />
+          <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full bg-gold/5 group-hover:bg-gold/10 transition-colors" />
         </Link>
 
-        {/* FAQ */}
+        {/* FAQ — purple tones */}
         <Link
           href="/faq"
-          className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-violet-500/20 via-violet-500/10 to-background border border-violet-500/20 hover:border-violet-500/50 transition-all hover:shadow-lg hover:shadow-violet-500/10 p-7 flex flex-col"
+          className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-deep/60 via-purple/30 to-transparent border border-purple/20 hover:border-purple/50 transition-all hover:shadow-lg hover:shadow-purple/10 p-7 flex flex-col glass-card"
         >
           <div className="flex items-start justify-between mb-6">
-            <div className="w-14 h-14 rounded-2xl bg-violet-500/20 flex items-center justify-center group-hover:bg-violet-500/30 transition-colors">
-              <HelpCircle className="w-7 h-7 text-violet-400" />
+            <div className="w-14 h-14 rounded-2xl bg-purple/20 flex items-center justify-center group-hover:bg-purple/30 transition-colors">
+              <HelpCircle className="w-7 h-7 text-purple" />
             </div>
-            <ArrowRight className="w-5 h-5 text-violet-400/50 group-hover:text-violet-400 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-5 h-5 text-purple/50 group-hover:text-purple group-hover:translate-x-1 transition-all" />
           </div>
           <div className="mt-auto">
-            <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-violet-400 transition-colors">
+            <h3 className="text-2xl font-bold text-offwhite mb-2 group-hover:text-purple transition-colors">
               {t("faqTitle")}
             </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">{t("faqDesc")}</p>
+            <p className="text-cream text-sm leading-relaxed">{t("faqDesc")}</p>
           </div>
-          <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full bg-violet-500/5 group-hover:bg-violet-500/10 transition-colors" />
+          <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full bg-purple/5 group-hover:bg-purple/10 transition-colors" />
         </Link>
       </div>
     </section>

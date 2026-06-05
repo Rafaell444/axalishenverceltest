@@ -46,7 +46,7 @@ export default async function AboutPage() {
   const about = aboutData ?? DEFAULT_ABOUT
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <Header settings={settings} />
 
       {/* Hero & Company Description */}
@@ -66,18 +66,18 @@ export default async function AboutPage() {
 
       {/* Values */}
       {about?.values && about.values.length > 0 && (
-        <section className="py-12 md:py-16 px-4 bg-card/50">
+        <section className="py-12 md:py-16 px-4 glass">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-8 md:mb-12">
-              {t("values")} <span className="text-primary">{t("valuesHighlight")}</span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-offwhite text-center mb-8 md:mb-12">
+              {t("values")} <span className="text-gold">{t("valuesHighlight")}</span>
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {about.values.map((val) => {
                 const IconComponent = ICON_MAP[val.icon] ?? Heart
                 return (
-                  <div key={val.id} className="bg-card border border-border rounded-xl p-6 hover:border-primary/50 transition-colors">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                      <IconComponent className="w-6 h-6 text-primary" />
+                  <div key={val.id} className="glass-card p-6 hover:border-gold/30 transition-colors">
+                    <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-4">
+                      <IconComponent className="w-6 h-6 text-gold" />
                     </div>
                     <h3 className="font-semibold text-foreground mb-2">{val.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">{val.description}</p>
@@ -101,10 +101,10 @@ export default async function AboutPage() {
               <div className="space-y-6 md:space-y-8">
                 {about.timeline.map((item) => (
                   <div key={item.id} className="flex gap-4 sm:gap-6 pl-12 sm:pl-16 relative">
-                    <div className="absolute left-2 sm:left-5 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-xs font-bold shrink-0">
+                    <div className="absolute left-2 sm:left-5 w-6 h-6 rounded-full bg-gold flex items-center justify-center text-[#08120F] text-xs font-bold shrink-0">
                       •
                     </div>
-                    <div className="bg-card border border-border rounded-xl p-5 flex-1">
+                    <div className="glass-card p-5 flex-1">
                       <span className="text-primary font-bold text-sm">{item.year}</span>
                       <h3 className="font-semibold text-foreground mt-1 mb-2">{item.title}</h3>
                       {item.description && <p className="text-muted-foreground text-sm">{item.description}</p>}
@@ -119,15 +119,15 @@ export default async function AboutPage() {
 
       {/* Team */}
       {about?.team && about.team.length > 0 && (
-        <section className="py-12 md:py-16 px-4 bg-card/50">
+        <section className="py-12 md:py-16 px-4 glass">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-8 md:mb-12">
-              {t("team")} <span className="text-primary">{t("teamHighlight")}</span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-offwhite text-center mb-8 md:mb-12">
+              {t("team")} <span className="text-gold">{t("teamHighlight")}</span>
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {about.team.map((member) => (
-                <div key={member.id} className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-colors">
-                  <div className="aspect-square bg-primary/10 flex items-center justify-center overflow-hidden">
+                <div key={member.id} className="glass-card overflow-hidden hover:border-gold/30 transition-colors">
+                  <div className="aspect-square bg-teal/10 flex items-center justify-center overflow-hidden">
                     {member.photo_url ? (
                       <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
                     ) : (
@@ -155,7 +155,7 @@ export default async function AboutPage() {
             </h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               {about.certifications.map((cert) => (
-                <div key={cert.id} className="bg-card border border-border rounded-xl p-6 text-center">
+                <div key={cert.id} className="glass-card p-6 text-center">
                   {cert.image_url ? (
                     <img src={cert.image_url} alt={cert.title} className="h-20 object-contain mx-auto mb-4" />
                   ) : (
