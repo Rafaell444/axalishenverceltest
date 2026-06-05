@@ -35,7 +35,7 @@ export function HeroSection({ data, translations: tr }: Props) {
           <div className="max-w-xl text-center lg:text-left mx-auto lg:mx-0">
             <h1 className="text-balance text-3xl font-bold leading-tight tracking-tight text-[#F4EFE4] sm:text-4xl md:text-5xl lg:text-6xl">
               {title}{" "}
-              <span className="text-gold">{titleHighlight}</span>
+              <span className="text-gold" style={{ fontSize: '48px' }}>{titleHighlight}</span>
             </h1>
             <p className="mt-5 text-pretty text-base leading-relaxed text-[#B8B8B8] sm:text-lg">
               {description}
@@ -43,13 +43,12 @@ export function HeroSection({ data, translations: tr }: Props) {
           </div>
 
           <div className="relative flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[300px] sm:max-w-[360px] md:max-w-[420px] aspect-[3/4] overflow-hidden rounded-2xl mx-auto ring-1 ring-gold/20">
-              <div className="absolute inset-0 bg-gradient-to-t from-[#08120F] via-transparent to-transparent z-10" />
+            <div className="relative w-full max-w-[300px] sm:max-w-[360px] md:max-w-[420px] aspect-square mx-auto">
               <Image
                 src={imageUrl}
                 alt={tr.imageAlt}
                 fill
-                className="object-cover object-top"
+                className="object-contain"
                 priority
               />
             </div>
