@@ -172,7 +172,9 @@
     "blogTitle": "Blog",
     "blogDesc": "News, research and articles about the world of mushrooms",
     "faqTitle": "FAQ",
-    "faqDesc": "Frequently asked questions and answers"
+    "faqDesc": "Frequently asked questions and answers",
+    "scienceTitle": "Science",
+    "scienceDesc": "Studies, data and scientific insights about mushrooms"
   },
   "footer": {
     "services": "Services",

@@ -1,54 +1,69 @@
 "use client"
 
 import { Link } from "@/i18n/navigation"
-import { ArrowRight, BookOpen, HelpCircle } from "lucide-react"
+import { ArrowRight, BookOpen, HelpCircle, Microscope } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 export function BlogFaqLinks() {
   const t = useTranslations("blogFaq")
 
-  return (
-    <section className="py-10 px-4">
-      <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-4 md:gap-6">
-        {/* Blog — default card (forest) */}
-        <Link
-          href="/blog"
-          className="group relative overflow-hidden glass-card hover:border-gold/50 transition-all p-7 flex flex-col"
-        >
-          <div className="flex items-start justify-between mb-6">
-            <div className="w-14 h-14 rounded-2xl bg-gold/15 flex items-center justify-center group-hover:bg-gold/25 transition-colors">
-              <BookOpen className="w-7 h-7 text-gold" />
-            </div>
-            <ArrowRight className="w-5 h-5 text-gold/50 group-hover:text-gold group-hover:translate-x-1 transition-all" />
-          </div>
-          <div className="mt-auto">
-            <h3 className="text-2xl font-bold text-[#F4EFE4] mb-2 group-hover:text-gold transition-colors">
-              {t("blogTitle")}
-            </h3>
-            <p className="text-[#B8B8B8] text-sm leading-relaxed">{t("blogDesc")}</p>
-          </div>
-          <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full bg-gold/5 group-hover:bg-gold/10 transition-colors" />
-        </Link>
+  const cards = [
+    {
+      href: "/blog" as const,
+      className: "glass-card-blog",
+      icon: BookOpen,
+      iconColor: "text-[#C9A664]",
+      iconBg: "bg-[#C9A664]/15",
+      title: t("blogTitle"),
+      desc: t("blogDesc"),
+    },
+    {
+      href: "/faq" as const,
+      className: "glass-card-faq",
+      icon: HelpCircle,
+      iconColor: "text-[#7FA6A1]",
+      iconBg: "bg-[#6E4A7E]/25",
+      title: t("faqTitle"),
+      desc: t("faqDesc"),
+    },
+    {
+      href: "/blog" as const,
+      className: "glass-card-science",
+      icon: Microscope,
+      iconColor: "text-[#7FA6A1]",
+      iconBg: "bg-[#2D5D66]/30",
+      title: t("scienceTitle") ?? "Science",
+      desc: t("scienceDesc") ?? "Studies, data and scientific insights",
+    },
+  ]
 
-        {/* FAQ — violet card */}
-        <Link
-          href="/faq"
-          className="group relative overflow-hidden glass-card-faq hover:border-gold/50 transition-all p-7 flex flex-col"
-        >
-          <div className="flex items-start justify-between mb-6">
-            <div className="w-14 h-14 rounded-2xl bg-violet/30 flex items-center justify-center group-hover:bg-violet/50 transition-colors">
-              <HelpCircle className="w-7 h-7 text-mist" />
-            </div>
-            <ArrowRight className="w-5 h-5 text-mist/50 group-hover:text-mist group-hover:translate-x-1 transition-all" />
-          </div>
-          <div className="mt-auto">
-            <h3 className="text-2xl font-bold text-[#F4EFE4] mb-2 group-hover:text-mist transition-colors">
-              {t("faqTitle")}
-            </h3>
-            <p className="text-[#B8B8B8] text-sm leading-relaxed">{t("faqDesc")}</p>
-          </div>
-          <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full bg-violet/10 group-hover:bg-violet/20 transition-colors" />
-        </Link>
+  return (
+    <section className="py-16 md:py-24 px-6">
+      <div className="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {cards.map((card) => {
+          const Icon = card.icon
+          return (
+            <Link
+              key={card.title}
+              href={card.href}
+              className={`group relative ${card.className} p-8 flex flex-col min-h-[420px] lg:min-h-[460px]`}
+            >
+              <div className="flex items-start justify-between mb-8">
+                <div className={`w-14 h-14 rounded-2xl ${card.iconBg} flex items-center justify-center`}>
+                  <Icon className={`w-7 h-7 ${card.iconColor}`} />
+                </div>
+                <ArrowRight className="w-5 h-5 text-[#7A7A7A] group-hover:text-gold group-hover:translate-x-1 transition-all duration-300" />
+              </div>
+
+              <div className="mt-auto">
+                <h3 className="text-[#F4EFE4] mb-3 group-hover:text-gold transition-colors duration-300">
+                  {card.title}
+                </h3>
+                <p className="text-[#B8B8B8] text-[15px] leading-relaxed">{card.desc}</p>
+              </div>
+            </Link>
+          )
+        })}
       </div>
     </section>
   )

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Noto_Sans_Georgian, Playfair_Display, Inter } from 'next/font/google'
+import { Noto_Sans_Georgian, Cormorant_Garamond, Inter } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
@@ -12,8 +12,8 @@ const notoSansGeorgian = Noto_Sans_Georgian({
   variable: '--font-georgian',
 })
 
-const playfairDisplay = Playfair_Display({
-  subsets: ['latin'],
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ['latin', 'cyrillic'],
   variable: '--font-heading',
   weight: ['500', '600', '700'],
 })
@@ -64,8 +64,8 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html lang={locale} className={`${notoSansGeorgian.variable} ${playfairDisplay.variable} ${inter.variable}`}>
-      <body className="font-body antialiased">
+    <html lang={locale} className={`${notoSansGeorgian.variable} ${cormorantGaramond.variable} ${inter.variable}`}>
+      <body className="bg-layered font-body antialiased">
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

@@ -46,15 +46,15 @@ export default async function AboutPage() {
   const about = aboutData ?? DEFAULT_ABOUT
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
       <Header settings={settings} />
 
       {/* Hero & Company Description */}
       <section className="pt-24 md:pt-32 pb-16 md:pb-24 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="text-primary font-medium mb-4 block">{t("eyebrow")}</span>
+          <span className="text-gold font-medium mb-4 block">{t("eyebrow")}</span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-10">
-            {t("heading")} <span className="text-primary">{t("headingHighlight")}</span>
+            {t("heading")} <span className="text-gold">{t("headingHighlight")}</span>
           </h1>
         </div>
         <div className="max-w-3xl mx-auto space-y-6 text-muted-foreground text-lg leading-relaxed">
@@ -94,7 +94,7 @@ export default async function AboutPage() {
         <section className="py-12 md:py-16 px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-8 md:mb-12">
-              {t("history")} <span className="text-primary">{t("historyHighlight")}</span>
+              {t("history")} <span className="text-gold">{t("historyHighlight")}</span>
             </h2>
             <div className="relative">
               <div className="absolute left-5 sm:left-8 top-0 bottom-0 w-px bg-border" />
@@ -105,7 +105,7 @@ export default async function AboutPage() {
                       •
                     </div>
                     <div className="glass-card p-5 flex-1">
-                      <span className="text-primary font-bold text-sm">{item.year}</span>
+                      <span className="text-gold font-bold text-sm">{item.year}</span>
                       <h3 className="font-semibold text-foreground mt-1 mb-2">{item.title}</h3>
                       {item.description && <p className="text-muted-foreground text-sm">{item.description}</p>}
                     </div>
@@ -131,12 +131,12 @@ export default async function AboutPage() {
                     {member.photo_url ? (
                       <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
                     ) : (
-                      <Users className="w-16 h-16 text-primary/30" />
+                      <Users className="w-16 h-16 text-gold/30" />
                     )}
                   </div>
                   <div className="p-5">
                     <h3 className="font-semibold text-foreground mb-1">{member.name}</h3>
-                    <p className="text-primary text-sm mb-2">{member.role}</p>
+                    <p className="text-gold text-sm mb-2">{member.role}</p>
                     {member.bio && <p className="text-muted-foreground text-sm line-clamp-3">{member.bio}</p>}
                   </div>
                 </div>
@@ -151,7 +151,7 @@ export default async function AboutPage() {
         <section className="py-12 md:py-16 px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-8 md:mb-12">
-              {t("certs")} <span className="text-primary">{t("certsHighlight")}</span>
+              {t("certs")} <span className="text-gold">{t("certsHighlight")}</span>
             </h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               {about.certifications.map((cert) => (
@@ -159,11 +159,11 @@ export default async function AboutPage() {
                   {cert.image_url ? (
                     <img src={cert.image_url} alt={cert.title} className="h-20 object-contain mx-auto mb-4" />
                   ) : (
-                    <Award className="w-12 h-12 text-primary mx-auto mb-4" />
+                    <Award className="w-12 h-12 text-gold mx-auto mb-4" />
                   )}
                   <h3 className="font-semibold text-foreground mb-1">{cert.title}</h3>
                   {cert.issued_by && <p className="text-muted-foreground text-sm">{cert.issued_by}</p>}
-                  {cert.issued_year && <p className="text-primary text-sm mt-1">{cert.issued_year}</p>}
+                  {cert.issued_year && <p className="text-gold text-sm mt-1">{cert.issued_year}</p>}
                 </div>
               ))}
             </div>

@@ -30,7 +30,7 @@ export default async function ProductsPage() {
   const products = (productsData && productsData.length > 0) ? productsData : DEFAULT_PRODUCTS
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
       <Header settings={settings} />
 
       <section className="pt-24 md:pt-32 pb-10 md:pb-16 px-4">

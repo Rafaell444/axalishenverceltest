@@ -54,7 +54,7 @@ export default async function BlogPostPage({
   const related = relatedPosts.filter((p) => p.slug !== slug).slice(0, 3)
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
       <Header settings={settings} />
 
       <article className="pt-24 md:pt-32 pb-16 px-4">

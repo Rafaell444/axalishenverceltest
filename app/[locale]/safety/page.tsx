@@ -41,7 +41,7 @@ export default async function SafetyPage() {
   const bullets = [t("b1"), t("b2"), t("b3"), t("b4"), t("b5")]
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
       <Header settings={settings} />
 
       {/* Hero / Intro */}

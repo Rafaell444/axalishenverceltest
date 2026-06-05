@@ -22,7 +22,7 @@ function Stars({ rating }: { rating: number }) {
   return (
     <div className="flex gap-1 justify-center mb-6">
       {Array.from({ length: 5 }, (_, i) => (
-        <Star key={i} className={cn("w-5 h-5", i < rating ? "fill-amber-400 text-amber-400" : "text-border")} />
+        <Star key={i} className={cn("w-5 h-5", i < rating ? "fill-[#C9A664] text-[#C9A664]" : "text-[rgba(201,166,100,.18)]")} />
       ))}
     </div>
   )
@@ -39,16 +39,16 @@ export function TestimonialsSection({ testimonials }: Props) {
   const n = items.length
 
   return (
-    <section className="py-16 md:py-20 px-4">
+    <section className="py-16 lg:py-24 px-6">
       {/* eslint-disable-next-line react/no-danger */}
       <style dangerouslySetInnerHTML={{ __html: TS_CSS }} />
 
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-10 md:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {t("heading")} <span className="text-primary">{t("headingHighlight")}</span>
+        <div className="text-center mb-10 md:mb-14">
+          <h2 className="mb-4">
+            {t("heading")} <span className="text-gold">{t("headingHighlight")}</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">{t("description")}</p>
+          <p className="text-[#B8B8B8] max-w-2xl mx-auto">{t("description")}</p>
         </div>
 
         <div className="ts">
@@ -59,20 +59,19 @@ export function TestimonialsSection({ testimonials }: Props) {
           {items.map((item, i) => (
             <div key={item.id} className={`ts-card ts-p${i}`}>
               <div className="glass-card p-7 md:p-12 relative overflow-hidden">
-                <Quote className="absolute top-5 left-5 md:top-7 md:left-7 w-9 h-9 md:w-14 md:h-14 text-gold/15" />
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
+                <Quote className="absolute top-5 left-5 md:top-7 md:left-7 w-9 h-9 md:w-14 md:h-14 text-gold/10" />
                 <div className="relative z-10 text-center">
                   <Stars rating={item.rating ?? 5} />
-                  <p className="text-base md:text-xl text-foreground/90 mb-8 leading-relaxed max-w-2xl mx-auto">
+                  <p className="text-base md:text-xl text-[#F4EFE4]/90 mb-8 leading-relaxed max-w-2xl mx-auto">
                     &ldquo;{item.content}&rdquo;
                   </p>
                   <div className="flex items-center justify-center gap-4">
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-gold to-teal flex items-center justify-center text-[#08120F] font-bold text-lg border-2 border-gold/40">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#C9A664] to-[#2D5D66] flex items-center justify-center text-[#08120F] font-bold text-lg border-2 border-gold/30">
                       {item.name.charAt(0)}
                     </div>
                     <div className="text-left">
-                      <p className="font-semibold text-foreground">{item.name}</p>
-                      <p className="text-sm text-muted-foreground">{item.role}</p>
+                      <p className="font-semibold text-[#F4EFE4]">{item.name}</p>
+                      <p className="text-sm text-[#7A7A7A]">{item.role}</p>
                     </div>
                   </div>
                 </div>
@@ -87,7 +86,7 @@ export function TestimonialsSection({ testimonials }: Props) {
                 <label
                   key={`prev-${i}`}
                   htmlFor={`ts${prevIdx}`}
-                  className={cn("ts-arrow", `ts-p${i}`, "w-10 h-10 rounded-full border border-border", "cursor-pointer hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors text-foreground")}
+                  className={cn("ts-arrow", `ts-p${i}`, "w-10 h-10 rounded-full border border-[rgba(201,166,100,.18)]", "cursor-pointer hover:bg-gold hover:text-[#08120F] hover:border-gold transition-colors text-[#F4EFE4]")}
                   aria-label={t("prev")}
                 >
                   <ChevronLeft className="w-5 h-5" />
@@ -97,7 +96,7 @@ export function TestimonialsSection({ testimonials }: Props) {
 
             <div className="flex items-center gap-2">
               {items.map((_, i) => (
-                <label key={i} htmlFor={`ts${i}`} className="ts-dot w-2 h-2 rounded-full bg-border cursor-pointer transition-all" aria-label={`${t("slide")} ${i + 1}`} />
+                <label key={i} htmlFor={`ts${i}`} className="ts-dot w-2 h-2 rounded-full bg-[rgba(201,166,100,.18)] cursor-pointer transition-all" aria-label={`${t("slide")} ${i + 1}`} />
               ))}
             </div>
 
@@ -107,7 +106,7 @@ export function TestimonialsSection({ testimonials }: Props) {
                 <label
                   key={`next-${i}`}
                   htmlFor={`ts${nextIdx}`}
-                  className={cn("ts-arrow", `ts-p${i}`, "w-10 h-10 rounded-full border border-border", "cursor-pointer hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors text-foreground")}
+                  className={cn("ts-arrow", `ts-p${i}`, "w-10 h-10 rounded-full border border-[rgba(201,166,100,.18)]", "cursor-pointer hover:bg-gold hover:text-[#08120F] hover:border-gold transition-colors text-[#F4EFE4]")}
                   aria-label={t("next")}
                 >
                   <ChevronRight className="w-5 h-5" />

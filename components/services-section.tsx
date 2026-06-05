@@ -21,9 +21,9 @@ export function ServicesSection({ services }: Props) {
   const items = services.length > 0 ? services : DEFAULT_SERVICES
 
   return (
-    <section className="border-t border-gold/10 py-16 lg:py-24">
-      <div className="container mx-auto px-4 lg:px-8">
-        <h2 className="mb-8 md:mb-12 text-center text-xl sm:text-2xl font-semibold text-foreground md:text-3xl">
+    <section className="py-16 lg:py-24 px-6">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="mb-10 md:mb-14 text-center">
           {t("heading")}
         </h2>
 
@@ -33,16 +33,16 @@ export function ServicesSection({ services }: Props) {
             return (
               <div
                 key={service.id}
-                className="group glass-card p-6 transition-all hover:border-gold/30"
+                className="group glass-card p-7 transition-all duration-300 hover:border-[rgba(201,166,100,.45)]"
               >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gold/10">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gold/10">
                   <IconComponent className="h-6 w-6 text-gold" />
                 </div>
-                <h3 className="mb-2 text-lg font-medium text-foreground">{service.title}</h3>
-                <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{service.short_description}</p>
+                <h3 className="mb-3 text-[#F4EFE4]">{service.title}</h3>
+                <p className="mb-5 text-[15px] leading-relaxed text-[#B8B8B8]">{service.short_description}</p>
                 <Link
                   href={`/services/${service.slug}`}
-                  className="inline-flex items-center gap-1 text-sm text-primary transition-colors hover:text-primary/80"
+                  className="inline-flex items-center gap-1.5 text-[15px] text-gold transition-colors hover:text-ivory"
                 >
                   {t("learnMore")}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

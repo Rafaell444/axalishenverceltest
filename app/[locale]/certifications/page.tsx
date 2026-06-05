@@ -75,7 +75,7 @@ export default async function CertificationsPage() {
   ]
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
       <Header settings={settings} />
 
       {/* Hero / Intro */}

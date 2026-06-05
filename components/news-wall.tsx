@@ -26,33 +26,31 @@ export async function NewsWall({ posts }: Props) {
   const items = newsPosts.length > 0 ? newsPosts.slice(0, 3) : DEFAULT_NEWS
 
   return (
-    <section className="py-14 md:py-20 px-4 border-t border-gold/10">
+    <section className="py-16 lg:py-24 px-6 border-t border-[rgba(201,166,100,.18)]">
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-between mb-8 md:mb-10">
+        <div className="flex items-center justify-between mb-10 md:mb-14">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-              <Newspaper className="w-5 h-5 text-primary" />
+            <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center">
+              <Newspaper className="w-5 h-5 text-gold" />
             </div>
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                {t("heading")} <span className="text-primary">{t("headingHighlight")}</span>
-              </h2>
-            </div>
+            <h2>
+              {t("heading")} <span className="text-gold">{t("headingHighlight")}</span>
+            </h2>
           </div>
           <Link
             href="/blog"
-            className="hidden sm:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+            className="hidden sm:flex items-center gap-1.5 text-sm text-[#7A7A7A] hover:text-gold transition-colors"
           >
             {t("viewAll")}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-3 gap-6">
           {items.map((post) => (
             <Link key={post.id} href={`/blog/${post.slug}` as "/blog"}>
-              <article className="group h-full glass-card overflow-hidden hover:border-gold/30 transition-all hover:shadow-md hover:shadow-gold/5">
-                <div className="aspect-[16/9] bg-forest/50 overflow-hidden relative">
+              <article className="group h-full glass-card overflow-hidden transition-all duration-300 hover:border-[rgba(201,166,100,.45)]">
+                <div className="aspect-[16/9] bg-[#1B3B34]/40 overflow-hidden relative">
                   {post.featured_image_url ? (
                     <img
                       src={post.featured_image_url}
@@ -61,17 +59,17 @@ export async function NewsWall({ posts }: Props) {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <Newspaper className="w-10 h-10 text-primary/20" />
+                      <Newspaper className="w-10 h-10 text-gold/15" />
                     </div>
                   )}
                   <div className="absolute top-3 left-3">
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-primary text-primary-foreground">
+                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-gold text-[#08120F]">
                       {t("eyebrow")}
                     </span>
                   </div>
                 </div>
                 <div className="p-5">
-                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-3">
+                  <div className="flex items-center gap-1.5 text-xs text-[#7A7A7A] mb-3">
                     <Calendar className="w-3 h-3" />
                     {new Date(post.published_at).toLocaleDateString(undefined, {
                       year: "numeric",
@@ -79,10 +77,10 @@ export async function NewsWall({ posts }: Props) {
                       day: "numeric",
                     })}
                   </div>
-                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2 line-clamp-2 leading-snug">
+                  <h3 className="font-semibold text-[#F4EFE4] group-hover:text-gold transition-colors mb-2 line-clamp-2 leading-snug text-xl">
                     {post.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{post.excerpt}</p>
+                  <p className="text-sm text-[#B8B8B8] line-clamp-2 leading-relaxed">{post.excerpt}</p>
                 </div>
               </article>
             </Link>
@@ -92,7 +90,7 @@ export async function NewsWall({ posts }: Props) {
         <div className="mt-6 sm:hidden text-center">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:underline"
+            className="inline-flex items-center gap-2 text-sm text-gold font-medium hover:underline"
           >
             {t("viewAll")} <ArrowRight className="w-4 h-4" />
           </Link>

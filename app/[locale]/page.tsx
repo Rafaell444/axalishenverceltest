@@ -12,6 +12,7 @@ import { CTASection } from "@/components/cta-section"
 import { PartnersSection } from "@/components/partners-section"
 import { NewsWall } from "@/components/news-wall"
 import { Footer } from "@/components/footer"
+import { BgWaves } from "@/components/bg-waves"
 import {
   fetchSettings,
   fetchHero,
@@ -55,7 +56,8 @@ export default async function Home() {
   }
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
+      <BgWaves />
       <Header settings={settings} />
       <HeroSection data={hero} translations={heroTranslations} />
       <FeaturesGrid features={features} />

@@ -39,7 +39,7 @@ export default async function ServicesPage() {
   const services = (servicesData && servicesData.length > 0) ? servicesData : DEFAULT_SERVICES
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
       <Header settings={settings} />
 
       <section className="pt-24 md:pt-32 pb-12 md:pb-16 px-4">

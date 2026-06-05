@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AWS Production Deployment Guide – Axalishen</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #fff;
+    padding: 40px 60px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 24px; color: #1a3a5c; border-bottom: 3px solid #1a3a5c; padding-bottom: 8px; margin: 28px 0 16px; }
+  h2 { font-size: 18px; color: #1a3a5c; border-bottom: 1px solid #cde; padding-bottom: 4px; margin: 24px 0 12px; }
+  h3 { font-size: 15px; color: #2c5282; margin: 18px 0 8px; }
+  h4 { font-size: 13px; color: #2d3748; margin: 14px 0 6px; }
+  p { margin: 0 0 10px; }
+  ul, ol { margin: 6px 0 10px 22px; }
+  li { margin-bottom: 3px; }
+  code {
+    background: #f0f4f8;
+    border: 1px solid #d0dce8;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 12px;
+    color: #c7254e;
+  }
+  pre {
+    background: #1e2a3a;
+    color: #e2e8f0;
+    border-radius: 6px;
+    padding: 14px 18px;
+    overflow-x: auto;
+    margin: 10px 0 14px;
+    font-size: 11.5px;
+    line-height: 1.55;
+  }
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+  blockquote {
+    border-left: 4px solid #4299e1;
+    background: #ebf8ff;
+    padding: 8px 14px;
+    margin: 10px 0;
+    border-radius: 0 4px 4px 0;
+    color: #2b6cb0;
+  }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; }
+  th { background: #1a3a5c; color: #fff; padding: 7px 10px; text-align: left; }
+  td { padding: 6px 10px; border-bottom: 1px solid #e2e8f0; }
+  tr:nth-child(even) td { background: #f7fafc; }
+  hr { border: none; border-top: 1px solid #e2e8f0; margin: 20px 0; }
+  strong { color: #1a202c; }
+  a { color: #2b6cb0; text-decoration: none; }
+  @media print {
+    body { padding: 20px 30px; }
+    pre { white-space: pre-wrap; word-break: break-all; }
+    h1, h2 { page-break-after: avoid; }
+    pre, blockquote { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<h1>Akhali Shen — Full AWS Production Deployment Guide</h1>
+<blockquote>
+<p><strong>Stack:</strong> Next.js 16 (frontend) · Django 5 / Gunicorn (backend) · PostgreSQL (RDS) · Nginx · Docker Compose · Let&#39;s Encrypt SSL<br><strong>Last updated:</strong> June 2026</p>
+</blockquote>
+<hr>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#1-architecture-overview">Architecture Overview</a></li>
+<li><a href="#2-aws-account-preparation">AWS Account Preparation</a></li>
+<li><a href="#3-rds-postgresql-database">RDS PostgreSQL Database</a></li>
+<li><a href="#4-ec2-instance">EC2 Instance</a></li>
+<li><a href="#5-domain--ssl">Domain &amp; SSL</a></li>
+<li><a href="#6-server-setup">Server Setup</a></li>
+<li><a href="#7-deploy-the-application">Deploy the Application</a></li>
+<li><a href="#8-migrate-local-data--images-to-production">Migrate Local Data &amp; Images to Production</a></li>
+<li><a href="#9-verify-deployment">Verify Deployment</a></li>
+<li><a href="#10-ssl-auto-renewal">SSL Auto-Renewal</a></li>
+<li><a href="#11-useful-management-commands">Useful Management Commands</a></li>
+<li><a href="#12-optional-s3-for-media-files">Optional: S3 for Media Files</a></li>
+<li><a href="#13-cost-estimate">Cost Estimate</a></li>
+</ol>
+<hr>
+<h2>1. Architecture Overview</h2>
+<pre><code>Internet
+   │
+   ▼
+Route 53 (DNS)
+   │
+   ▼
+EC2 Instance (Ubuntu 24.04)
+   └── Docker Compose
+         ├── nginx  (ports 80 + 443)   ← entry point, SSL termination
+         ├── frontend :3000             ← Next.js / Node
+         └── backend  :8000             ← Django / Gunicorn
+               │
+               └── RDS PostgreSQL :5432  (private VPC, no public access)
+
+Media files:  Docker volume  backend_media  (or S3 — see Section 12)
+Static files: served by Whitenoise inside Django container
+</code></pre>
+<hr>
+<h2>2. AWS Account Preparation</h2>
+<h3>2.1 IAM User for deployments</h3>
+<ol>
+<li><strong>IAM → Users → Create user</strong> → name: <code>axalishen-deploy</code></li>
+<li>Attach managed policies:<ul>
+<li><code>AmazonEC2FullAccess</code></li>
+<li><code>AmazonRDSFullAccess</code></li>
+<li><code>AmazonS3FullAccess</code>  <em>(only needed if you use S3 for media)</em></li>
+</ul>
+</li>
+<li><strong>Security credentials → Create access key</strong> → type: CLI → download CSV</li>
+</ol>
+<h3>2.2 Key Pair (for SSH)</h3>
+<ol>
+<li><strong>EC2 → Key Pairs → Create key pair</strong></li>
+<li>Name: <code>axalishen-prod</code> · Type: RSA · Format: <code>.pem</code></li>
+<li><strong>Save the downloaded <code>.pem</code> file</strong> — you cannot re-download it.</li>
+<li>On Mac/Linux: <code>chmod 400 axalishen-prod.pem</code></li>
+</ol>
+<hr>
+<h2>3. RDS PostgreSQL Database</h2>
+<ol>
+<li><strong>RDS → Create database</strong></li>
+<li>Settings:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Engine</td>
+<td>PostgreSQL 15</td>
+</tr>
+<tr>
+<td>Template</td>
+<td>Production (or Free tier for testing)</td>
+</tr>
+<tr>
+<td>DB identifier</td>
+<td><code>axalishen-db</code></td>
+</tr>
+<tr>
+<td>Master username</td>
+<td><code>axalishen</code></td>
+</tr>
+<tr>
+<td>Master password</td>
+<td>Generate a strong one — <strong>save it now</strong></td>
+</tr>
+<tr>
+<td>Initial DB name</td>
+<td><code>axalishen</code></td>
+</tr>
+<tr>
+<td>Instance class</td>
+<td><code>db.t3.micro</code> (dev) / <code>db.t3.small</code> (prod)</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>20 GB gp2, enable autoscaling</td>
+</tr>
+<tr>
+<td>Public access</td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td>VPC</td>
+<td>Default</td>
+</tr>
+<tr>
+<td>VPC Security Group</td>
+<td>Create new → name: <code>axalishen-rds-sg</code></td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li><p>After creation, note the <strong>Endpoint hostname</strong>, e.g.:<br><code>axalishen-db.c3xxxxxxxxxxx.eu-west-1.rds.amazonaws.com</code></p>
+</li>
+<li><p>Go to <code>axalishen-rds-sg</code> → <strong>Inbound rules → Edit</strong> → add:</p>
+<ul>
+<li>Type: PostgreSQL · Port: 5432 · Source: <em>the EC2 security group (add after Step 4)</em></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>4. EC2 Instance</h2>
+<h3>4.1 Launch</h3>
+<ol>
+<li><strong>EC2 → Launch Instance</strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Name</td>
+<td><code>axalishen-prod</code></td>
+</tr>
+<tr>
+<td>AMI</td>
+<td>Ubuntu 24.04 LTS (64-bit)</td>
+</tr>
+<tr>
+<td>Instance type</td>
+<td><code>t3.small</code> (minimum) / <code>t3.medium</code> (recommended)</td>
+</tr>
+<tr>
+<td>Key pair</td>
+<td><code>axalishen-prod</code></td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>20 GB gp3</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li><strong>Security Group</strong> — create <code>axalishen-ec2-sg</code>:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Port</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SSH</td>
+<td>22</td>
+<td>My IP only</td>
+</tr>
+<tr>
+<td>HTTP</td>
+<td>80</td>
+<td>0.0.0.0/0</td>
+</tr>
+<tr>
+<td>HTTPS</td>
+<td>443</td>
+<td>0.0.0.0/0</td>
+</tr>
+</tbody></table>
+<h3>4.2 Elastic IP (static public IP)</h3>
+<ol>
+<li><strong>EC2 → Elastic IPs → Allocate Elastic IP</strong></li>
+<li><strong>Associate</strong> → select your <code>axalishen-prod</code> instance</li>
+<li>Note the IP address — this is your permanent server IP.</li>
+</ol>
+<h3>4.3 Allow EC2 → RDS</h3>
+<p>Go back to <strong><code>axalishen-rds-sg</code> → Inbound rules → Edit</strong>:</p>
+<ul>
+<li>Type: PostgreSQL · Port: 5432 · Source: <code>axalishen-ec2-sg</code></li>
+</ul>
+<hr>
+<h2>5. Domain &amp; SSL</h2>
+<h3>5.1 Route 53</h3>
+<ol>
+<li><strong>Route 53 → Hosted zones → Create hosted zone</strong></li>
+<li>Domain: <code>yourdomain.ge</code></li>
+<li>Copy the 4 NS records from Route 53 into your domain registrar&#39;s DNS settings.</li>
+<li>Create A records:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Record</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@</code> (root)</td>
+<td>A</td>
+<td>Your Elastic IP</td>
+</tr>
+<tr>
+<td><code>www</code></td>
+<td>CNAME</td>
+<td><code>yourdomain.ge</code></td>
+</tr>
+</tbody></table>
+<p>DNS propagation takes 5–30 minutes.</p>
+<hr>
+<h2>6. Server Setup</h2>
+<p>SSH into the server:</p>
+<pre><code class="language-bash">ssh -i axalishen-prod.pem ubuntu@YOUR_ELASTIC_IP
+</code></pre>
+<h3>6.1 Install Docker</h3>
+<pre><code class="language-bash">sudo apt update &amp;&amp; sudo apt upgrade -y
+curl -fsSL https://get.docker.com | sudo sh
+sudo usermod -aG docker ubuntu
+newgrp docker
+docker --version          # verify
+docker compose version    # verify
+</code></pre>
+<h3>6.2 Install Certbot</h3>
+<pre><code class="language-bash">sudo apt install -y certbot nginx
+</code></pre>
+<h3>6.3 Get SSL Certificate (before starting Docker)</h3>
+<pre><code class="language-bash"># Certbot temporarily uses system nginx to verify domain ownership
+sudo systemctl start nginx
+sudo certbot certonly --nginx -d yourdomain.ge -d www.yourdomain.ge
+sudo systemctl stop nginx
+sudo systemctl disable nginx    # Docker takes over port 80/443
+</code></pre>
+<p>Certs are saved at: <code>/etc/letsencrypt/live/yourdomain.ge/</code></p>
+<hr>
+<h2>7. Deploy the Application</h2>
+<h3>7.1 Clone repository</h3>
+<pre><code class="language-bash">sudo mkdir -p /app &amp;&amp; sudo chown ubuntu:ubuntu /app
+git clone https://github.com/mozaikkonew/axalishen.git /app/axalishen
+cd /app/axalishen
+</code></pre>
+<h3>7.2 Create <code>backend/.env.prod</code></h3>
+<pre><code class="language-bash">nano backend/.env.prod
+</code></pre>
+<p>Paste and fill in the values:</p>
+<pre><code class="language-env"># Generate SECRET_KEY with:
+# python3 -c &quot;import secrets; print(secrets.token_urlsafe(50))&quot;
+SECRET_KEY=YOUR_GENERATED_SECRET_KEY_HERE
+
+DEBUG=False
+
+# Your actual domain(s)
+ALLOWED_HOSTS=yourdomain.ge,www.yourdomain.ge
+
+# Your actual domain(s) for CORS
+CORS_ALLOWED_ORIGINS=https://yourdomain.ge,https://www.yourdomain.ge
+
+# RDS connection string from Step 3
+DATABASE_URL=postgres://axalishen:YOUR_DB_PASSWORD@axalishen-db.xxxxx.eu-west-1.rds.amazonaws.com:5432/axalishen
+
+MEDIA_ROOT=/app/media
+</code></pre>
+<h3>7.3 Create root <code>.env</code> (for Next.js build arg)</h3>
+<pre><code class="language-bash">nano .env
+</code></pre>
+<pre><code class="language-env">NEXT_PUBLIC_API_URL=https://yourdomain.ge
+</code></pre>
+<h3>7.4 Update <code>nginx/nginx.conf</code> for HTTPS</h3>
+<p>Replace the entire file with:</p>
+<pre><code class="language-nginx">worker_processes auto;
+events { worker_connections 1024; }
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile      on;
+    keepalive_timeout 65;
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml;
+
+    upstream frontend { server frontend:3000; }
+    upstream backend  { server backend:8000;  }
+
+    # Redirect HTTP → HTTPS
+    server {
+        listen 80;
+        server_name yourdomain.ge www.yourdomain.ge;
+        return 301 https://$host$request_uri;
+    }
+
+    server {
+        listen 443 ssl;
+        server_name yourdomain.ge www.yourdomain.ge;
+
+        ssl_certificate     /etc/nginx/ssl/fullchain.pem;
+        ssl_certificate_key /etc/nginx/ssl/privkey.pem;
+        ssl_protocols       TLSv1.2 TLSv1.3;
+        ssl_ciphers         HIGH:!aNULL:!MD5;
+
+        client_max_body_size 20M;
+
+        location /api/ {
+            proxy_pass http://backend;
+            proxy_set_header Host              $host;
+            proxy_set_header X-Real-IP         $remote_addr;
+            proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto https;
+        }
+        location /admin/ {
+            proxy_pass http://backend;
+            proxy_set_header Host              $host;
+            proxy_set_header X-Forwarded-Proto https;
+        }
+        location /static/  { proxy_pass http://backend; }
+        location /media/   { proxy_pass http://backend; }
+        location /ckeditor/ { proxy_pass http://backend; }
+
+        location / {
+            proxy_pass http://frontend;
+            proxy_set_header Host              $host;
+            proxy_set_header X-Forwarded-Proto https;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade    $http_upgrade;
+            proxy_set_header Connection &quot;upgrade&quot;;
+        }
+    }
+}
+</code></pre>
+<h3>7.5 Mount SSL certs into Docker</h3>
+<pre><code class="language-bash">mkdir -p nginx/ssl
+sudo cp /etc/letsencrypt/live/yourdomain.ge/fullchain.pem nginx/ssl/
+sudo cp /etc/letsencrypt/live/yourdomain.ge/privkey.pem  nginx/ssl/
+sudo chmod 644 nginx/ssl/*.pem
+</code></pre>
+<h3>7.6 Run Django migrations</h3>
+<pre><code class="language-bash">docker compose -f docker-compose.prod.yml run --rm backend \
+  python manage.py migrate
+</code></pre>
+<h3>7.7 Start all services</h3>
+<pre><code class="language-bash">docker compose -f docker-compose.prod.yml up -d --build
+</code></pre>
+<p>Check status:</p>
+<pre><code class="language-bash">docker compose -f docker-compose.prod.yml ps
+docker compose -f docker-compose.prod.yml logs -f
+</code></pre>
+<hr>
+<h2>8. Migrate Local Data &amp; Images to Production</h2>
+<blockquote>
+<p>This section covers how to export ALL content you have entered in the local Django admin (site settings, hero section, features, stats, blog posts, services, products, team members, FAQs, partners, etc.) and their uploaded images, and import everything on the production server.</p>
+</blockquote>
+<h3>What gets migrated</h3>
+<table>
+<thead>
+<tr>
+<th>App</th>
+<th>Models</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>core</code></td>
+<td>SiteSettings (logo, favicon, phone, address, social links…)</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td>HeroSection, Feature, Stat, Testimonial, FAQ, Partner, Achievement, Publication</td>
+</tr>
+<tr>
+<td><code>about</code></td>
+<td>AboutPage, CompanyValue, TeamMember, CompanyTimeline, Certification</td>
+</tr>
+<tr>
+<td><code>services</code></td>
+<td>Service, ServiceFeature</td>
+</tr>
+<tr>
+<td><code>blog</code></td>
+<td>BlogCategory, BlogPost</td>
+</tr>
+<tr>
+<td><code>products</code></td>
+<td>ProductCategory, Product</td>
+</tr>
+<tr>
+<td><strong>Images</strong></td>
+<td><code>media/</code> folder: hero/, blog/, services/, products/, team/, certifications/, partners/, testimonials/, site/</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>Step 8.1 — Export database (on your LOCAL machine)</h3>
+<p>Open a terminal in your local project folder:</p>
+<pre><code class="language-bash">cd d:\Users\User\Desktop\axalishen
+
+# Export ALL app data (excluding auth/sessions/contenttypes)
+py -3 backend/manage.py dumpdata \
+  core content about services blog products contact \
+  --indent 2 \
+  --output backend/data_export.json
+</code></pre>
+<blockquote>
+<p><strong>Windows PowerShell alternative</strong> (if <code>py -3</code> not found):</p>
+<pre><code class="language-powershell">python backend/manage.py dumpdata core content about services blog products contact --indent 2 --output backend/data_export.json
+</code></pre>
+</blockquote>
+<p>This creates <code>backend/data_export.json</code> — a full JSON dump of all your CMS data.</p>
+<h3>Step 8.2 — Export media/images (on your LOCAL machine)</h3>
+<p>Zip the entire <code>backend/media/</code> folder:</p>
+<p><strong>Windows PowerShell:</strong></p>
+<pre><code class="language-powershell">Compress-Archive -Path backend\media\* -DestinationPath backend\media_export.zip
+</code></pre>
+<p><strong>Mac/Linux:</strong></p>
+<pre><code class="language-bash">cd backend &amp;&amp; zip -r media_export.zip media/ &amp;&amp; cd ..
+</code></pre>
+<h3>Step 8.3 — Upload both files to the server</h3>
+<p>From your local machine:</p>
+<pre><code class="language-bash"># Upload the data dump
+scp -i axalishen-prod.pem backend/data_export.json ubuntu@YOUR_ELASTIC_IP:/app/axalishen/backend/
+
+# Upload the media archive
+scp -i axalishen-prod.pem backend/media_export.zip ubuntu@YOUR_ELASTIC_IP:/app/axalishen/backend/
+</code></pre>
+<blockquote>
+<p><strong>Windows PowerShell</strong> (if <code>scp</code> not available, use WinSCP or PuTTY SCP):</p>
+<pre><code class="language-powershell">scp -i axalishen-prod.pem backend\data_export.json ubuntu@YOUR_ELASTIC_IP:/app/axalishen/backend/
+scp -i axalishen-prod.pem backend\media_export.zip ubuntu@YOUR_ELASTIC_IP:/app/axalishen/backend/
+</code></pre>
+</blockquote>
+<h3>Step 8.4 — SSH into server and import data</h3>
+<pre><code class="language-bash">ssh -i axalishen-prod.pem ubuntu@YOUR_ELASTIC_IP
+cd /app/axalishen
+</code></pre>
+<p><strong>Import the database dump:</strong></p>
+<pre><code class="language-bash">docker compose -f docker-compose.prod.yml run --rm \
+  -v $(pwd)/backend/data_export.json:/tmp/data_export.json \
+  backend \
+  python manage.py loaddata /tmp/data_export.json
+</code></pre>
+<p>You should see output like:</p>
+<pre><code>Installed 87 object(s) from 1 fixture(s)
+</code></pre>
+<p><strong>Extract and copy media files:</strong></p>
+<pre><code class="language-bash"># Extract the zip inside the container&#39;s media volume
+docker compose -f docker-compose.prod.yml run --rm \
+  -v $(pwd)/backend/media_export.zip:/tmp/media_export.zip \
+  backend \
+  bash -c &quot;cd /app &amp;&amp; unzip -o /tmp/media_export.zip -d .&quot;
+</code></pre>
+<p>This extracts all images into the <code>backend_media</code> Docker volume so Django can serve them via <code>/media/</code>.</p>
+<h3>Step 8.5 — Create a superuser on production</h3>
+<pre><code class="language-bash">docker compose -f docker-compose.prod.yml run --rm backend \
+  python manage.py createsuperuser
+</code></pre>
+<p>Enter your desired admin username, email, and password when prompted.</p>
+<h3>Step 8.6 — Verify data import</h3>
+<p>Visit these URLs after deployment:</p>
+<ul>
+<li><code>https://yourdomain.ge/api/v1/settings/</code> → should return your real site settings JSON</li>
+<li><code>https://yourdomain.ge/api/v1/hero/</code> → should return hero content</li>
+<li><code>https://yourdomain.ge/api/v1/posts/</code> → should list blog posts</li>
+<li><code>https://yourdomain.ge/admin/</code> → log in with your superuser credentials</li>
+</ul>
+<hr>
+<h3>Re-migrating after local changes</h3>
+<p>Every time you add new content locally and want to sync to production:</p>
+<pre><code class="language-bash"># 1. On local — export fresh dump
+py -3 backend/manage.py dumpdata core content about services blog products contact \
+  --indent 2 --output backend/data_export.json
+
+# 2. Zip any new media
+Compress-Archive -Path backend\media\* -DestinationPath backend\media_export.zip -Force
+
+# 3. Upload
+scp -i axalishen-prod.pem backend/data_export.json ubuntu@YOUR_ELASTIC_IP:/app/axalishen/backend/
+scp -i axalishen-prod.pem backend/media_export.zip ubuntu@YOUR_ELASTIC_IP:/app/axalishen/backend/
+
+# 4. On server — flush old content and re-import
+docker compose -f docker-compose.prod.yml run --rm backend \
+  python manage.py flush --no-input
+
+docker compose -f docker-compose.prod.yml run --rm \
+  -v $(pwd)/backend/data_export.json:/tmp/data_export.json \
+  backend python manage.py loaddata /tmp/data_export.json
+
+docker compose -f docker-compose.prod.yml run --rm \
+  -v $(pwd)/backend/media_export.zip:/tmp/media_export.zip \
+  backend bash -c &quot;cd /app &amp;&amp; unzip -o /tmp/media_export.zip -d .&quot;
+
+# 5. Recreate superuser (flush deleted it)
+docker compose -f docker-compose.prod.yml run --rm backend \
+  python manage.py createsuperuser
+</code></pre>
+<hr>
+<h2>9. Verify Deployment</h2>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Expected result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>https://yourdomain.ge</code></td>
+<td>Next.js homepage loads</td>
+</tr>
+<tr>
+<td><code>https://yourdomain.ge/en</code></td>
+<td>English version</td>
+</tr>
+<tr>
+<td><code>https://yourdomain.ge/ru</code></td>
+<td>Russian version</td>
+</tr>
+<tr>
+<td><code>https://yourdomain.ge/admin/</code></td>
+<td>Django admin login page</td>
+</tr>
+<tr>
+<td><code>https://yourdomain.ge/api/v1/settings/</code></td>
+<td>JSON with site settings</td>
+</tr>
+<tr>
+<td><code>https://yourdomain.ge/api/v1/hero/</code></td>
+<td>JSON with hero section</td>
+</tr>
+<tr>
+<td><code>https://yourdomain.ge/api/v1/posts/</code></td>
+<td>JSON list of blog posts</td>
+</tr>
+<tr>
+<td><code>https://yourdomain.ge/media/hero/xxx.jpg</code></td>
+<td>Uploaded image loads</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>10. SSL Auto-Renewal</h2>
+<p>Certbot certificates expire every 90 days. Set up automatic renewal:</p>
+<pre><code class="language-bash">sudo crontab -e
+</code></pre>
+<p>Add this line:</p>
+<pre><code class="language-cron">0 3 * * * certbot renew --quiet &amp;&amp; \
+  cp /etc/letsencrypt/live/yourdomain.ge/fullchain.pem /app/axalishen/nginx/ssl/ &amp;&amp; \
+  cp /etc/letsencrypt/live/yourdomain.ge/privkey.pem /app/axalishen/nginx/ssl/ &amp;&amp; \
+  docker exec $(docker ps -qf &quot;name=nginx&quot;) nginx -s reload
+</code></pre>
+<p>Test the renewal process works:</p>
+<pre><code class="language-bash">sudo certbot renew --dry-run
+</code></pre>
+<hr>
+<h2>11. Useful Management Commands</h2>
+<pre><code class="language-bash"># View live logs for all services
+docker compose -f docker-compose.prod.yml logs -f
+
+# View logs for a specific service
+docker compose -f docker-compose.prod.yml logs -f backend
+docker compose -f docker-compose.prod.yml logs -f frontend
+docker compose -f docker-compose.prod.yml logs -f nginx
+
+# Restart a single service
+docker compose -f docker-compose.prod.yml restart backend
+
+# Deploy updated code (git pull + rebuild)
+git pull
+docker compose -f docker-compose.prod.yml up -d --build
+
+# Run Django management commands
+docker compose -f docker-compose.prod.yml exec backend python manage.py shell
+docker compose -f docker-compose.prod.yml exec backend python manage.py migrate
+docker compose -f docker-compose.prod.yml exec backend python manage.py createsuperuser
+docker compose -f docker-compose.prod.yml exec backend python manage.py collectstatic --noinput
+
+# Take a database backup
+docker compose -f docker-compose.prod.yml exec backend \
+  python manage.py dumpdata --indent 2 --output /app/backup_$(date +%Y%m%d).json
+
+# Copy backup to local machine
+scp -i axalishen-prod.pem \
+  ubuntu@YOUR_ELASTIC_IP:/app/axalishen/backend/backup_*.json ./
+</code></pre>
+<hr>
+<h2>12. Optional: S3 for Media Files</h2>
+<p>Using S3 means uploaded images survive instance replacements and can be served via CloudFront CDN.</p>
+<h3>12.1 Create S3 Bucket</h3>
+<ol>
+<li><strong>S3 → Create bucket</strong> → name: <code>axalishen-media</code> → region: same as EC2</li>
+<li><strong>Block Public Access</strong>: uncheck &quot;Block all public access&quot;</li>
+<li><strong>Bucket policy</strong> → add:</li>
+</ol>
+<pre><code class="language-json">{
+  &quot;Version&quot;: &quot;2012-10-17&quot;,
+  &quot;Statement&quot;: [{
+    &quot;Effect&quot;: &quot;Allow&quot;,
+    &quot;Principal&quot;: &quot;*&quot;,
+    &quot;Action&quot;: &quot;s3:GetObject&quot;,
+    &quot;Resource&quot;: &quot;arn:aws:s3:::axalishen-media/*&quot;
+  }]
+}
+</code></pre>
+<h3>12.2 Add to <code>requirements.txt</code></h3>
+<pre><code>django-storages[s3]&gt;=1.14
+boto3&gt;=1.34
+</code></pre>
+<h3>12.3 Add to <code>backend/config/settings.py</code></h3>
+<pre><code class="language-python">import os
+if not DEBUG:
+    DEFAULT_FILE_STORAGE = &#39;storages.backends.s3boto3.S3Boto3Storage&#39;
+    AWS_STORAGE_BUCKET_NAME = &#39;axalishen-media&#39;
+    AWS_S3_REGION_NAME = &#39;eu-west-1&#39;
+    AWS_S3_CUSTOM_DOMAIN = f&#39;{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com&#39;
+    MEDIA_URL = f&#39;https://{AWS_S3_CUSTOM_DOMAIN}/&#39;
+</code></pre>
+<h3>12.4 Add to <code>backend/.env.prod</code></h3>
+<pre><code class="language-env">AWS_ACCESS_KEY_ID=your-iam-access-key
+AWS_SECRET_ACCESS_KEY=your-iam-secret-key
+</code></pre>
+<h3>12.5 Sync existing media to S3</h3>
+<pre><code class="language-bash">aws s3 sync backend/media/ s3://axalishen-media/ --acl public-read
+</code></pre>
+<hr>
+<h2>13. Cost Estimate (monthly, EU region)</h2>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Spec</th>
+<th>Est. Cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EC2 t3.small</td>
+<td>On-demand, 24/7</td>
+<td>~$15/mo</td>
+</tr>
+<tr>
+<td>RDS db.t3.micro</td>
+<td>PostgreSQL 15, 20GB</td>
+<td>~$15/mo</td>
+</tr>
+<tr>
+<td>Elastic IP</td>
+<td>(free when attached)</td>
+<td>$0</td>
+</tr>
+<tr>
+<td>Route 53</td>
+<td>1 hosted zone</td>
+<td>$0.50/mo</td>
+</tr>
+<tr>
+<td>Data transfer</td>
+<td>~10 GB/mo</td>
+<td>~$1/mo</td>
+</tr>
+<tr>
+<td>S3 + CloudFront</td>
+<td>media files (optional)</td>
+<td>~$2/mo</td>
+</tr>
+<tr>
+<td>SSL (Let&#39;s Encrypt)</td>
+<td>Free</td>
+<td>$0</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td></td>
+<td><strong>~$33/mo</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Low-cost option:</strong> Use <code>t3.micro</code> + SQLite instead of RDS = ~$10/mo total.<br><strong>Switch to RDS when</strong> you need: backups, multi-AZ, read replicas, or separate DB scaling.</p>
+<hr>
+<h2>Quick Reference</h2>
+<pre><code>Repo (personal/Vercel):  https://github.com/Rafaell444/axalishenverceltest
+Repo (org):              https://github.com/mozaikkonew/axalishen
+Vercel preview:          https://axalishen.vercel.app  (frontend only)
+Production:              https://yourdomain.ge          (full stack on EC2)
+
+Django admin:            https://yourdomain.ge/admin/
+API base:                https://yourdomain.ge/api/v1/
+
+Docker services:
+  nginx     → port 80 / 443 (public)
+  frontend  → port 3000 (internal)
+  backend   → port 8000 (internal)
+  RDS       → port 5432 (private VPC only)
+</code></pre>
+
+</body>
+</html>

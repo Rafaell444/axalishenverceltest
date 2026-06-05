@@ -18,9 +18,9 @@ export function PartnersSection({ partners }: Props) {
   const items = partners.length > 0 ? partners : DEFAULT_PARTNERS
 
   return (
-    <section className="border-t border-gold/10 py-12 lg:py-16">
-      <div className="container mx-auto px-4 lg:px-8">
-        <h3 className="mb-8 text-center text-lg font-medium text-muted-foreground">{t("heading")}</h3>
+    <section className="border-t border-[rgba(201,166,100,.18)] py-12 lg:py-16 px-6">
+      <div className="max-w-7xl mx-auto">
+        <h3 className="mb-8 text-center text-lg font-medium text-[#7A7A7A]">{t("heading")}</h3>
         <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-8 md:gap-12 lg:gap-16">
           {items.map((partner) =>
             partner.logo_url ? (
@@ -36,7 +36,7 @@ export function PartnersSection({ partners }: Props) {
             ) : (
               <div
                 key={partner.id}
-                className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-muted-foreground/60 transition-colors hover:text-muted-foreground text-center"
+                className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-[#7A7A7A]/60 transition-colors hover:text-[#B8B8B8] text-center"
               >
                 {partner.name}
               </div>
