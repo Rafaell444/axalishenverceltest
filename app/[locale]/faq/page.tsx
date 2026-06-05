@@ -13,14 +13,14 @@ export default async function FAQPage() {
   ])
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <Header settings={settings} />
 
       <section className="pt-24 md:pt-32 pb-4 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <span className="text-primary font-medium mb-4 block">{t("eyebrow")}</span>
+          <span className="text-gold font-medium mb-4 block">{t("eyebrow")}</span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6">
-            {t("heading")} <span className="text-primary">{t("headingHighlight")}</span>
+            {t("heading")} <span className="text-gold">{t("headingHighlight")}</span>
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("description")}</p>
         </div>

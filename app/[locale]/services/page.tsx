@@ -39,14 +39,14 @@ export default async function ServicesPage() {
   const services = (servicesData && servicesData.length > 0) ? servicesData : DEFAULT_SERVICES
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <Header settings={settings} />
 
       <section className="pt-24 md:pt-32 pb-12 md:pb-16 px-4">
         <div className="max-w-6xl mx-auto text-center">
-          <span className="text-primary font-medium mb-4 block">{t("eyebrow")}</span>
+          <span className="text-gold font-medium mb-4 block">{t("eyebrow")}</span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6">
-            {t("heading")} <span className="text-primary">{t("headingHighlight")}</span>
+            {t("heading")} <span className="text-gold">{t("headingHighlight")}</span>
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("description")}</p>
         </div>
@@ -60,22 +60,22 @@ export default async function ServicesPage() {
               return (
                 <div
                   key={service.id}
-                  className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-colors"
+                  className="glass-card rounded-2xl overflow-hidden hover:border-gold/30 transition-colors"
                 >
                   <div className="grid lg:grid-cols-5 gap-0">
                     <div
-                      className={`lg:col-span-2 bg-gradient-to-br from-primary/20 to-primary/5 p-6 sm:p-8 flex flex-col justify-center items-center ${
+                      className={`lg:col-span-2 bg-gradient-to-br from-gold/20 to-gold/5 p-6 sm:p-8 flex flex-col justify-center items-center ${
                         index % 2 === 1 ? "lg:order-2" : ""
                       }`}
                     >
-                      <div className="w-24 h-24 rounded-2xl bg-primary/20 flex items-center justify-center mb-6">
-                        <IconComponent className="w-12 h-12 text-primary" />
+                      <div className="w-24 h-24 rounded-2xl bg-gold/20 flex items-center justify-center mb-6">
+                        <IconComponent className="w-12 h-12 text-gold" />
                       </div>
                       <h3 className="text-2xl font-bold text-foreground text-center mb-2">{service.title}</h3>
                       <p className="text-muted-foreground text-center text-sm">{service.short_description}</p>
                       {service.duration && (
                         <div className="flex items-center gap-2 mt-6 text-sm">
-                          <Clock className="w-4 h-4 text-primary" />
+                          <Clock className="w-4 h-4 text-gold" />
                           <span className="text-muted-foreground">{service.duration}</span>
                         </div>
                       )}
@@ -95,7 +95,7 @@ export default async function ServicesPage() {
                           <ul className="grid md:grid-cols-2 gap-3 mb-6">
                             {service.features.map((f) => (
                               <li key={f.id} className="flex items-center gap-2 text-sm text-muted-foreground">
-                                <Check className="w-4 h-4 text-primary shrink-0" />
+                                <Check className="w-4 h-4 text-gold shrink-0" />
                                 {f.text}
                               </li>
                             ))}
@@ -104,13 +104,13 @@ export default async function ServicesPage() {
                       )}
 
                       <div className="flex flex-wrap gap-4">
-                        <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full" asChild>
+                        <Button className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-full" asChild>
                           <Link href="/contact">
                             {t("book")}
                             <ArrowRight className="w-4 h-4 ml-2" />
                           </Link>
                         </Button>
-                        <Button variant="outline" className="border-border hover:border-primary rounded-full" asChild>
+                        <Button variant="outline" className="border-border hover:border-gold rounded-full" asChild>
                           <Link href={`/services/${service.slug}`}>{t("learnMore")}</Link>
                         </Button>
                       </div>
@@ -123,11 +123,11 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      <section className="py-12 md:py-20 px-4 bg-card/50">
+      <section className="py-12 md:py-20 px-4 glass">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {t("whyUs")} <span className="text-primary">{t("whyUsHighlight")}</span>
+              {t("whyUs")} <span className="text-gold">{t("whyUsHighlight")}</span>
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -137,8 +137,8 @@ export default async function ServicesPage() {
               { icon: Shield, title: t("privacy"), desc: t("privacyDesc") },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="text-center">
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <Icon className="w-8 h-8 text-primary" />
+                <div className="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center mx-auto mb-4">
+                  <Icon className="w-8 h-8 text-gold" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">{title}</h3>
                 <p className="text-muted-foreground text-sm">{desc}</p>

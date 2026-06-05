@@ -41,15 +41,15 @@ export default async function SafetyPage() {
   const bullets = [t("b1"), t("b2"), t("b3"), t("b4"), t("b5")]
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <Header settings={settings} />
 
       {/* Hero / Intro */}
       <section className="pt-24 md:pt-32 pb-12 md:pb-16 px-4">
         <div className="max-w-3xl mx-auto">
-          <span className="text-primary font-medium mb-4 block">{t("eyebrow")}</span>
+          <span className="text-gold font-medium mb-4 block">{t("eyebrow")}</span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6">
-            {t("heading")} <span className="text-primary">{t("headingHighlight")}</span>
+            {t("heading")} <span className="text-gold">{t("headingHighlight")}</span>
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed">
             {t("p1")}
@@ -63,10 +63,10 @@ export default async function SafetyPage() {
           {PILLARS.map((pillar) => {
             const Icon = pillar.icon
             return (
-              <div key={pillar.title} className="bg-card border border-border rounded-2xl p-6 md:p-8 hover:border-primary/40 transition-colors">
+              <div key={pillar.title} className="glass-card rounded-2xl p-6 md:p-8 hover:border-gold/30 transition-colors">
                 <div className="flex items-start gap-4 mb-5">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <Icon className="w-7 h-7 text-primary" />
+                  <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center shrink-0">
+                    <Icon className="w-7 h-7 text-gold" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-foreground mb-2">{pillar.title}</h3>
@@ -76,7 +76,7 @@ export default async function SafetyPage() {
                 <ul className="grid grid-cols-2 gap-2">
                   {pillar.points.map((p) => (
                     <li key={p} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <CheckCircle className="w-4 h-4 text-primary shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-gold shrink-0" />
                       {p}
                     </li>
                   ))}
@@ -88,9 +88,9 @@ export default async function SafetyPage() {
       </section>
 
       {/* Functional mushrooms + precautions */}
-      <section className="py-12 md:py-16 px-4 bg-card/50 border-y border-border/40">
+      <section className="py-12 md:py-16 px-4 glass border-y border-gold/10">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-card border border-border rounded-2xl p-6 md:p-8 mb-6">
+          <div className="glass-card rounded-2xl p-6 md:p-8 mb-6">
             <h2 className="text-xl font-bold text-foreground mb-3">{t("fungiHeading")}</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">{t("fungiList")}</p>
 
@@ -98,7 +98,7 @@ export default async function SafetyPage() {
             <ul className="space-y-3">
               {bullets.map((b, i) => (
                 <li key={i} className="flex items-start gap-3 text-muted-foreground text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-2" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
                   {b}
                 </li>
               ))}
@@ -117,8 +117,8 @@ export default async function SafetyPage() {
               <XCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
               <p className="text-muted-foreground text-sm">{t("warning1")}</p>
             </div>
-            <div className="flex items-start gap-3 p-4 bg-primary/10 border border-primary/20 rounded-xl">
-              <MessageCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 p-4 bg-gold/10 border border-gold/20 rounded-xl">
+              <MessageCircle className="w-5 h-5 text-gold shrink-0 mt-0.5" />
               <p className="text-muted-foreground text-sm">{t("warning2")}</p>
             </div>
           </div>

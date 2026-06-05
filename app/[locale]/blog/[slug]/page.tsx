@@ -54,7 +54,7 @@ export default async function BlogPostPage({
   const related = relatedPosts.filter((p) => p.slug !== slug).slice(0, 3)
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <Header settings={settings} />
 
       <article className="pt-24 md:pt-32 pb-16 px-4">
@@ -62,7 +62,7 @@ export default async function BlogPostPage({
           {/* Back */}
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-gold transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
             {t("backToBlog")}
@@ -71,7 +71,7 @@ export default async function BlogPostPage({
           {/* Meta */}
           <div className="flex flex-wrap items-center gap-3 mb-5">
             {category && (
-              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-primary/10 text-primary">
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-gold/10 text-gold">
                 {category.name}
               </span>
             )}
@@ -94,7 +94,7 @@ export default async function BlogPostPage({
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
             {title}
           </h1>
-          <p className="text-lg text-muted-foreground mb-8 leading-relaxed border-l-2 border-primary/40 pl-4">
+          <p className="text-lg text-muted-foreground mb-8 leading-relaxed border-l-2 border-gold/40 pl-4">
             {excerpt}
           </p>
 
@@ -108,22 +108,22 @@ export default async function BlogPostPage({
 
       {/* Related posts */}
       {related.length > 0 && (
-        <section className="py-14 px-4 border-t border-border/40 bg-card/30">
+        <section className="py-14 px-4 border-t border-gold/10 glass">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-xl font-bold text-foreground mb-7">{t("related")}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {related.map((p) => (
                 <Link key={p.id} href={`/blog/${p.slug}` as "/blog"}>
-                  <article className="group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-colors h-full">
-                    <div className="aspect-[16/9] bg-primary/5 flex items-center justify-center">
+                  <article className="group glass-card rounded-xl overflow-hidden hover:border-gold/30 transition-colors h-full">
+                    <div className="aspect-[16/9] bg-gold/5 flex items-center justify-center">
                       {p.featured_image_url ? (
                         <img src={p.featured_image_url} alt={p.title} className="w-full h-full object-cover" />
                       ) : (
-                        <Tag className="w-8 h-8 text-primary/20" />
+                        <Tag className="w-8 h-8 text-gold/20" />
                       )}
                     </div>
                     <div className="p-4">
-                      <h3 className="font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2 text-sm mb-1">
+                      <h3 className="font-medium text-foreground group-hover:text-gold transition-colors line-clamp-2 text-sm mb-1">
                         {p.title}
                       </h3>
                       <span className="text-xs text-muted-foreground">

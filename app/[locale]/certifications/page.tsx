@@ -75,13 +75,13 @@ export default async function CertificationsPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <Header settings={settings} />
 
       {/* Hero / Intro */}
       <section className="pt-24 md:pt-32 pb-12 md:pb-16 px-4">
         <div className="max-w-3xl mx-auto">
-          <span className="text-primary font-medium mb-4 block">{t("eyebrow")}</span>
+          <span className="text-gold font-medium mb-4 block">{t("eyebrow")}</span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6">
             {t("heading")}
           </h1>
@@ -102,7 +102,7 @@ export default async function CertificationsPage() {
             return (
               <div
                 key={cert.id}
-                className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/40 transition-all hover:shadow-lg hover:shadow-primary/5"
+                className="group glass-card rounded-2xl overflow-hidden hover:border-gold/30 transition-all hover:shadow-lg hover:shadow-gold/5"
               >
                 <div className={`bg-gradient-to-br ${cert.color} p-8 flex items-center justify-center`}>
                   <div className="w-20 h-20 rounded-2xl bg-background/30 backdrop-blur flex items-center justify-center">
@@ -112,7 +112,7 @@ export default async function CertificationsPage() {
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-3">
                     <h3 className="text-lg font-bold text-foreground leading-tight">{cert.title}</h3>
-                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full bg-primary/10 ${cert.badge} shrink-0 ml-2`}>
+                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full bg-gold/10 ${cert.badge} shrink-0 ml-2`}>
                       {cert.year}
                     </span>
                   </div>
@@ -126,10 +126,10 @@ export default async function CertificationsPage() {
       </section>
 
       {/* Why certs matter */}
-      <section className="py-12 md:py-16 px-4 bg-card/50 border-t border-border/40">
+      <section className="py-12 md:py-16 px-4 glass border-t border-gold/10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-            {t("whyTitle")} <span className="text-primary">{t("whyTitleHighlight")}</span>
+            {t("whyTitle")} <span className="text-gold">{t("whyTitleHighlight")}</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-10">
             {t("whyDesc")}
@@ -140,8 +140,8 @@ export default async function CertificationsPage() {
               { title: t("card2Title"), desc: t("card2Desc") },
               { title: t("card3Title"), desc: t("card3Desc") },
             ].map((item) => (
-              <div key={item.title} className="bg-card border border-border rounded-xl p-5">
-                <CheckCircle className="w-8 h-8 text-primary mb-3 mx-auto" />
+              <div key={item.title} className="glass-card rounded-xl p-5">
+                <CheckCircle className="w-8 h-8 text-gold mb-3 mx-auto" />
                 <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
                 <p className="text-muted-foreground text-sm">{item.desc}</p>
               </div>

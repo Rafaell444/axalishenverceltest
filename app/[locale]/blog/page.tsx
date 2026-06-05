@@ -35,15 +35,15 @@ export default async function BlogPage() {
   const featuredPosts = posts.filter((p) => p.is_featured)
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <Header settings={settings} />
 
       <section className="pt-24 md:pt-32 pb-12 md:pb-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
-            <span className="text-primary font-medium mb-4 block">{t("eyebrow")}</span>
+            <span className="text-gold font-medium mb-4 block">{t("eyebrow")}</span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6">
-              {t("heading")} <span className="text-primary">{t("headingHighlight")}</span>
+              {t("heading")} <span className="text-gold">{t("headingHighlight")}</span>
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("description")}</p>
           </div>
@@ -53,7 +53,7 @@ export default async function BlogPage() {
               <input
                 type="text"
                 placeholder={t("searchPlaceholder")}
-                className="w-full pl-12 pr-4 py-3 bg-card border border-border rounded-full text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                className="w-full pl-12 pr-4 py-3 glass-card rounded-full text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-gold transition-colors"
               />
             </div>
           </div>
@@ -69,9 +69,9 @@ export default async function BlogPage() {
                 <Link
                   key={post.id}
                   href={`/blog/${post.slug}`}
-                  className="group relative bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-colors"
+                  className="group relative glass-card rounded-2xl overflow-hidden hover:border-gold/30 transition-colors"
                 >
-                  <div className="aspect-[16/9] overflow-hidden bg-primary/10">
+                  <div className="aspect-[16/9] overflow-hidden bg-gold/10">
                     {post.featured_image_url ? (
                       <img
                         src={post.featured_image_url}
@@ -79,7 +79,7 @@ export default async function BlogPage() {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-primary/30 text-6xl font-bold">
+                      <div className="w-full h-full flex items-center justify-center text-gold/30 text-6xl font-bold">
                         {post.title.charAt(0)}
                       </div>
                     )}
@@ -88,7 +88,7 @@ export default async function BlogPage() {
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <div className="flex items-center gap-3 mb-3">
                       {post.category && (
-                        <span className="text-xs font-medium px-3 py-1 rounded-full bg-primary/20 text-primary">
+                        <span className="text-xs font-medium px-3 py-1 rounded-full bg-gold/20 text-gold">
                           {post.category.name}
                         </span>
                       )}
@@ -97,7 +97,7 @@ export default async function BlogPage() {
                         {new Date(post.published_at).toLocaleDateString("ka-GE")}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors mb-2">
+                    <h3 className="text-xl font-bold text-foreground group-hover:text-gold transition-colors mb-2">
                       {post.title}
                     </h3>
                     <p className="text-sm text-muted-foreground line-clamp-2">{post.excerpt}</p>
@@ -112,13 +112,13 @@ export default async function BlogPage() {
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-wrap gap-3 mb-12">
-            <span className="px-4 py-2 rounded-full text-sm font-medium bg-primary text-primary-foreground">
+            <span className="px-4 py-2 rounded-full text-sm font-medium bg-gold text-primary-foreground">
               {t("all")} ({posts.length})
             </span>
             {categories.map((cat) => (
               <span
                 key={cat.id}
-                className="px-4 py-2 rounded-full text-sm font-medium bg-card border border-border text-muted-foreground hover:border-primary hover:text-foreground cursor-pointer"
+                className="px-4 py-2 rounded-full text-sm font-medium glass-card text-muted-foreground hover:border-gold hover:text-foreground cursor-pointer"
               >
                 {cat.name} ({cat.post_count})
               </span>
@@ -128,8 +128,8 @@ export default async function BlogPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map((post) => (
               <Link key={post.id} href={`/blog/${post.slug}`}>
-                <article className="group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-colors h-full">
-                  <div className="aspect-[16/10] overflow-hidden bg-primary/10">
+                <article className="group glass-card rounded-xl overflow-hidden hover:border-gold/30 transition-colors h-full">
+                  <div className="aspect-[16/10] overflow-hidden bg-gold/10">
                     {post.featured_image_url ? (
                       <img
                         src={post.featured_image_url}
@@ -137,18 +137,18 @@ export default async function BlogPage() {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-primary/30 text-5xl font-bold">
+                      <div className="w-full h-full flex items-center justify-center text-gold/30 text-5xl font-bold">
                         {post.title.charAt(0)}
                       </div>
                     )}
                   </div>
                   <div className="p-5">
                     {post.category && (
-                      <span className="text-xs font-medium px-2 py-1 rounded-full bg-primary/10 text-primary">
+                      <span className="text-xs font-medium px-2 py-1 rounded-full bg-gold/10 text-gold">
                         {post.category.name}
                       </span>
                     )}
-                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mt-3 mb-2 line-clamp-2">
+                    <h3 className="font-semibold text-foreground group-hover:text-gold transition-colors mt-3 mb-2 line-clamp-2">
                       {post.title}
                     </h3>
                     <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{post.excerpt}</p>
@@ -170,7 +170,7 @@ export default async function BlogPage() {
 
           {posts.length > 0 && (
             <div className="text-center mt-12">
-              <Button variant="outline" className="border-border hover:border-primary rounded-full px-8">
+              <Button variant="outline" className="border-border hover:border-gold rounded-full px-8">
                 {t("loadMore")}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>

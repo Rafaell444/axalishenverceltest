@@ -49,29 +49,29 @@ export default async function ServiceDetailPage({
   const related = allServices.filter((s) => s.slug !== slug).slice(0, 3)
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <Header settings={settings} />
 
       <section className="pt-24 md:pt-32 pb-16 px-4">
         <div className="max-w-5xl mx-auto">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-gold transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
             {t("backToServices")}
           </Link>
 
-          <div className="grid lg:grid-cols-5 gap-8 bg-card border border-border rounded-2xl overflow-hidden">
-            <div className="lg:col-span-2 bg-gradient-to-br from-primary/20 to-primary/5 p-8 flex flex-col items-center justify-center text-center">
-              <div className="w-24 h-24 rounded-2xl bg-primary/20 flex items-center justify-center mb-6">
-                <IconComponent className="w-12 h-12 text-primary" />
+          <div className="grid lg:grid-cols-5 gap-8 glass-card rounded-2xl overflow-hidden">
+            <div className="lg:col-span-2 bg-gradient-to-br from-gold/20 to-gold/5 p-8 flex flex-col items-center justify-center text-center">
+              <div className="w-24 h-24 rounded-2xl bg-gold/20 flex items-center justify-center mb-6">
+                <IconComponent className="w-12 h-12 text-gold" />
               </div>
               <h1 className="text-2xl font-bold text-foreground mb-3">{title}</h1>
               <p className="text-muted-foreground text-sm mb-6">{short_description}</p>
               {duration && (
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Clock className="w-4 h-4 text-primary" />
+                  <Clock className="w-4 h-4 text-gold" />
                   {duration}
                 </div>
               )}
@@ -91,7 +91,7 @@ export default async function ServiceDetailPage({
                   <ul className="grid md:grid-cols-2 gap-3 mb-8">
                     {features.map((f) => (
                       <li key={f.id} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Check className="w-4 h-4 text-primary shrink-0" />
+                        <Check className="w-4 h-4 text-gold shrink-0" />
                         {f.text}
                       </li>
                     ))}
@@ -100,7 +100,7 @@ export default async function ServiceDetailPage({
               )}
 
               <div className="flex flex-wrap gap-3">
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full" asChild>
+                <Button className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-full" asChild>
                   <Link href="/contact">
                     {t("book")}
                     <ArrowRight className="w-4 h-4 ml-2" />
@@ -113,7 +113,7 @@ export default async function ServiceDetailPage({
       </section>
 
       {related.length > 0 && (
-        <section className="py-14 px-4 border-t border-border/40 bg-card/30">
+        <section className="py-14 px-4 border-t border-gold/10 glass">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-xl font-bold text-foreground mb-7">{t("otherServices")}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -121,11 +121,11 @@ export default async function ServiceDetailPage({
                 const Icon = ICON_MAP[s.icon] ?? Stethoscope
                 return (
                   <Link key={s.id} href={`/services/${s.slug}` as "/services"}>
-                    <div className="group bg-card border border-border rounded-xl p-5 hover:border-primary/40 transition-colors h-full">
-                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                        <Icon className="w-5 h-5 text-primary" />
+                    <div className="group glass-card rounded-xl p-5 hover:border-gold/30 transition-colors h-full">
+                      <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center mb-3 group-hover:bg-gold/20 transition-colors">
+                        <Icon className="w-5 h-5 text-gold" />
                       </div>
-                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-1">{s.title}</h3>
+                      <h3 className="font-semibold text-foreground group-hover:text-gold transition-colors mb-1">{s.title}</h3>
                       <p className="text-muted-foreground text-xs line-clamp-2">{s.short_description}</p>
                     </div>
                   </Link>

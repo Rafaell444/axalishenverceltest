@@ -39,14 +39,14 @@ export default function ContactPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <Header />
 
       <section className="pt-24 md:pt-32 pb-12 md:pb-16 px-4">
         <div className="max-w-6xl mx-auto text-center">
-          <span className="text-primary font-medium mb-4 block">{t("eyebrow")}</span>
+          <span className="text-gold font-medium mb-4 block">{t("eyebrow")}</span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6">
-            {t("heading")} <span className="text-primary">{t("headingHighlight")}</span>
+            {t("heading")} <span className="text-gold">{t("headingHighlight")}</span>
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("description")}</p>
         </div>
@@ -56,9 +56,9 @@ export default function ContactPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {contactInfo.map((info, index) => (
-              <div key={index} className="bg-card border border-border rounded-xl p-6 hover:border-primary/50 transition-colors">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <info.icon className="w-6 h-6 text-primary" />
+              <div key={index} className="glass-card rounded-xl p-6 hover:border-gold/30 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-4">
+                  <info.icon className="w-6 h-6 text-gold" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">{info.title}</h3>
                 {info.details.map((d, i) => <p key={i} className="text-muted-foreground text-sm">{d}</p>)}
@@ -68,12 +68,12 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 px-4 bg-card/50">
+      <section className="py-12 md:py-16 px-4 glass">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-            <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+            <div className="glass-card rounded-2xl p-6 md:p-8">
               <div className="flex items-center gap-3 mb-6">
-                <MessageSquare className="w-6 h-6 text-primary" />
+                <MessageSquare className="w-6 h-6 text-gold" />
                 <h2 className="text-2xl font-bold text-foreground">{t("writeToUs")}</h2>
               </div>
 
@@ -93,7 +93,7 @@ export default function ContactPage() {
                         required
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                        className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                        className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-gold transition-colors"
                         placeholder={t("namePlaceholder")}
                       />
                     </div>
@@ -104,7 +104,7 @@ export default function ContactPage() {
                         required
                         value={formState.phone}
                         onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                        className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                        className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-gold transition-colors"
                         placeholder="+995 5XX XXX XXX"
                       />
                     </div>
@@ -116,7 +116,7 @@ export default function ContactPage() {
                       type="email"
                       value={formState.email}
                       onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                      className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                      className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-gold transition-colors"
                       placeholder="example@email.com"
                     />
                   </div>
@@ -126,7 +126,7 @@ export default function ContactPage() {
                     <select
                       value={formState.service}
                       onChange={(e) => setFormState({ ...formState, service: e.target.value })}
-                      className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary transition-colors"
+                      className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-gold transition-colors"
                     >
                       <option value="">{t("serviceDefault")}</option>
                       {[t("svcOpt1"), t("svcOpt2"), t("svcOpt3"), t("svcOpt4"), t("svcOpt5"), t("svcOpt6")].map((s) => (
@@ -141,7 +141,7 @@ export default function ContactPage() {
                       rows={4}
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                      className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-gold transition-colors resize-none"
                       placeholder={t("messagePlaceholder")}
                     />
                   </div>
@@ -156,7 +156,7 @@ export default function ContactPage() {
                   <Button
                     type="submit"
                     disabled={status === "loading"}
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg py-3"
+                    className="w-full bg-gold text-primary-foreground hover:bg-gold/90 rounded-lg py-3"
                   >
                     <Send className="w-4 h-4 mr-2" />
                     {status === "loading" ? t("sendLoading") : t("send")}
@@ -166,24 +166,24 @@ export default function ContactPage() {
             </div>
 
             <div className="space-y-6">
-              <div className="bg-card border border-border rounded-2xl overflow-hidden h-[300px] relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
+              <div className="glass-card rounded-2xl overflow-hidden h-[300px] relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-gold/5 flex items-center justify-center">
                   <div className="text-center">
-                    <MapPin className="w-12 h-12 text-primary mx-auto mb-3" />
+                    <MapPin className="w-12 h-12 text-gold mx-auto mb-3" />
                     <p className="text-foreground font-medium">{t("addressLine1")}</p>
                     <p className="text-muted-foreground text-sm">{t("addressLine0")}</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-primary/20 via-card to-primary/10 border border-primary/30 rounded-2xl p-8">
+              <div className="bg-gradient-to-br from-gold/20 via-card to-gold/10 border border-gold/30 rounded-2xl p-8">
                 <div className="flex items-center gap-3 mb-4">
-                  <Phone className="w-6 h-6 text-primary" />
+                  <Phone className="w-6 h-6 text-gold" />
                   <h3 className="text-xl font-bold text-foreground">{t("quickContact")}</h3>
                 </div>
                 <p className="text-muted-foreground mb-6">{t("quickContactDesc")}</p>
                 <div className="flex flex-col gap-3">
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg" asChild>
+                  <Button className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-lg" asChild>
                     <a href="tel:+995555123456"><Phone className="w-4 h-4 mr-2" />+995 555 123 456</a>
                   </Button>
                   <Button variant="outline" className="border-foreground/20 hover:bg-foreground/10 rounded-lg" asChild>

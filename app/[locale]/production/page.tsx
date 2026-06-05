@@ -21,13 +21,13 @@ export default async function ProductionPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <Header settings={settings} />
 
       {/* Hero / Intro */}
       <section className="pt-24 md:pt-32 pb-12 md:pb-16 px-4">
         <div className="max-w-3xl mx-auto">
-          <span className="text-primary font-medium mb-4 block">{t("eyebrow")}</span>
+          <span className="text-gold font-medium mb-4 block">{t("eyebrow")}</span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6">
             {t("heading")}
           </h1>
@@ -46,19 +46,19 @@ export default async function ProductionPage() {
       <section className="pb-16 md:pb-24 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="relative">
-            <div className="hidden md:block absolute left-[2.75rem] top-8 bottom-8 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent" />
+            <div className="hidden md:block absolute left-[2.75rem] top-8 bottom-8 w-px bg-gradient-to-b from-gold/50 via-gold/20 to-transparent" />
             <div className="space-y-6 md:space-y-8">
               {STEPS.map((step) => {
                 const Icon = step.icon
                 return (
                   <div key={step.num} className="flex gap-4 md:gap-6 group">
                     <div className="relative shrink-0">
-                      <div className="w-[5.5rem] h-[5.5rem] rounded-2xl bg-primary/10 border border-primary/20 flex flex-col items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/40 transition-all">
-                        <span className="text-xs font-bold text-primary/60 mb-1">{step.num}</span>
-                        <Icon className="w-6 h-6 text-primary" />
+                      <div className="w-[5.5rem] h-[5.5rem] rounded-2xl bg-gold/10 border border-gold/20 flex flex-col items-center justify-center group-hover:bg-gold/20 group-hover:border-gold/30 transition-all">
+                        <span className="text-xs font-bold text-gold/60 mb-1">{step.num}</span>
+                        <Icon className="w-6 h-6 text-gold" />
                       </div>
                     </div>
-                    <div className="bg-card border border-border rounded-2xl p-5 md:p-6 flex-1 group-hover:border-primary/30 transition-colors">
+                    <div className="glass-card rounded-2xl p-5 md:p-6 flex-1 group-hover:border-gold/30 transition-colors">
                       <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
                       <p className="text-muted-foreground leading-relaxed text-sm md:text-base">{step.description}</p>
                     </div>
@@ -71,11 +71,11 @@ export default async function ProductionPage() {
       </section>
 
       {/* Sustainability */}
-      <section className="py-12 md:py-16 px-4 bg-card/50 border-y border-border/40">
+      <section className="py-12 md:py-16 px-4 glass border-y border-gold/10">
         <div className="max-w-4xl mx-auto text-center">
-          <Recycle className="w-12 h-12 text-primary mx-auto mb-6" />
+          <Recycle className="w-12 h-12 text-gold mx-auto mb-6" />
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-            {t("sustTitle")} <span className="text-primary">{t("sustTitleHighlight")}</span>
+            {t("sustTitle")} <span className="text-gold">{t("sustTitleHighlight")}</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
             {t("sustDesc")}
@@ -86,8 +86,8 @@ export default async function ProductionPage() {
               { value: "Zero", label: t("sust2Label") },
               { value: "Eco",  label: t("sust3Label") },
             ].map((item) => (
-              <div key={item.label} className="bg-card border border-border rounded-xl p-5">
-                <div className="text-2xl font-black text-primary mb-1">{item.value}</div>
+              <div key={item.label} className="glass-card rounded-xl p-5">
+                <div className="text-2xl font-black text-gold mb-1">{item.value}</div>
                 <div className="text-sm text-muted-foreground">{item.label}</div>
               </div>
             ))}
