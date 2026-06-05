@@ -167,10 +167,14 @@
   }
   body {
     color: var(--text-primary);
-    background: url('/images/bg-main.png') center center / cover no-repeat fixed;
-    background-color: #08120F;
+    background: #08120F url('/images/bg-main.png') 35% center / cover no-repeat fixed;
     overflow-x: hidden;
     min-height: 100vh;
+  }
+  @media (min-width: 768px) {
+    body {
+      background-position: center center;
+    }
   }
   img, video {
     max-width: 100%;
