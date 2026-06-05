@@ -26,19 +26,27 @@ export function StatsSection({ stats, translations: tr }: Props) {
   const items = stats.length > 0 ? stats : DEFAULT_STATS
 
   return (
-    <section className="border-t border-gold/10 py-12 lg:py-16" style={{ background: 'rgba(8,18,15,0.35)', backdropFilter: 'blur(8px)' }}>
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-8">
+    <section className="py-6 px-4">
+      <div
+        className="max-w-5xl mx-auto rounded-2xl px-6 py-5 md:px-10 md:py-6"
+        style={{
+          background: 'rgba(8,18,15,0.45)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          border: '1px solid rgba(201,166,100,0.12)',
+        }}
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {items.map((stat, index) => {
             const IconComponent = STAT_ICONS[index % STAT_ICONS.length]
             return (
-              <div key={stat.id} className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 md:h-12 md:w-12">
-                  <IconComponent className="h-5 w-5 text-primary md:h-6 md:w-6" />
+              <div key={stat.id} className="flex items-center gap-3 md:gap-4">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#475A3F]/40 flex items-center justify-center shrink-0">
+                  <IconComponent className="w-5 h-5 md:w-6 md:h-6 text-[#C9A664]" />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-xl font-bold text-primary md:text-2xl lg:text-3xl">{stat.value}</div>
-                  <div className="text-xs text-muted-foreground leading-tight">{stat.label}</div>
+                  <div className="text-xl font-bold text-[#C9A664] md:text-2xl leading-tight">{stat.value}</div>
+                  <div className="text-xs md:text-sm text-[#7A7A7A] leading-snug">{stat.label}</div>
                 </div>
               </div>
             )
