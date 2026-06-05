@@ -68,7 +68,7 @@ export default async function AboutPage() {
       {about?.values && about.values.length > 0 && (
         <section className="py-12 md:py-16 px-4 glass">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-offwhite text-center mb-8 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#F4EFE4] text-center mb-8 md:mb-12">
               {t("values")} <span className="text-gold">{t("valuesHighlight")}</span>
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
@@ -121,7 +121,7 @@ export default async function AboutPage() {
       {about?.team && about.team.length > 0 && (
         <section className="py-12 md:py-16 px-4 glass">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-offwhite text-center mb-8 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#F4EFE4] text-center mb-8 md:mb-12">
               {t("team")} <span className="text-gold">{t("teamHighlight")}</span>
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">

@@ -51,21 +51,21 @@ export function FAQSection({ faqs }: Props) {
 
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10 md:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-offwhite mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#F4EFE4] mb-4">
             {t("heading")} <span className="text-gold">{t("headingHighlight")}</span>
           </h2>
-          <p className="text-sage max-w-2xl mx-auto">{t("description")}</p>
+          <p className="text-[#B8B8B8] max-w-2xl mx-auto">{t("description")}</p>
         </div>
 
         <div className="space-y-3">
           {items.map((faq, index) => (
             <details
               key={faq.id}
-              className="faq-item glass-card overflow-hidden hover:border-gold/30 transition-colors"
+              className="faq-item glass-card-faq overflow-hidden hover:border-gold/50 transition-colors"
               open={index === 0}
             >
               <summary className="flex items-center justify-between p-5 md:p-6 text-left select-none">
-                <span className="font-medium text-offwhite pr-4 leading-snug">{faq.question}</span>
+                <span className="font-medium text-[#F4EFE4] pr-4 leading-snug">{faq.question}</span>
                 <span className="faq-icon-wrap shrink-0 w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center transition-colors">
                   <Plus  className="faq-plus  w-4 h-4 text-gold" />
                   <Minus className="faq-minus w-4 h-4 text-gold" />
@@ -74,7 +74,7 @@ export function FAQSection({ faqs }: Props) {
 
               <div className="faq-body">
                 <div>
-                  <p className="px-5 md:px-6 pb-5 md:pb-6 text-sage leading-relaxed">
+                  <p className="px-5 md:px-6 pb-5 md:pb-6 text-[#B8B8B8] leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>

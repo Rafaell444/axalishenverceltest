@@ -40,10 +40,10 @@ export function FeaturesGrid({ features }: Props) {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10 md:mb-16">
           <span className="text-gold text-sm font-medium tracking-wider uppercase">{t("eyebrow")}</span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-offwhite mt-2 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#F4EFE4] mt-2 mb-4">
             {t("heading")} <span className="text-gold">{t("headingHighlight")}</span>
           </h2>
-          <p className="text-sage max-w-2xl mx-auto text-sm sm:text-base">
+          <p className="text-[#B8B8B8] max-w-2xl mx-auto text-sm sm:text-base">
             {t("description")}
           </p>
         </div>
@@ -61,8 +61,8 @@ export function FeaturesGrid({ features }: Props) {
                   <div className={`w-12 h-12 rounded-xl ${theme.bg} flex items-center justify-center mb-4`}>
                     <IconComponent className={`w-6 h-6 ${theme.icon}`} />
                   </div>
-                  <h3 className="text-offwhite font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-sage text-sm">{feature.description}</p>
+                  <h3 className="text-[#F4EFE4] font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-[#B8B8B8] text-sm">{feature.description}</p>
                 </div>
               </div>
             )
