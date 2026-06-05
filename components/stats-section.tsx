@@ -28,7 +28,7 @@ export function StatsSection({ stats, translations: tr }: Props) {
   return (
     <section className="py-6 px-4">
       <div
-        className="max-w-5xl mx-auto rounded-2xl px-6 py-5 md:px-10 md:py-6"
+        className="max-w-7xl mx-auto rounded-2xl px-6 py-5 md:px-10 md:py-6"
         style={{
           background: 'rgba(8,18,15,0.45)',
           backdropFilter: 'blur(16px)',

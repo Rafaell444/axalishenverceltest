@@ -55,10 +55,9 @@ export default async function Home() {
   }
 
   return (
-    <main className="min-h-screen relative">
+    <main className="min-h-screen">
       <Header settings={settings} />
       <HeroSection data={hero} translations={heroTranslations} />
-      <FeaturesGrid features={features} />
       <ServicesSection services={services} />
       <VideoSection />
       <StatsSection stats={stats} translations={statsTranslations} />
