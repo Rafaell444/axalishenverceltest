@@ -7,6 +7,12 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Brain, Stethoscope, Shield, Server, Activity, Microscope,
 }
 
+const SERVICE_IMAGES = [
+  "/images/blog-bg.png",
+  "/images/faq-bg.png",
+  "/images/science-bg.png",
+]
+
 interface Props {
   services: Service[]
 }
@@ -21,32 +27,38 @@ export function ServicesSection({ services }: Props) {
   const items = services.length > 0 ? services : DEFAULT_SERVICES
 
   return (
-    <section className="py-16 lg:py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="mb-10 md:mb-14 text-center">
-          {t("heading")}
+    <section className="py-16 lg:py-24 px-4">
+      <div className="container mx-auto lg:px-8">
+        <h2 className="mb-8 md:mb-12 text-center text-xl sm:text-2xl font-semibold text-[#F4EFE4] md:text-3xl">
+          What is <span className="text-gold">Mushroom</span>
         </h2>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((service) => {
+          {items.map((service, index) => {
             const IconComponent = ICON_MAP[service.icon] ?? Stethoscope
+            const bgImage = SERVICE_IMAGES[index % SERVICE_IMAGES.length]
             return (
               <div
                 key={service.id}
-                className="group glass-card p-7 transition-all duration-300 hover:border-[rgba(201,166,100,.45)]"
+                className="group relative overflow-hidden rounded-2xl border border-[rgba(201,166,100,0.25)] hover:border-gold/50 transition-all min-h-[300px] flex flex-col"
+                style={{ boxShadow: '0 20px 60px rgba(0,0,0,.45)' }}
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gold/10">
-                  <IconComponent className="h-6 w-6 text-gold" />
+                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${bgImage}')` }} />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#08120F]/95 via-[#08120F]/50 to-transparent" />
+                <div className="relative z-10 p-6 mt-auto">
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-gold/15 backdrop-blur-sm">
+                    <IconComponent className="h-5 w-5 text-gold" />
+                  </div>
+                  <h3 className="mb-2 text-lg font-medium text-[#F4EFE4]">{service.title}</h3>
+                  <p className="mb-4 text-sm leading-relaxed text-[#B8B8B8]">{service.short_description}</p>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="inline-flex items-center gap-1 text-sm text-gold transition-colors hover:text-[#D9C7A3]"
+                  >
+                    {t("learnMore")}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
                 </div>
-                <h3 className="mb-3 text-[#F4EFE4]">{service.title}</h3>
-                <p className="mb-5 text-[15px] leading-relaxed text-[#B8B8B8]">{service.short_description}</p>
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="inline-flex items-center gap-1.5 text-[15px] text-gold transition-colors hover:text-ivory"
-                >
-                  {t("learnMore")}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
               </div>
             )
           })}

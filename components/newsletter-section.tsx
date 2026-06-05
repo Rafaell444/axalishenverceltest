@@ -34,20 +34,20 @@ export function NewsletterSection() {
   }
 
   return (
-    <section className="py-14 md:py-20 px-6 border-y border-[rgba(201,166,100,.18)] glass">
+    <section className="py-14 md:py-18 px-4 glass border-y border-gold/10">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
 
         <div className="flex-1 flex gap-5 items-start">
-          <div className="w-1 self-stretch rounded-full bg-gradient-to-b from-[#C9A664] to-[#2D5D66] shrink-0 hidden sm:block" />
+          <div className="w-1 self-stretch rounded-full bg-gradient-to-b from-gold to-teal shrink-0 hidden sm:block" />
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <Mail className="w-4 h-4 text-gold" />
-              <span className="text-gold text-xs font-semibold uppercase tracking-widest">{t("eyebrow")}</span>
+              <Mail className="w-4 h-4 text-primary" />
+              <span className="text-primary text-xs font-semibold uppercase tracking-widest">{t("eyebrow")}</span>
             </div>
-            <h2 className="mb-2">
-              {t("heading")} <span className="text-gold">{t("headingHighlight")}</span> {t("headingSuffix")}
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+              {t("heading")} <span className="text-primary">{t("headingHighlight")}</span> {t("headingSuffix")}
             </h2>
-            <p className="text-[#B8B8B8] text-sm leading-relaxed max-w-sm">
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
               {t("description")}
             </p>
           </div>
@@ -55,13 +55,13 @@ export function NewsletterSection() {
 
         <div className="flex-1 w-full">
           {status === "success" ? (
-            <div className="flex items-center gap-4 p-5 rounded-xl border border-gold/25 bg-gold/5">
-              <div className="w-10 h-10 rounded-full bg-gold/15 flex items-center justify-center shrink-0">
-                <Check className="w-5 h-5 text-gold" />
+            <div className="flex items-center gap-4 p-5 rounded-xl border border-primary/30 bg-primary/5">
+              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                <Check className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="font-semibold text-[#F4EFE4] text-sm">{t("successTitle")}</p>
-                <p className="text-[#7A7A7A] text-xs">{t("successDesc")}</p>
+                <p className="font-semibold text-foreground text-sm">{t("successTitle")}</p>
+                <p className="text-muted-foreground text-xs">{t("successDesc")}</p>
               </div>
             </div>
           ) : (
@@ -72,10 +72,14 @@ export function NewsletterSection() {
                   placeholder={t("placeholder")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 h-11 bg-[#08120F] border-[rgba(201,166,100,.18)] text-[#F4EFE4] placeholder:text-[#7A7A7A]"
+                  className="flex-1 h-11 bg-background border-border"
                   required
                 />
-                <Button type="submit" disabled={status === "loading"} className="h-11 px-5 shrink-0">
+                <Button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="h-11 px-5 bg-primary hover:bg-primary/90 shrink-0"
+                >
                   {status === "loading" ? t("subscribing") : t("subscribe")}
                   <ArrowRight className="w-4 h-4 ml-1.5" />
                 </Button>
@@ -86,9 +90,9 @@ export function NewsletterSection() {
                   {errorMsg}
                 </div>
               )}
-              <p className="text-[#7A7A7A] text-xs">
+              <p className="text-muted-foreground text-xs">
                 {t("privacyPrefix")}{" "}
-                <a href="/privacy" className="underline hover:text-[#F4EFE4] transition-colors">
+                <a href="/privacy" className="underline hover:text-foreground transition-colors">
                   {t("privacyLink")}
                 </a>
               </p>

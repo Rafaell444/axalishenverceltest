@@ -39,7 +39,7 @@ export default function ContactPage() {
   ]
 
   return (
-    <main className="min-h-screen relative">
+    <main className="min-h-screen">
       <Header />
 
       <section className="pt-24 md:pt-32 pb-12 md:pb-16 px-4">

@@ -29,16 +29,16 @@ export function Footer({ settings, services = [] }: Props) {
   ]
 
   return (
-    <footer className="border-t border-[rgba(201,166,100,.18)] bg-[#08120F]/90 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
+    <footer className="border-t border-gold/10 bg-[#08120F]/80 backdrop-blur-sm">
+      <div className="container mx-auto px-4 py-12 lg:px-8 lg:py-16">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link href="/" className="flex items-center gap-2">
               {settings?.logo_url ? (
                 <img src={settings.logo_url} alt={siteName} className="h-10 w-auto" />
               ) : (
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-gold">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-primary/50">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-primary">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
                     <path d="M12 6v6l4 2" />
                     <circle cx="12" cy="12" r="2" />
@@ -46,37 +46,37 @@ export function Footer({ settings, services = [] }: Props) {
                 </div>
               )}
               <div className="flex flex-col">
-                <span className="text-sm font-semibold text-[#F4EFE4]">{siteName}</span>
-                <span className="text-xs text-[#7A7A7A]">{t("centerTagline")}</span>
+                <span className="text-sm font-semibold text-foreground">{siteName}</span>
+                <span className="text-xs text-muted-foreground">{t("centerTagline")}</span>
               </div>
             </Link>
-            <p className="mt-4 text-sm leading-relaxed text-[#B8B8B8]">
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               {settings?.tagline || t("tagline")}
             </p>
             <div className="mt-4 flex gap-3">
               {settings?.facebook_url && (
-                <a href={settings.facebook_url} target="_blank" rel="noopener noreferrer" className="text-[#7A7A7A] hover:text-gold transition-colors text-sm">Facebook</a>
+                <a href={settings.facebook_url} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-sm">Facebook</a>
               )}
               {settings?.instagram_url && (
-                <a href={settings.instagram_url} target="_blank" rel="noopener noreferrer" className="text-[#7A7A7A] hover:text-gold transition-colors text-sm">Instagram</a>
+                <a href={settings.instagram_url} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-sm">Instagram</a>
               )}
             </div>
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold text-[#F4EFE4]">{t("services")}</h4>
+            <h4 className="mb-4 text-sm font-semibold text-foreground">{t("services")}</h4>
             <ul className="space-y-2">
               {services.length > 0
                 ? services.map((s) => (
                     <li key={s.id}>
-                      <Link href={`/services/${s.slug}`} className="text-sm text-[#7A7A7A] transition-colors hover:text-[#F4EFE4]">
+                      <Link href={`/services/${s.slug}`} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                         {s.title}
                       </Link>
                     </li>
                   ))
                 : defaultServices.map((link) => (
                     <li key={link.href}>
-                      <Link href={link.href} className="text-sm text-[#7A7A7A] transition-colors hover:text-[#F4EFE4]">
+                      <Link href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                         {link.label}
                       </Link>
                     </li>
@@ -85,11 +85,11 @@ export function Footer({ settings, services = [] }: Props) {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold text-[#F4EFE4]">{t("company")}</h4>
+            <h4 className="mb-4 text-sm font-semibold text-foreground">{t("company")}</h4>
             <ul className="space-y-2">
               {companyLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-[#7A7A7A] transition-colors hover:text-[#F4EFE4]">
+                  <Link href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                     {link.label}
                   </Link>
                 </li>
@@ -98,36 +98,36 @@ export function Footer({ settings, services = [] }: Props) {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold text-[#F4EFE4]">{t("contact")}</h4>
+            <h4 className="mb-4 text-sm font-semibold text-foreground">{t("contact")}</h4>
             <ul className="space-y-3">
-              <li className="flex items-center gap-2 text-sm text-[#B8B8B8]">
-                <Phone className="h-4 w-4 text-gold shrink-0" />
-                <a href={`tel:${phone.replace(/\s/g, "")}`} className="hover:text-[#F4EFE4] transition-colors">{phone}</a>
+              <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Phone className="h-4 w-4 text-primary shrink-0" />
+                <a href={`tel:${phone.replace(/\s/g, "")}`} className="hover:text-foreground transition-colors">{phone}</a>
               </li>
-              <li className="flex items-center gap-2 text-sm text-[#B8B8B8]">
-                <Mail className="h-4 w-4 text-gold shrink-0" />
-                <a href={`mailto:${email}`} className="hover:text-[#F4EFE4] transition-colors">{email}</a>
+              <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Mail className="h-4 w-4 text-primary shrink-0" />
+                <a href={`mailto:${email}`} className="hover:text-foreground transition-colors">{email}</a>
               </li>
-              <li className="flex items-center gap-2 text-sm text-[#B8B8B8]">
-                <MapPin className="h-4 w-4 text-gold shrink-0" />
+              <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4 text-primary shrink-0" />
                 {address}
               </li>
-              <li className="flex items-center gap-2 text-sm text-[#B8B8B8]">
-                <Clock className="h-4 w-4 text-gold shrink-0" />
+              <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Clock className="h-4 w-4 text-primary shrink-0" />
                 {hours}
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-[rgba(201,166,100,.12)] pt-8">
+        <div className="mt-12 border-t border-border/40 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-sm text-[#7A7A7A]">
+            <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} {siteName}. {t("rights")}
             </p>
             <div className="flex gap-6">
-              <Link href="/privacy" className="text-sm text-[#7A7A7A] hover:text-[#F4EFE4]">{t("privacy")}</Link>
-              <Link href="/terms" className="text-sm text-[#7A7A7A] hover:text-[#F4EFE4]">{t("terms")}</Link>
+              <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground">{t("privacy")}</Link>
+              <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground">{t("terms")}</Link>
             </div>
           </div>
         </div>

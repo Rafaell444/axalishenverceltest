@@ -49,7 +49,7 @@ export default async function ServiceDetailPage({
   const related = allServices.filter((s) => s.slug !== slug).slice(0, 3)
 
   return (
-    <main className="min-h-screen relative">
+    <main className="min-h-screen">
       <Header settings={settings} />
 
       <section className="pt-24 md:pt-32 pb-16 px-4">

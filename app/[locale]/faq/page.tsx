@@ -13,7 +13,7 @@ export default async function FAQPage() {
   ])
 
   return (
-    <main className="min-h-screen relative">
+    <main className="min-h-screen">
       <Header settings={settings} />
 
       <section className="pt-24 md:pt-32 pb-4 px-4">
