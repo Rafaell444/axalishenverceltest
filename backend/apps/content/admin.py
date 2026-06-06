@@ -1,7 +1,7 @@
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
 from unfold.admin import ModelAdmin
-from .models import HeroSection, Feature, Stat, Testimonial, FAQ, Partner
+from .models import HeroSection, Testimonial, FAQ, Partner
 
 
 @admin.register(HeroSection)
@@ -18,42 +18,7 @@ class HeroSectionAdmin(SingletonModelAdmin, ModelAdmin):
             "fields": ("title_ru", "title_highlight_ru", "description_ru"),
             "classes": ("collapse",),
         }),
-        ("ღილაკები (KA)", {
-            "fields": ("cta_primary_text", "cta_primary_link", "cta_secondary_text", "cta_secondary_link"),
-        }),
-        ("ღილაკები (EN)", {
-            "fields": ("cta_primary_text_en", "cta_secondary_text_en"),
-            "classes": ("collapse",),
-        }),
-        ("ღილაკები (RU)", {
-            "fields": ("cta_primary_text_ru", "cta_secondary_text_ru"),
-            "classes": ("collapse",),
-        }),
         ("მედია", {"fields": ("image",)}),
-    )
-
-
-@admin.register(Feature)
-class FeatureAdmin(ModelAdmin):
-    list_display = ["title", "icon", "order"]
-    list_editable = ["order"]
-    ordering = ["order"]
-    fieldsets = (
-        ("ქართული", {"fields": ("icon", "color", "title", "description", "order")}),
-        ("English", {"fields": ("title_en", "description_en"), "classes": ("collapse",)}),
-        ("Русский", {"fields": ("title_ru", "description_ru"), "classes": ("collapse",)}),
-    )
-
-
-@admin.register(Stat)
-class StatAdmin(ModelAdmin):
-    list_display = ["value", "label", "order"]
-    list_editable = ["order"]
-    ordering = ["order"]
-    fieldsets = (
-        ("ძირითადი", {"fields": ("value", "label", "order")}),
-        ("English", {"fields": ("label_en",), "classes": ("collapse",)}),
-        ("Русский", {"fields": ("label_ru",), "classes": ("collapse",)}),
     )
 
 
