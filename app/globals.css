@@ -181,14 +181,14 @@
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    background-image: url('/images/bg-main.png');
+    background-image: url('/images/bg-main-mobile.png');
     background-size: cover;
-    background-position: 5% center;
+    background-position: center center;
     background-repeat: no-repeat;
   }
   @media (min-width: 768px) {
     body::before {
-      background-position: center center;
+      background-image: url('/images/bg-main.png');
     }
   }
   img, video {
