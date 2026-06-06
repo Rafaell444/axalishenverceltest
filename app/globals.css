@@ -167,18 +167,14 @@
   }
   body {
     color: var(--text-primary);
-    background: #08120F url('/images/bg-main-mobile.png') center top / cover no-repeat scroll;
-    overflow-x: hidden;
+    background: #08120F url('/images/bg-main.png') 5% / cover no-repeat fixed;
+    background-attachment: fixed;
     min-height: 100vh;
-  }
-  @supports (-webkit-touch-callout: none) {
-    body {
-      background-attachment: scroll;
-    }
+    overflow-x: hidden;
   }
   @media (min-width: 768px) {
     body {
-      background: #08120F url('/images/bg-main.png') center center / cover no-repeat fixed;
+      background-position: center center;
     }
   }
   img, video {
