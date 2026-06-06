@@ -167,18 +167,27 @@
   }
   body {
     color: var(--text-primary);
-    background: #08120F url('/images/bg-main.png') 5% / cover no-repeat fixed;
-    background-attachment: fixed;
+    background-color: #08120F;
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
+    z-index: 1;
   }
-  @supports (-webkit-touch-callout: none) {
-    body {
-      background-attachment: fixed !important;
-    }
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-image: url('/images/bg-main.png');
+    background-size: cover;
+    background-position: 5% center;
+    background-repeat: no-repeat;
   }
   @media (min-width: 768px) {
-    body {
+    body::before {
       background-position: center center;
     }
   }
