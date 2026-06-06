@@ -172,6 +172,11 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
+  @supports (-webkit-touch-callout: none) {
+    body {
+      background-attachment: scroll;
+    }
+  }
   @media (min-width: 768px) {
     body {
       background-position: center center;
