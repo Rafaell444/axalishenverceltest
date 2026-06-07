@@ -35,6 +35,18 @@ export interface HeroData {
   image_url: string | null
 }
 
+export interface Advantage {
+  id: number
+  title: string
+  slug: string
+  icon: string
+  image_url: string | null
+  video_url?: string | null
+  short_description: string
+  full_description?: string
+  order: number
+}
+
 export interface Feature {
   id: number
   icon: string
@@ -230,6 +242,10 @@ async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
 
 export const fetchSettings = () => apiFetch<SiteSettings>("/settings/")
 export const fetchHero = () => apiFetch<HeroData>("/hero/")
+export const fetchAdvantages = (lang?: string) =>
+  apiFetch<Advantage[]>(lang ? `/advantages/?lang=${lang}` : "/advantages/")
+export const fetchAdvantage = (slug: string, lang?: string) =>
+  apiFetch<Advantage>(lang ? `/advantages/${slug}/?lang=${lang}` : `/advantages/${slug}/`)
 export const fetchFeatures = () => apiFetch<Feature[]>("/features/")
 export const fetchStats = () => apiFetch<Stat[]>("/stats/")
 export const fetchProcessSteps = () => apiFetch<ProcessStep[]>("/process-steps/")
@@ -240,7 +256,8 @@ export const fetchFAQ = () => apiFetch<FAQ[]>("/faq/")
 export const fetchPartners = () => apiFetch<Partner[]>("/partners/")
 export const fetchServices = (featured?: boolean) =>
   apiFetch<Service[]>(`/services/${featured ? "?is_featured=true" : ""}`)
-export const fetchService = (slug: string) => apiFetch<Service>(`/services/${slug}/`)
+export const fetchService = (slug: string, lang?: string) =>
+  apiFetch<Service>(lang ? `/services/${slug}/?lang=${lang}` : `/services/${slug}/`)
 export const fetchBlogCategories = () => apiFetch<BlogCategory[]>("/blog/categories/")
 export const fetchBlogPosts = (params?: string) => apiFetch<BlogPost[]>(`/blog/posts/${params ? `?${params}` : ""}`)
 export const fetchBlogPost = (slug: string) => apiFetch<BlogPost>(`/blog/posts/${slug}/`)

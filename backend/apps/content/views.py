@@ -1,9 +1,10 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics
-from .models import HeroSection, Feature, Stat, Testimonial, FAQ, Partner
+from .models import HeroSection, Advantage, Feature, Stat, Testimonial, FAQ, Partner
 from .serializers import (
-    HeroSectionSerializer, FeatureSerializer, StatSerializer,
+    HeroSectionSerializer, AdvantageListSerializer, AdvantageDetailSerializer,
+    FeatureSerializer, StatSerializer,
     TestimonialSerializer, FAQSerializer, PartnerSerializer,
 )
 
@@ -12,6 +13,27 @@ from .serializers import (
 def hero(request):
     obj = HeroSection.get_solo()
     return Response(HeroSectionSerializer(obj, context={"request": request}).data)
+
+
+class AdvantageListView(generics.ListAPIView):
+    serializer_class = AdvantageListSerializer
+
+    def get_queryset(self):
+        return Advantage.objects.filter(is_active=True)
+
+    def get_serializer_context(self):
+        return {"request": self.request}
+
+
+class AdvantageDetailView(generics.RetrieveAPIView):
+    serializer_class = AdvantageDetailSerializer
+    lookup_field = "slug"
+
+    def get_queryset(self):
+        return Advantage.objects.filter(is_active=True)
+
+    def get_serializer_context(self):
+        return {"request": self.request}
 
 
 class FeatureListView(generics.ListAPIView):

@@ -16,17 +16,19 @@ import {
   fetchHero,
   fetchTestimonials,
   fetchPartners,
+  fetchAdvantages,
   fetchServices,
   fetchBlogPosts,
 } from "@/lib/api"
 
 export default async function Home() {
-  const [settings, hero, testimonials, partners, services, posts, tHero] =
+  const [settings, hero, testimonials, partners, advantages, services, posts, tHero] =
     await Promise.all([
       fetchSettings().catch(() => null),
       fetchHero().catch(() => null),
       fetchTestimonials().catch(() => []),
       fetchPartners().catch(() => []),
+      fetchAdvantages().catch(() => []),
       fetchServices().catch(() => []),
       fetchBlogPosts().catch(() => []),
       getTranslations("hero"),
@@ -45,7 +47,7 @@ export default async function Home() {
     <main className="min-h-screen">
       <Header settings={settings} />
       <HeroSection data={hero} translations={heroTranslations} />
-      <AdvantagesSection />
+      <AdvantagesSection advantages={advantages} />
       <ServicesSection services={services} />
       <VideoSection />
       <BlogFaqLinks />

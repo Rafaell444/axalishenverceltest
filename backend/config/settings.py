@@ -231,12 +231,7 @@ UNFOLD = {
                     {
                         "title": "უპირატესობები",
                         "icon": "star",
-                        "link": reverse_lazy("admin:content_feature_changelist"),
-                    },
-                    {
-                        "title": "სტატისტიკა",
-                        "icon": "bar_chart",
-                        "link": reverse_lazy("admin:content_stat_changelist"),
+                        "link": reverse_lazy("admin:content_advantage_changelist"),
                     },
                     {
                         "title": "მიმოხილვები",
@@ -306,26 +301,6 @@ UNFOLD = {
                         "title": "გვერდის კონტენტი",
                         "icon": "info",
                         "link": reverse_lazy("admin:about_aboutpage_changelist"),
-                    },
-                    {
-                        "title": "გუნდი",
-                        "icon": "group",
-                        "link": reverse_lazy("admin:about_teammember_changelist"),
-                    },
-                    {
-                        "title": "ღირებულებები",
-                        "icon": "favorite",
-                        "link": reverse_lazy("admin:about_companyvalue_changelist"),
-                    },
-                    {
-                        "title": "ისტორია",
-                        "icon": "timeline",
-                        "link": reverse_lazy("admin:about_companytimeline_changelist"),
-                    },
-                    {
-                        "title": "სერტიფიკატები",
-                        "icon": "verified",
-                        "link": reverse_lazy("admin:about_certification_changelist"),
                     },
                 ],
             },

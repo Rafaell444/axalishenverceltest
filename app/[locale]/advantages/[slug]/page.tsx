@@ -1,12 +1,12 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { CTASection } from "@/components/cta-section"
-import { fetchSettings, fetchService } from "@/lib/api"
+import { fetchSettings, fetchAdvantage } from "@/lib/api"
 import { notFound } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { ImageIcon } from "lucide-react"
 
-export default async function ServiceDetailPage({
+export default async function AdvantageDetailPage({
   params,
 }: {
   params: Promise<{ slug: string; locale: string }>
@@ -14,15 +14,15 @@ export default async function ServiceDetailPage({
   const { slug } = await params
   const locale = await getLocale()
 
-  const [settings, service] = await Promise.all([
+  const [settings, advantage] = await Promise.all([
     fetchSettings().catch(() => null),
-    fetchService(slug, locale).catch(() => null),
+    fetchAdvantage(slug, locale).catch(() => null),
   ])
 
-  if (!service) notFound()
+  if (!advantage) notFound()
 
-  const hasVideo = !!service.video_url
-  const hasImage = !!service.image_url
+  const hasVideo = !!advantage.video_url
+  const hasImage = !!advantage.image_url
 
   return (
     <main className="min-h-screen">
@@ -30,12 +30,10 @@ export default async function ServiceDetailPage({
 
       <section className="pt-16 md:pt-24 pb-16 md:pb-24 px-4">
         <div className="max-w-4xl mx-auto">
-
-          {/* Media: video or image or placeholder */}
           <div className="w-full rounded-2xl overflow-hidden mb-10" style={{ border: '1px solid rgba(201,166,100,0.15)' }}>
             {hasVideo ? (
               <video
-                src={service.video_url!}
+                src={advantage.video_url!}
                 controls
                 autoPlay
                 muted
@@ -45,8 +43,8 @@ export default async function ServiceDetailPage({
               />
             ) : hasImage ? (
               <img
-                src={service.image_url!}
-                alt={service.title}
+                src={advantage.image_url!}
+                alt={advantage.title}
                 className="w-full max-h-[520px] object-cover"
               />
             ) : (
@@ -59,23 +57,20 @@ export default async function ServiceDetailPage({
             )}
           </div>
 
-          {/* Heading */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#F4EFE4] mb-6">
-            {service.title}
+            {advantage.title}
           </h1>
 
-          {/* Short description */}
-          {service.short_description && (
+          {advantage.short_description && (
             <p className="text-lg text-[#B8B8B8] leading-relaxed mb-8 border-l-2 border-gold/40 pl-4">
-              {service.short_description}
+              {advantage.short_description}
             </p>
           )}
 
-          {/* Full description (rich text) */}
-          {service.full_description && (
+          {advantage.full_description && (
             <div
               className="prose prose-invert prose-headings:text-[#F4EFE4] prose-p:text-[#B8B8B8] prose-p:leading-relaxed prose-h2:text-2xl prose-h2:font-semibold prose-h2:mt-8 prose-h2:mb-3 max-w-none text-[#B8B8B8]"
-              dangerouslySetInnerHTML={{ __html: service.full_description }}
+              dangerouslySetInnerHTML={{ __html: advantage.full_description }}
             />
           )}
         </div>

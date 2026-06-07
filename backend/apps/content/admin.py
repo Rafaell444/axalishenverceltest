@@ -1,7 +1,7 @@
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
 from unfold.admin import ModelAdmin
-from .models import HeroSection, Testimonial, FAQ, Partner
+from .models import HeroSection, Advantage, Testimonial, FAQ, Partner
 
 
 @admin.register(HeroSection)
@@ -19,6 +19,31 @@ class HeroSectionAdmin(SingletonModelAdmin, ModelAdmin):
             "classes": ("collapse",),
         }),
         ("მედია", {"fields": ("image",)}),
+    )
+
+
+@admin.register(Advantage)
+class AdvantageAdmin(ModelAdmin):
+    list_display = ["title", "slug", "is_active", "order"]
+    list_editable = ["is_active", "order"]
+    list_filter = ["is_active"]
+    search_fields = ["title", "short_description"]
+    prepopulated_fields = {"slug": ("title",)}
+    fieldsets = (
+        ("ძირითადი", {"fields": ("title", "slug", "icon", "is_active", "order")}),
+        ("მედია", {
+            "fields": ("image", "video"),
+            "description": "ატვირთეთ სურათი ან ვიდეო (MP4). ვიდეო პრიორიტეტულია.",
+        }),
+        ("შინაარსი — ქართული", {"fields": ("short_description", "full_description")}),
+        ("შინაარსი — English", {
+            "fields": ("title_en", "short_description_en", "full_description_en"),
+            "classes": ("collapse",),
+        }),
+        ("შინაარსი — Русский", {
+            "fields": ("title_ru", "short_description_ru", "full_description_ru"),
+            "classes": ("collapse",),
+        }),
     )
 
 

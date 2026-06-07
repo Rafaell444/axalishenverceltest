@@ -64,8 +64,8 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html lang={locale} className={`${notoSansGeorgian.variable} ${playfairDisplay.variable} ${inter.variable}`}>
-      <body className="font-body antialiased">
+    <html lang={locale} className={`${notoSansGeorgian.variable} ${playfairDisplay.variable} ${inter.variable}`} suppressHydrationWarning>
+      <body className="font-body antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

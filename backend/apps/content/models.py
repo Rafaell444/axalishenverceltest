@@ -1,5 +1,7 @@
 from django.db import models
+from django.utils.text import slugify
 from solo.models import SingletonModel
+from ckeditor.fields import RichTextField
 
 
 class HeroSection(SingletonModel):
@@ -28,6 +30,39 @@ class HeroSection(SingletonModel):
 
     def __str__(self):
         return "Hero სექცია"
+
+
+class Advantage(models.Model):
+    title = models.CharField("სათაური (ქა)", max_length=200)
+    title_en = models.CharField("სათაური (EN)", max_length=200, blank=True)
+    title_ru = models.CharField("სათაური (RU)", max_length=200, blank=True)
+    slug = models.SlugField("Slug", max_length=200, unique=True, blank=True)
+    icon = models.CharField("ხატულა (lucide icon name)", max_length=50, default="Brain",
+        help_text="lucide-react ხატულის სახელი, მაგ: Brain, Shield, Stethoscope")
+    image = models.ImageField("სურათი", upload_to="advantages/", blank=True, null=True)
+    video = models.FileField("ვიდეო", upload_to="advantages/videos/", blank=True, null=True,
+        help_text="MP4 ფაილი. თუ ვიდეო ატვირთულია, სურათი არ გამოჩნდება.")
+    short_description = models.CharField("მოკლე აღწერა (ქა)", max_length=300)
+    short_description_en = models.CharField("მოკლე აღწერა (EN)", max_length=300, blank=True)
+    short_description_ru = models.CharField("მოკლე აღწერა (RU)", max_length=300, blank=True)
+    full_description = RichTextField("სრული აღწერა (ქა)", blank=True)
+    full_description_en = RichTextField("სრული აღწერა (EN)", blank=True)
+    full_description_ru = RichTextField("სრული აღწერა (RU)", blank=True)
+    is_active = models.BooleanField("აქტიური", default=True)
+    order = models.PositiveIntegerField("თანმიმდევრობა", default=0)
+
+    class Meta:
+        verbose_name = "უპირატესობა"
+        verbose_name_plural = "უპირატესობები (What is Mushroom)"
+        ordering = ["order"]
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title, allow_unicode=False) or f"advantage-{self.pk or 1}"
+        super().save(*args, **kwargs)
 
 
 class Feature(models.Model):
