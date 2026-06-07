@@ -113,6 +113,7 @@ export interface Service {
   slug: string
   icon: string
   image_url: string | null
+  video_url?: string | null
   short_description: string
   full_description?: string
   duration: string

@@ -11,6 +11,8 @@ class Service(models.Model):
     icon = models.CharField("ხატულა (lucide icon name)", max_length=50, default="Stethoscope",
         help_text="lucide-react ხატულის სახელი, მაგ: Brain, Shield, Activity")
     image = models.ImageField("სურათი", upload_to="services/", blank=True, null=True)
+    video = models.FileField("ვიდეო", upload_to="services/videos/", blank=True, null=True,
+        help_text="MP4 ფაილი. თუ ვიდეო ატვირთულია, სურათი არ გამოჩნდება.")
     short_description = models.CharField("მოკლე აღწერა (ქა)", max_length=300)
     short_description_en = models.CharField("მოკლე აღწერა (EN)", max_length=300, blank=True)
     short_description_ru = models.CharField("მოკლე აღწერა (RU)", max_length=300, blank=True)

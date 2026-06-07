@@ -11,14 +11,18 @@ class ServiceAdmin(ModelAdmin):
     search_fields = ["title", "short_description"]
     prepopulated_fields = {"slug": ("title",)}
     fieldsets = (
-        ("ძირითადი", {"fields": ("title", "slug", "icon", "image", "is_featured", "is_active", "order")}),
-        ("შინაარსი — ქართული", {"fields": ("short_description",)}),
+        ("ძირითადი", {"fields": ("title", "slug", "icon", "is_featured", "is_active", "order")}),
+        ("მედია", {
+            "fields": ("image", "video"),
+            "description": "ატვირთეთ სურათი ან ვიდეო (MP4). ვიდეო პრიორიტეტულია.",
+        }),
+        ("შინაარსი — ქართული", {"fields": ("short_description", "full_description")}),
         ("შინაარსი — English", {
-            "fields": ("title_en", "short_description_en"),
+            "fields": ("title_en", "short_description_en", "full_description_en"),
             "classes": ("collapse",),
         }),
         ("შინაარსი — Русский", {
-            "fields": ("title_ru", "short_description_ru"),
+            "fields": ("title_ru", "short_description_ru", "full_description_ru"),
             "classes": ("collapse",),
         }),
     )
