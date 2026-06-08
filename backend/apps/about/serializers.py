@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from apps.core.seo_serializers import SeoSerializerMixin
 from .models import AboutPage, CompanyValue, TeamMember, CompanyTimeline, Certification
 
 
@@ -88,28 +89,49 @@ class CertificationSerializer(serializers.ModelSerializer):
         return None
 
 
-class AboutPageSerializer(serializers.ModelSerializer):
+class AboutPageSerializer(SeoSerializerMixin, serializers.ModelSerializer):
     values = serializers.SerializerMethodField()
     team = serializers.SerializerMethodField()
     timeline = serializers.SerializerMethodField()
     certifications = serializers.SerializerMethodField()
     hero_title = serializers.SerializerMethodField()
+    hero_title_highlight = serializers.SerializerMethodField()
     hero_subtitle = serializers.SerializerMethodField()
     mission = serializers.SerializerMethodField()
     vision = serializers.SerializerMethodField()
+    image_url = serializers.SerializerMethodField()
+    video_url = serializers.SerializerMethodField()
 
     class Meta:
         model = AboutPage
-        fields = ["hero_title", "hero_subtitle", "mission", "vision", "values", "team", "timeline", "certifications"]
+        fields = [
+            "hero_title", "hero_title_highlight", "hero_subtitle", "mission", "vision",
+            "image_url", "video_url",
+            "meta_title", "meta_description",
+            "values", "team", "timeline", "certifications",
+        ]
 
     def _lang(self):
         request = self.context.get("request")
         return request.query_params.get("lang", "ka") if request else "ka"
 
     def get_hero_title(self, obj): return t(obj, "hero_title", self._lang())
+    def get_hero_title_highlight(self, obj): return t(obj, "hero_title_highlight", self._lang())
     def get_hero_subtitle(self, obj): return t(obj, "hero_subtitle", self._lang())
     def get_mission(self, obj): return t(obj, "mission", self._lang())
     def get_vision(self, obj): return t(obj, "vision", self._lang())
+
+    def get_image_url(self, obj):
+        if obj.image:
+            request = self.context.get("request")
+            return request.build_absolute_uri(obj.image.url) if request else obj.image.url
+        return None
+
+    def get_video_url(self, obj):
+        if obj.video:
+            request = self.context.get("request")
+            return request.build_absolute_uri(obj.video.url) if request else obj.video.url
+        return None
 
     def get_values(self, obj):
         return CompanyValueSerializer(CompanyValue.objects.all(), many=True, context=self.context).data

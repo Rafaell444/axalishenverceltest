@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from apps.core.seo import SeoFields
 
 
 class ProductCategory(models.Model):
@@ -18,7 +19,7 @@ class ProductCategory(models.Model):
         return self.name
 
 
-class Product(models.Model):
+class Product(SeoFields, models.Model):
     name = models.CharField("სახელი (ქა)", max_length=300)
     name_en = models.CharField("სახელი (EN)", max_length=300, blank=True)
     name_ru = models.CharField("სახელი (RU)", max_length=300, blank=True)

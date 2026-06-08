@@ -1,4 +1,6 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
+import { buildMetadata } from "@/lib/seo"
 import { Footer } from "@/components/footer"
 import { CTASection } from "@/components/cta-section"
 import { Calendar, ArrowLeft, User, Tag } from "lucide-react"
@@ -6,6 +8,19 @@ import { Link } from "@/i18n/navigation"
 import { fetchSettings, fetchBlogPost, fetchBlogPosts } from "@/lib/api"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; locale: string }>
+}): Promise<Metadata> {
+  const { slug, locale } = await params
+  const post = await fetchBlogPost(slug, locale).catch(() => null)
+  return buildMetadata(post, {
+    title: post?.title || slug,
+    description: post?.excerpt || "",
+  })
+}
 
 export default async function BlogPostPage({
   params,

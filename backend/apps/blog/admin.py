@@ -1,5 +1,6 @@
 from django.contrib import admin
 from unfold.admin import ModelAdmin
+from apps.core.seo import SEO_FIELDSETS
 from .models import BlogCategory, BlogPost
 
 
@@ -34,5 +35,6 @@ class BlogPostAdmin(ModelAdmin):
             "fields": ("title_ru", "excerpt_ru", "body_ru"),
             "classes": ("collapse",),
         }),
+        *SEO_FIELDSETS,
     )
     autocomplete_fields = ["category"]

@@ -1,7 +1,8 @@
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
 from unfold.admin import ModelAdmin
-from .models import SiteSettings
+from .models import SiteSettings, PageSEO
+from .seo import SEO_FIELDSETS
 
 
 @admin.register(SiteSettings)
@@ -20,4 +21,14 @@ class SiteSettingsAdmin(SingletonModelAdmin, ModelAdmin):
         ("მისამართი", {"fields": ("address_line1", "address_line2", "google_maps_embed")}),
         ("სამუშაო საათები", {"fields": ("working_hours_weekdays", "working_hours_saturday", "working_hours_sunday")}),
         ("სოციალური ქსელები", {"fields": ("facebook_url", "instagram_url", "youtube_url")}),
+    )
+
+
+@admin.register(PageSEO)
+class PageSEOAdmin(ModelAdmin):
+    list_display = ["page_key", "meta_title"]
+    search_fields = ["meta_title", "meta_description", "page_key"]
+    fieldsets = (
+        ("გვერდი", {"fields": ("page_key",)}),
+        *SEO_FIELDSETS,
     )

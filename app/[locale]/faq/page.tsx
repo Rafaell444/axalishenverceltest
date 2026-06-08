@@ -1,9 +1,27 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
+import { buildMetadata } from "@/lib/seo"
 import { Footer } from "@/components/footer"
 import { CTASection } from "@/components/cta-section"
 import { FAQSection } from "@/components/faq-section"
-import { fetchSettings, fetchFAQ } from "@/lib/api"
+import { fetchSettings, fetchFAQ, fetchPageSeo } from "@/lib/api"
 import { getTranslations } from "next-intl/server"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const [seo, t] = await Promise.all([
+    fetchPageSeo("faq", locale).catch(() => null),
+    getTranslations({ locale, namespace: "faq" }),
+  ])
+  return buildMetadata(seo, {
+    title: `${t("heading")} ${t("headingHighlight")}`,
+    description: t("description"),
+  })
+}
 
 export default async function FAQPage() {
   const [settings, faqs, t] = await Promise.all([

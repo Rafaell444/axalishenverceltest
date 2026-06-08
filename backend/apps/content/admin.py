@@ -1,6 +1,7 @@
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
 from unfold.admin import ModelAdmin
+from apps.core.seo import SEO_FIELDSETS
 from .models import HeroSection, Advantage, Testimonial, FAQ, Partner
 
 
@@ -19,6 +20,7 @@ class HeroSectionAdmin(SingletonModelAdmin, ModelAdmin):
             "classes": ("collapse",),
         }),
         ("მედია", {"fields": ("image",)}),
+        *SEO_FIELDSETS,
     )
 
 
@@ -44,6 +46,7 @@ class AdvantageAdmin(ModelAdmin):
             "fields": ("title_ru", "short_description_ru", "full_description_ru"),
             "classes": ("collapse",),
         }),
+        *SEO_FIELDSETS,
     )
 
 

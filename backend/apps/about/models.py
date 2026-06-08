@@ -1,11 +1,15 @@
 from django.db import models
 from solo.models import SingletonModel
+from apps.core.seo import SeoFields
 
 
-class AboutPage(SingletonModel):
-    hero_title = models.CharField("Hero სათაური (ქა)", max_length=200, default="ჩვენ შესახებ")
-    hero_title_en = models.CharField("Hero სათაური (EN)", max_length=200, blank=True)
-    hero_title_ru = models.CharField("Hero სათაური (RU)", max_length=200, blank=True)
+class AboutPage(SeoFields, SingletonModel):
+    hero_title = models.CharField("სათაური — თეთრი (ქა)", max_length=200, default="ჩვენს")
+    hero_title_highlight = models.CharField("სათაური — ოქროსფერი (ქა)", max_length=200, default="შესახებ")
+    hero_title_en = models.CharField("სათაური — თეთრი (EN)", max_length=200, blank=True, default="About")
+    hero_title_highlight_en = models.CharField("სათაური — ოქროსფერი (EN)", max_length=200, blank=True, default="Us")
+    hero_title_ru = models.CharField("სათაური — თეთრი (RU)", max_length=200, blank=True, default="О")
+    hero_title_highlight_ru = models.CharField("სათაური — ოქროსფერი (RU)", max_length=200, blank=True, default="нас")
     hero_subtitle = models.CharField("Hero ქვესათაური (ქა)", max_length=300, blank=True)
     hero_subtitle_en = models.CharField("Hero ქვესათაური (EN)", max_length=300, blank=True)
     hero_subtitle_ru = models.CharField("Hero ქვესათაური (RU)", max_length=300, blank=True)
@@ -15,13 +19,16 @@ class AboutPage(SingletonModel):
     vision = models.TextField("ვიზია (ქა)", blank=True)
     vision_en = models.TextField("ვიზია (EN)", blank=True)
     vision_ru = models.TextField("ვიზია (RU)", blank=True)
+    image = models.ImageField("სურათი", upload_to="about/", blank=True, null=True)
+    video = models.FileField("ვიდეო", upload_to="about/videos/", blank=True, null=True,
+        help_text="MP4 ფაილი. თუ ვიდეო ატვირთულია, სურათი არ გამოჩნდება.")
 
     class Meta:
-        verbose_name = "ჩვენ შესახებ გვერდი"
-        verbose_name_plural = "ჩვენ შესახებ გვერდი"
+        verbose_name = "გვერდის კონტენტი"
+        verbose_name_plural = "გვერდის კონტენტი"
 
     def __str__(self):
-        return "ჩვენ შესახებ"
+        return "გვერდის კონტენტი"
 
 
 class CompanyValue(models.Model):

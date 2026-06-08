@@ -24,7 +24,16 @@ export interface SiteSettings {
   youtube_url: string
 }
 
-export interface HeroData {
+export interface SeoFields {
+  meta_title?: string
+  meta_description?: string
+}
+
+export interface PageSeo extends SeoFields {
+  page_key: string
+}
+
+export interface HeroData extends SeoFields {
   title: string
   title_highlight: string
   description: string
@@ -35,7 +44,7 @@ export interface HeroData {
   image_url: string | null
 }
 
-export interface Advantage {
+export interface Advantage extends SeoFields {
   id: number
   title: string
   slug: string
@@ -119,7 +128,7 @@ export interface ServiceFeature {
   text: string
 }
 
-export interface Service {
+export interface Service extends SeoFields {
   id: number
   title: string
   slug: string
@@ -142,7 +151,7 @@ export interface BlogCategory {
   post_count: number
 }
 
-export interface BlogPost {
+export interface BlogPost extends SeoFields {
   id: number
   title: string
   slug: string
@@ -163,7 +172,7 @@ export interface ProductCategory {
   product_count: number
 }
 
-export interface Product {
+export interface Product extends SeoFields {
   id: number
   name: string
   slug: string
@@ -214,11 +223,14 @@ export interface Certification {
   order: number
 }
 
-export interface AboutData {
+export interface AboutData extends SeoFields {
   hero_title: string
+  hero_title_highlight: string
   hero_subtitle: string
   mission: string
   vision: string
+  image_url: string | null
+  video_url: string | null
   values: CompanyValue[]
   team: TeamMember[]
   timeline: CompanyTimeline[]
@@ -241,7 +253,10 @@ async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
 // ── Read endpoints ─────────────────────────────────────────────────────────────
 
 export const fetchSettings = () => apiFetch<SiteSettings>("/settings/")
-export const fetchHero = () => apiFetch<HeroData>("/hero/")
+export const fetchPageSeo = (pageKey: string, lang?: string) =>
+  apiFetch<PageSeo>(lang ? `/seo/${pageKey}/?lang=${lang}` : `/seo/${pageKey}/`)
+export const fetchHero = (lang?: string) =>
+  apiFetch<HeroData>(lang ? `/hero/?lang=${lang}` : "/hero/")
 export const fetchAdvantages = (lang?: string) =>
   apiFetch<Advantage[]>(lang ? `/advantages/?lang=${lang}` : "/advantages/")
 export const fetchAdvantage = (slug: string, lang?: string) =>
@@ -260,11 +275,13 @@ export const fetchService = (slug: string, lang?: string) =>
   apiFetch<Service>(lang ? `/services/${slug}/?lang=${lang}` : `/services/${slug}/`)
 export const fetchBlogCategories = () => apiFetch<BlogCategory[]>("/blog/categories/")
 export const fetchBlogPosts = (params?: string) => apiFetch<BlogPost[]>(`/blog/posts/${params ? `?${params}` : ""}`)
-export const fetchBlogPost = (slug: string) => apiFetch<BlogPost>(`/blog/posts/${slug}/`)
+export const fetchBlogPost = (slug: string, lang?: string) =>
+  apiFetch<BlogPost>(lang ? `/blog/posts/${slug}/?lang=${lang}` : `/blog/posts/${slug}/`)
 export const fetchProductCategories = () => apiFetch<ProductCategory[]>("/products/categories/")
 export const fetchProducts = (params?: string) => apiFetch<Product[]>(`/products/${params ? `?${params}` : ""}`)
 export const fetchProduct = (slug: string) => apiFetch<Product>(`/products/${slug}/`)
-export const fetchAbout = () => apiFetch<AboutData>("/about/")
+export const fetchAbout = (lang?: string) =>
+  apiFetch<AboutData>(lang ? `/about/?lang=${lang}` : "/about/")
 
 // ── Write endpoints (called from client components) ───────────────────────────
 

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from apps.core.seo_serializers import SeoSerializerMixin
 from .models import Service
 
 
@@ -33,7 +34,7 @@ class ServiceListSerializer(serializers.ModelSerializer):
         return None
 
 
-class ServiceDetailSerializer(serializers.ModelSerializer):
+class ServiceDetailSerializer(SeoSerializerMixin, serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     video_url = serializers.SerializerMethodField()
     title = serializers.SerializerMethodField()
@@ -46,6 +47,7 @@ class ServiceDetailSerializer(serializers.ModelSerializer):
             "id", "title", "slug", "icon",
             "image_url", "video_url",
             "short_description", "full_description",
+            "meta_title", "meta_description",
             "is_featured", "order",
         ]
 

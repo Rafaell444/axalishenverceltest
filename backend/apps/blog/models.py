@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
+from apps.core.seo import SeoFields
 
 User = get_user_model()
 
@@ -21,7 +22,7 @@ class BlogCategory(models.Model):
         return self.name
 
 
-class BlogPost(models.Model):
+class BlogPost(SeoFields, models.Model):
     title = models.CharField("სათაური (ქა)", max_length=300)
     title_en = models.CharField("სათაური (EN)", max_length=300, blank=True)
     title_ru = models.CharField("სათაური (RU)", max_length=300, blank=True)

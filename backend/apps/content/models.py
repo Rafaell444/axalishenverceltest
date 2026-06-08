@@ -2,9 +2,10 @@ from django.db import models
 from django.utils.text import slugify
 from solo.models import SingletonModel
 from ckeditor.fields import RichTextField
+from apps.core.seo import SeoFields
 
 
-class HeroSection(SingletonModel):
+class HeroSection(SeoFields, SingletonModel):
     title = models.CharField("სათაური (ქა)", max_length=200, default="ახალი შენ –")
     title_en = models.CharField("სათაური (EN)", max_length=200, blank=True)
     title_ru = models.CharField("სათაური (RU)", max_length=200, blank=True)
@@ -32,7 +33,7 @@ class HeroSection(SingletonModel):
         return "Hero სექცია"
 
 
-class Advantage(models.Model):
+class Advantage(SeoFields, models.Model):
     title = models.CharField("სათაური (ქა)", max_length=200)
     title_en = models.CharField("სათაური (EN)", max_length=200, blank=True)
     title_ru = models.CharField("სათაური (RU)", max_length=200, blank=True)
@@ -52,8 +53,8 @@ class Advantage(models.Model):
     order = models.PositiveIntegerField("თანმიმდევრობა", default=0)
 
     class Meta:
-        verbose_name = "უპირატესობა"
-        verbose_name_plural = "უპირატესობები (What is Mushroom)"
+        verbose_name = "What is Mushroom"
+        verbose_name_plural = "What is Mushroom"
         ordering = ["order"]
 
     def __str__(self):

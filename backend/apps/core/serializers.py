@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import SiteSettings
+from .models import SiteSettings, PageSEO
+from .seo_serializers import SeoSerializerMixin
 
 
 def t(obj, field, lang):
@@ -46,3 +47,13 @@ class SiteSettingsSerializer(serializers.ModelSerializer):
             request = self.context.get("request")
             return request.build_absolute_uri(obj.favicon.url) if request else obj.favicon.url
         return None
+
+
+class PageSeoSerializer(SeoSerializerMixin, serializers.ModelSerializer):
+    class Meta:
+        model = PageSEO
+        fields = ["page_key", "meta_title", "meta_description"]
+
+    def _lang(self):
+        request = self.context.get("request")
+        return request.query_params.get("lang", "ka") if request else "ka"

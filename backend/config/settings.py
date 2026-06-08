@@ -217,6 +217,11 @@ UNFOLD = {
                         "icon": "settings",
                         "link": reverse_lazy("admin:core_sitesettings_changelist"),
                     },
+                    {
+                        "title": "გვერდების SEO",
+                        "icon": "search",
+                        "link": reverse_lazy("admin:core_pageseo_changelist"),
+                    },
                 ],
             },
             {
@@ -229,7 +234,7 @@ UNFOLD = {
                         "link": reverse_lazy("admin:content_herosection_changelist"),
                     },
                     {
-                        "title": "უპირატესობები",
+                        "title": "What is Mushroom",
                         "icon": "star",
                         "link": reverse_lazy("admin:content_advantage_changelist"),
                     },
@@ -298,7 +303,7 @@ UNFOLD = {
                 "separator": True,
                 "items": [
                     {
-                        "title": "გვერდის კონტენტი",
+                        "title": "ჩვენს შესახებ",
                         "icon": "info",
                         "link": reverse_lazy("admin:about_aboutpage_changelist"),
                     },

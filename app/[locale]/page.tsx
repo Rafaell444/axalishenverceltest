@@ -1,4 +1,6 @@
+import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
+import { buildMetadata } from "@/lib/seo"
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { AdvantagesSection } from "@/components/advantages-section"
@@ -20,6 +22,19 @@ import {
   fetchServices,
   fetchBlogPosts,
 } from "@/lib/api"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const [hero, t] = await Promise.all([
+    fetchHero(locale).catch(() => null),
+    getTranslations({ locale, namespace: "meta" }),
+  ])
+  return buildMetadata(hero, { title: t("title"), description: t("description") })
+}
 
 export default async function Home() {
   const [settings, hero, testimonials, partners, advantages, services, posts, tHero] =

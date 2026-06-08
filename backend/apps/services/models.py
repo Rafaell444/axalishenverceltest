@@ -1,9 +1,10 @@
 from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
+from apps.core.seo import SeoFields
 
 
-class Service(models.Model):
+class Service(SeoFields, models.Model):
     title = models.CharField("სათაური (ქა)", max_length=200)
     title_en = models.CharField("სათაური (EN)", max_length=200, blank=True)
     title_ru = models.CharField("სათაური (RU)", max_length=200, blank=True)

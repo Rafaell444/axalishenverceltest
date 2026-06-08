@@ -1,5 +1,6 @@
 from django.contrib import admin
 from unfold.admin import ModelAdmin
+from apps.core.seo import SEO_FIELDSETS
 from .models import Service
 
 
@@ -25,4 +26,5 @@ class ServiceAdmin(ModelAdmin):
             "fields": ("title_ru", "short_description_ru", "full_description_ru"),
             "classes": ("collapse",),
         }),
+        *SEO_FIELDSETS,
     )

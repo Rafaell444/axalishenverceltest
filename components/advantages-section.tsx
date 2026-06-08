@@ -26,12 +26,9 @@ export async function AdvantagesSection({ advantages }: Props) {
   return (
     <section className="py-16 lg:py-24 px-4">
       <div className="container mx-auto lg:px-8">
-        <h2 className="mb-3 text-center text-sm uppercase tracking-widest text-gold">
-          Უპირატესობები
-        </h2>
-        <h3 className="mb-8 md:mb-12 text-center text-xl sm:text-2xl font-semibold text-[#F4EFE4] md:text-3xl">
+        <h2 className="mb-8 md:mb-12 text-center text-xl sm:text-2xl font-semibold text-[#F4EFE4] md:text-3xl">
           What is <span className="text-gold">Mushroom</span>
-        </h3>
+        </h2>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => {

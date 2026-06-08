@@ -1,4 +1,7 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
+import { buildMetadata } from "@/lib/seo"
+import { fetchPageSeo } from "@/lib/api"
 import { Footer } from "@/components/footer"
 import { NewsletterSection } from "@/components/newsletter-section"
 import { Calendar, ArrowRight, Search } from "lucide-react"
@@ -6,6 +9,22 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { fetchSettings, fetchBlogPosts, fetchBlogCategories } from "@/lib/api"
 import { getTranslations } from "next-intl/server"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const [seo, t] = await Promise.all([
+    fetchPageSeo("blog", locale).catch(() => null),
+    getTranslations({ locale, namespace: "blog" }),
+  ])
+  return buildMetadata(seo, {
+    title: `${t("heading")} ${t("headingHighlight")}`,
+    description: t("description"),
+  })
+}
 
 export default async function BlogPage() {
   const [settings, categoriesData, postsData, t] = await Promise.all([

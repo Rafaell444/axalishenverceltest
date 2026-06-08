@@ -1,4 +1,7 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
+import { buildMetadata } from "@/lib/seo"
+import { fetchPageSeo } from "@/lib/api"
 import { Footer } from "@/components/footer"
 import { CTASection } from "@/components/cta-section"
 import { Brain, Leaf, Bug, Shield, Activity, Microscope, Stethoscope, ArrowRight, Check, Clock, Users, Award, LucideIcon } from "lucide-react"
@@ -6,6 +9,22 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { fetchSettings, fetchServices } from "@/lib/api"
 import { getTranslations } from "next-intl/server"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const [seo, t] = await Promise.all([
+    fetchPageSeo("services", locale).catch(() => null),
+    getTranslations({ locale, namespace: "servicesPage" }),
+  ])
+  return buildMetadata(seo, {
+    title: `${t("heading")} ${t("headingHighlight")}`,
+    description: t("description"),
+  })
+}
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Brain, Leaf, Bug, Shield, Activity, Microscope, Stethoscope, Users, Award,

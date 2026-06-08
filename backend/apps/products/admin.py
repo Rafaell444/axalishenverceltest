@@ -1,5 +1,6 @@
 from django.contrib import admin
 from unfold.admin import ModelAdmin
+from apps.core.seo import SEO_FIELDSETS
 from .models import ProductCategory, Product
 
 
@@ -34,4 +35,5 @@ class ProductAdmin(ModelAdmin):
             "classes": ("collapse",),
         }),
         ("ფასი და მარაგი", {"fields": ("price", "sale_price", "stock_count", "rating")}),
+        *SEO_FIELDSETS,
     )

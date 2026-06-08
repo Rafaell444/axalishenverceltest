@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from apps.core.seo_serializers import SeoSerializerMixin
 from .models import BlogCategory, BlogPost
 
 
@@ -61,10 +62,12 @@ class BlogPostListSerializer(serializers.ModelSerializer):
         return None
 
 
-class BlogPostDetailSerializer(BlogPostListSerializer):
+class BlogPostDetailSerializer(SeoSerializerMixin, BlogPostListSerializer):
     body = serializers.SerializerMethodField()
 
     class Meta(BlogPostListSerializer.Meta):
-        fields = BlogPostListSerializer.Meta.fields + ["body", "created_at", "updated_at"]
+        fields = BlogPostListSerializer.Meta.fields + [
+            "body", "meta_title", "meta_description", "created_at", "updated_at",
+        ]
 
     def get_body(self, obj): return t(obj, "body", self._lang())

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from apps.core.seo_serializers import SeoSerializerMixin
 from .models import HeroSection, Advantage, Feature, Stat, Testimonial, FAQ, Partner
 
 
@@ -11,7 +12,7 @@ def t(obj, field, lang):
     return getattr(obj, field, "") or ""
 
 
-class HeroSectionSerializer(serializers.ModelSerializer):
+class HeroSectionSerializer(SeoSerializerMixin, serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     title = serializers.SerializerMethodField()
     title_highlight = serializers.SerializerMethodField()
@@ -25,7 +26,7 @@ class HeroSectionSerializer(serializers.ModelSerializer):
             "title", "title_highlight", "description",
             "cta_primary_text", "cta_primary_link",
             "cta_secondary_text", "cta_secondary_link",
-            "image_url",
+            "image_url", "meta_title", "meta_description",
         ]
 
     def _lang(self):
@@ -68,7 +69,7 @@ class AdvantageListSerializer(serializers.ModelSerializer):
         return None
 
 
-class AdvantageDetailSerializer(serializers.ModelSerializer):
+class AdvantageDetailSerializer(SeoSerializerMixin, serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     video_url = serializers.SerializerMethodField()
     title = serializers.SerializerMethodField()
@@ -81,6 +82,7 @@ class AdvantageDetailSerializer(serializers.ModelSerializer):
             "id", "title", "slug", "icon",
             "image_url", "video_url",
             "short_description", "full_description",
+            "meta_title", "meta_description",
             "order",
         ]
 

@@ -1,9 +1,27 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
+import { buildMetadata } from "@/lib/seo"
+import { fetchSettings, fetchPageSeo } from "@/lib/api"
 import { Footer } from "@/components/footer"
 import { CTASection } from "@/components/cta-section"
-import { fetchSettings } from "@/lib/api"
 import { getTranslations } from "next-intl/server"
 import { ImageIcon } from "lucide-react"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const [seo, t] = await Promise.all([
+    fetchPageSeo("certifications", locale).catch(() => null),
+    getTranslations({ locale, namespace: "certPage" }),
+  ])
+  return buildMetadata(seo, {
+    title: `${t("heading")}${t("headingHighlight") ? ` ${t("headingHighlight")}` : ""}`,
+    description: t("p1"),
+  })
+}
 
 export default async function CertificationsPage() {
   const [settings, t] = await Promise.all([

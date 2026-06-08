@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from apps.core.seo_serializers import SeoSerializerMixin
 from .models import ProductCategory, Product
 
 
@@ -28,7 +29,7 @@ class ProductCategorySerializer(serializers.ModelSerializer):
         return obj.products.filter(is_active=True).count()
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class ProductSerializer(SeoSerializerMixin, serializers.ModelSerializer):
     category = ProductCategorySerializer(read_only=True)
     image_url = serializers.SerializerMethodField()
     in_stock = serializers.BooleanField(read_only=True)
@@ -43,7 +44,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "price", "sale_price", "effective_price",
             "category", "image_url",
             "rating", "stock_count", "in_stock",
-            "is_featured",
+            "is_featured", "meta_title", "meta_description",
         ]
 
     def _lang(self):

@@ -1,10 +1,25 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
+import { buildMetadata } from "@/lib/seo"
 import { Footer } from "@/components/footer"
 import { CTASection } from "@/components/cta-section"
 import { fetchSettings, fetchService } from "@/lib/api"
 import { notFound } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { ImageIcon } from "lucide-react"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; locale: string }>
+}): Promise<Metadata> {
+  const { slug, locale } = await params
+  const service = await fetchService(slug, locale).catch(() => null)
+  return buildMetadata(service, {
+    title: service?.title || slug,
+    description: service?.short_description || "",
+  })
+}
 
 export default async function ServiceDetailPage({
   params,

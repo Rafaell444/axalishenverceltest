@@ -1,5 +1,6 @@
 from django.db import models
 from solo.models import SingletonModel
+from .seo import SeoFields
 
 
 class SiteSettings(SingletonModel):
@@ -50,3 +51,26 @@ class SiteSettings(SingletonModel):
 
     def __str__(self):
         return "საიტის პარამეტრები"
+
+
+class PageSEO(SeoFields, models.Model):
+    PAGE_CHOICES = [
+        ("contact", "კონტაქტი"),
+        ("products", "პროდუქტები"),
+        ("services", "სერვისები"),
+        ("blog", "ბლოგი"),
+        ("faq", "FAQ"),
+        ("certifications", "სერტიფიკაცია"),
+        ("safety", "უსაფრთხოება"),
+        ("production", "წარმოება"),
+    ]
+
+    page_key = models.CharField("გვერდი", max_length=50, choices=PAGE_CHOICES, unique=True)
+
+    class Meta:
+        verbose_name = "გვერდის SEO"
+        verbose_name_plural = "გვერდების SEO"
+        ordering = ["page_key"]
+
+    def __str__(self):
+        return dict(self.PAGE_CHOICES).get(self.page_key, self.page_key)
